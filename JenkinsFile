@@ -11,10 +11,11 @@ pipeline{
           echo 'good test'
         }  
     }
-    stage('Build')
-    {
+    stage('Build'){
+      steps {
     sh 'mvn package'
-    }
+        }
+      }
  }
 }
    
