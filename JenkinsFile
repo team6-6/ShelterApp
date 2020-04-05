@@ -1,20 +1,11 @@
 pipeline{
   agent any
-  stages{
+  node{
     stage('SCM Checkout') {
-        steps {
-          git 'https://github.com/team6-6/ShelterApp'
-        }
+          git 'https://github.com/team6-6/ShelterApp'   
     } 
-    stage('test') {
-        steps {
-          echo 'good test'
-        }  
-    }
     stage('Build'){
-      steps {
     sh 'mvn package'
-        }
       }
  }
 }
