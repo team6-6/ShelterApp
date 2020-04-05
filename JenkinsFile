@@ -1,0 +1,9 @@
+pipeline{
+  agent any
+    stage('SCM Checkout')
+    {
+    git 'https://github.com/team6-6/ShelterApp'
+    }
+}
+    
+  
