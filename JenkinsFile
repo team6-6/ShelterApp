@@ -1,8 +1,15 @@
 pipeline{
   agent any
-    stage('SCM Checkout')
-    {
-    git 'https://github.com/team6-6/ShelterApp'
+  stages{
+    stage('SCM Checkout') {
+        steps {
+          git 'https://github.com/team6-6/ShelterApp'
+        }
+    } 
+    stage('test') {
+        steps {
+          echo 'good test'
+        }  
     }
 }
     
