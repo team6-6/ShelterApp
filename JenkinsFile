@@ -10,7 +10,7 @@ pipeline {
             
         stage('Build'){
             steps{
-               sh label: '', script: './gradlew build'
+               sh 'jenkins/build.sh'
                 }
             }
         }
