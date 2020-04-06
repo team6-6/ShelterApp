@@ -1,16 +1,19 @@
 pipeline {
     agent any 
     stages {
+
         stage('SCM Checkout') {
-          steps {
-              echo 'hello'
-          }
-       } 
+            steps{
+               git 'https://github.com/team6-6/ShelterApp' 
+                }
+            }
+            
         stage('Build'){
-           steps{
-             echo 'hello'
+            steps{
+                sh './gradlew clean'
+                sh './gradlew build'
+                }
             }
         }
-      }
  }
    
