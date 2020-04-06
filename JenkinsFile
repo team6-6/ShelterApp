@@ -8,11 +8,14 @@ pipeline {
                 }
             }
             
-        stage('Build'){
-            steps{
-               sh 'src.sh'
-                }
-            }
+
+    stage ('Prepare'){
+      steps {
+        sh 'chmod +x ./gradlew'
+      }
+    }
+    
+
         }
  }
    
