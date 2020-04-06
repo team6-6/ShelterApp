@@ -15,7 +15,18 @@ pipeline {
       }
     }
     
-
+    
+    stage('Build'){
+            steps{
+               sh './gradlew src'
+                }
+            }
+            
+      stage('Test'){
+            steps{
+              echo 'test'
+                }
+            }
         }
  }
    
