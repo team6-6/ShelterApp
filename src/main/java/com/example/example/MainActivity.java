@@ -58,17 +58,19 @@ public class MainActivity extends AppCompatActivity {
                                         String pass=documentSnapshot.getString("password");
                                         if (pass.equals(passwordId.getText().toString().trim())){
                                             String permission = documentSnapshot.getString("permission");
-                                            Toast.makeText(MainActivity.this, "login succeed", Toast.LENGTH_SHORT).show();
                                             if(permission.equals("A")){
                                                 Intent intent = new Intent(MainActivity.this, MainAdminActivity.class);
+                                                intent.putExtra("EXTRA_SESSION_ID", user);
                                                 startActivity(intent);
                                             }
                                             else if(permission.equals("B")){
                                                 Intent intent = new Intent(MainActivity.this, MainEmployeeActivity.class);
+                                                intent.putExtra("EXTRA_SESSION_ID", user);
                                                 startActivity(intent);
                                             }
                                             else if(permission.equals("C")){
                                                 Intent intent = new Intent(MainActivity.this, MainCivilianActivity.class);
+                                                intent.putExtra("EXTRA_SESSION_ID", user);
                                                 startActivity(intent);
                                             }
 
