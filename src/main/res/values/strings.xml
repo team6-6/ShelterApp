@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shelter4u</string>
+    <string name="app_name">Example</string>
     <string name="create_new_account">create new account</string>
     <string name="register">Register</string>
     <string name="not_register_Click_here">not register ? Click here</string>
