@@ -15,7 +15,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_employee);
         ImageView list_shelters,list_sirens,map,requests,requests_admin,numbers,contant;
-        TextView change ;
+        TextView change,logout ;
 
         list_shelters=(ImageView)findViewById(R.id.Shelterlist) ;
         list_sirens= (ImageView)findViewById(R.id.Sirenlist);
@@ -25,6 +25,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
         numbers= (ImageView)findViewById(R.id.EmergencyNumber);
         contant= (ImageView)findViewById(R.id.ContantUs);
         change= (TextView) findViewById(R.id.changePass);
+        logout= (TextView) findViewById(R.id.logout);
         final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         map.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +51,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainEmployeeActivity.this, SheltersActivity.class);
+                Intent first = new Intent(MainEmployeeActivity.this, AdminSheltersActivity.class);
                 startActivity(first);
             }
         });
@@ -59,7 +60,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainEmployeeActivity.this, SirensActivity.class);
+                Intent first = new Intent(MainEmployeeActivity.this, AdminSirensActivity.class);
                 startActivity(first);
             }
         });
@@ -96,6 +97,15 @@ public class MainEmployeeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainEmployeeActivity.this, ContactUsActivity.class);
+                startActivity(first);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent first = new Intent(MainEmployeeActivity.this, MainActivity.class);
                 startActivity(first);
             }
         });

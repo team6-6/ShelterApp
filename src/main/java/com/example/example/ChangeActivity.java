@@ -110,15 +110,8 @@ public class ChangeActivity extends AppCompatActivity {
                 }
 
 
-
-
             }
         });
-
-
-
-
-
 
     }
 }

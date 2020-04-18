@@ -17,13 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RequestsAdminActivity"></activity>
+        <activity android:name=".DeleteSirenActivity"></activity>
+        <activity android:name=".AddSirenActivity" />
+        <activity android:name=".DeleteShelterActivity" />
+        <activity android:name=".AddShelterActivity" />
+        <activity android:name=".RequestsAdminActivity" />
         <activity android:name=".RequestsActivity" />
         <activity android:name=".RateActivity" />
         <activity android:name=".ContactUsActivity" />
         <activity android:name=".NumbersActivity" />
-        <activity android:name=".SirensActivity" />
-        <activity android:name=".SheltersActivity" />
+        <activity android:name=".AdminSirensActivity" />
+        <activity android:name=".AdminSheltersActivity" />
         <activity android:name=".MainCivilianActivity" />
         <activity android:name=".MainEmployeeActivity" />
         <!--

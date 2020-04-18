@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,17 +16,19 @@ public class MainAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
 
-        ImageView list,map,edit,numbers,rate,contant;
-        TextView change ;
+        ImageView list,list_sirens,map,edit,numbers,rate,contant;
+        TextView change,logout ;
 
 
         map= (ImageView)findViewById(R.id.MapOption);
         list= (ImageView)findViewById(R.id.Shelterlist);
+        list_sirens= (ImageView)findViewById(R.id.Sirenlist);
         edit= (ImageView)findViewById(R.id.EditUserAdmin);
         numbers= (ImageView)findViewById(R.id.EmergencyNumber);
         rate= (ImageView)findViewById(R.id.RateUs );
         contant= (ImageView)findViewById(R.id.ContantUs);
         change= (TextView) findViewById(R.id.changePass);
+        logout= (TextView) findViewById(R.id.logout);
         final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         map.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class MainAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainAdminActivity.this, SheltersActivity.class);
+                Intent first = new Intent(MainAdminActivity.this, AdminSheltersActivity.class);
                 startActivity(first);
             }
         });
@@ -91,6 +91,24 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, RateActivity.class);
+                startActivity(first);
+            }
+        });
+
+        list_sirens.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent first = new Intent(MainAdminActivity.this, AdminSirensActivity.class);
+                startActivity(first);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent first = new Intent(MainAdminActivity.this, MainActivity.class);
                 startActivity(first);
             }
         });

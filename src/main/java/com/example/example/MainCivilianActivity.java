@@ -16,7 +16,7 @@ public class MainCivilianActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_civilian);
 
         ImageView list,map,numbers,rate,contant;
-        TextView change ;
+        TextView change,logout ;
 
 
         map= (ImageView)findViewById(R.id.MapOption);
@@ -25,6 +25,7 @@ public class MainCivilianActivity extends AppCompatActivity {
         contant= (ImageView)findViewById(R.id.ContantUs);
         rate=(ImageView)findViewById(R.id.RateUs);
         change= (TextView) findViewById(R.id.changePass);
+        logout= (TextView) findViewById(R.id.logout);
         final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         map.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +52,7 @@ public class MainCivilianActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainCivilianActivity.this, SheltersActivity.class);
+                Intent first = new Intent(MainCivilianActivity.this, AdminSheltersActivity.class);
                 startActivity(first);
             }
         });
@@ -79,6 +80,15 @@ public class MainCivilianActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainCivilianActivity.this, RateActivity.class);
+                startActivity(first);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent first = new Intent(MainCivilianActivity.this, MainActivity.class);
                 startActivity(first);
             }
         });
