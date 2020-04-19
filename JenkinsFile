@@ -6,6 +6,12 @@ pipeline {
         }
     }
     stages {
+    
+            stage('SCM Checkout') {
+            steps{
+               git 'https://github.com/team6-6/ShelterApp' 
+                }
+            }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
