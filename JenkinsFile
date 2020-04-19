@@ -5,6 +5,11 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+    stage ('Prepare'){
+      steps {
+        sh 'chmod +x ./gradlew'
+      }
+    }
     stages {
         stage('Build') {
             steps {
