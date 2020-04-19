@@ -12,18 +12,10 @@ pipeline {
             }
         }
         
-       stage('UI Testing') {
-             steps {
-                script {                                                          
-                    if (currentBuild.result == null  || currentBuild.result == 'SUCCESS') {  
-                 sh 'emulator @Nexus_Emulator_API_24'
-                sh 'appium &'  
-     
-                sh 'rspec spec -fd'
-          }
-        }
-      }
+         stage('Stage Unit Tests') {
+      sh './gradlew androidTest'
     }
+    
   }
   }
 
