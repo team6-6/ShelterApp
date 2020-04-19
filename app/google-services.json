@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1034153493921",
+    "firebase_url": "https://mythic-method-272720.firebaseio.com",
+    "project_id": "mythic-method-272720",
+    "storage_bucket": "mythic-method-272720.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034153493921:android:a0fd1f61b28f01b7a9f7e0",
+        "android_client_info": {
+          "package_name": "com.example.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034153493921-p7h4vj1biehctq241u1j9ikdddqhnjde.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.example",
+            "certificate_hash": "377ff2383c6e341abb0ac32ed0bdd24e5ea17a8f"
+          }
+        },
+        {
+          "client_id": "1034153493921-1p46m3nbv571l5bc5km5oj0ei78op5sh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuDsKncPP6vRDMyY4fYrNNCDKbPJEGd6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034153493921-1p46m3nbv571l5bc5km5oj0ei78op5sh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
