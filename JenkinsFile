@@ -12,10 +12,15 @@ pipeline {
             }
         }
         
-         stage('Stage Unit Tests') {
-            steps{
-      sh './gradlew testReleaseUnitTest'
-               }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
         }
     
   }
