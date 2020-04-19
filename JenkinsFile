@@ -13,8 +13,10 @@ pipeline {
         }
         
          stage('Stage Unit Tests') {
+            steps{
       sh './gradlew androidTest'
-    }
+               }
+        }
     
   }
   }
