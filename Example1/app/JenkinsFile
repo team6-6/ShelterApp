@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker-android-maven'
-            args '-v /root/.m2:/root/.m2'
+      image 'windsekirun/jenkins-android-docker:1.1.1'
         }
     }
     stages {
