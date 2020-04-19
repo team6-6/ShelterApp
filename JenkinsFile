@@ -1,10 +1,9 @@
 pipeline {
  agent {
-        docker { 
-           image 'node:7-alpine' 
-           args '-v /root/.m2:/root/.m2'   
-        }
+    docker {
+      image 'windsekirun/jenkins-android-docker:1.1.1'
     }
+  }
     
     stages {
         stage('Build') {
