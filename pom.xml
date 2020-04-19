@@ -21,7 +21,7 @@
 				<directory>src/main/resources</directory>
 			</resource>
 			<resource>
-				<directory>app/src/androidTest</directory>
+				<directory>app/src/main</directory>
 			</resource>
 		</resources>
 	</build>
