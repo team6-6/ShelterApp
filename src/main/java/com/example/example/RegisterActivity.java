@@ -23,7 +23,9 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
         public FirebaseFirestore db = FirebaseFirestore.getInstance();
-        private static final String TAG = "RegisterActivity";
+        public FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+
+    private static final String TAG = "RegisterActivity";
         private int i=1;
         EditText userId, passwordId, confirmId, q1, q2;
         Button registerId;
@@ -90,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                     // Create a new user with a first and last name
-                    Map<String, Object> user_details = new HashMap<>();
+                    final Map<String, Object> user_details = new HashMap<>();
                     user_details.put("password", pwd);
                     user_details.put("permission", "C");
                     user_details.put("Father", quetion1);
@@ -100,8 +102,26 @@ public class RegisterActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    if (documentSnapshot.exists()) {
-                                        flag=false;
+                                    if (!documentSnapshot.exists()) {
+                                        db2.collection("users").document(user).set(user_details)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void documentReference) {
+                                                        Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
+                                                        Log.d(TAG, "DocumentSnapshot added with ID: " + user);
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w(TAG, "Error adding document", e);
+                                                        Toast.makeText(RegisterActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                });
+                                    }
+                                    else{
+                                        Toast.makeText(RegisterActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
                                     }
 
                                 }
@@ -110,30 +130,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    flag=true;
+                                    Toast.makeText(RegisterActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                    if(flag==true){
-                        // Add a new document with a generated ID
-                        db.collection("users").document(user).set(user_details)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void documentReference) {
-                                        Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG, "DocumentSnapshot added with ID: " + user);
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w(TAG, "Error adding document", e);
-                                    }
-                                });
-                    }
-                    else {
-                        Toast.makeText(RegisterActivity.this, "already exist!", Toast.LENGTH_SHORT).show();
 
-                    }
                 } catch (Exception e) {
                     Toast.makeText(RegisterActivity.this, "already exist!", Toast.LENGTH_SHORT).show();
                 }

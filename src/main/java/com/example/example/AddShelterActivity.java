@@ -11,10 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +23,7 @@ import java.util.regex.Pattern;
 
 public class AddShelterActivity extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseFirestore db2 = FirebaseFirestore.getInstance();
     private static final String TAG = "AddShelterActivity";
     EditText nameShelter, lat, lon;
     Button addShelter,back;
@@ -70,44 +69,49 @@ public class AddShelterActivity extends AppCompatActivity {
                     DocumentReference noteref = db.collection("shelter").document(name);
 
                     // Create a new shelter
-                    Map<String, Object> shelter_details = new HashMap<>();
+                    final Map<String, Object> shelter_details = new HashMap<>();
                     shelter_details.put("lat", newlat);
                     shelter_details.put("lon", newlon);
 
-                    noteref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
-                                    // Add a new document with a generated ID
-                                    db.collection("shelter").document(name).set(shelter_details)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void documentReference) {
-                                                    Log.d(TAG, "DocumentSnapshot added with ID: " + name);
-                                                    Toast.makeText(AddShelterActivity.this, "Shelter added to list", Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.w(TAG, "Error adding document", e);
-                                                }
-                                            });
-                                } else {
-                                    Log.d(TAG, "No such document");
+
+
+                    db.collection("shelter").document(name).get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (!documentSnapshot.exists()) {
+                                        db2.collection("shelter").document(name).set(shelter_details)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void documentReference) {
+                                                        Toast.makeText(AddShelterActivity.this, "Shelter added", Toast.LENGTH_SHORT).show();
+                                                        Log.d(TAG, "DocumentSnapshot added with ID: " + name);
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w(TAG, "Error adding document", e);
+                                                        Toast.makeText(AddShelterActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                });
+                                    }
+                                    else{
+                                        Toast.makeText(AddShelterActivity.this, "Shelter alredy exist", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            } else {
-                                Log.d(TAG, "get failed with ", task.getException());
-                            }
-                        }
-                    });
-
-
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
                 } catch (Exception e) {
                     Toast.makeText(AddShelterActivity.this, "already exist!", Toast.LENGTH_SHORT).show();
                 }
+
             }
         }
         catch (NullPointerException e ){

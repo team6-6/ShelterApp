@@ -4,18 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.TextValueSanitizer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class AdminSirensActivity extends AppCompatActivity {
-    Button addSiren,deleteSiren,back;
+    Button addSiren,deleteSiren;
+    TextView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminsirens);
         addSiren = (Button) findViewById(R.id.Addbotn);
         deleteSiren = (Button) findViewById(R.id.DeleteBotn);
-        back= (Button) findViewById(R.id.goback);
+        back= (TextView) findViewById(R.id.goback);
 
         addSiren.setOnClickListener(new View.OnClickListener() {
             @Override

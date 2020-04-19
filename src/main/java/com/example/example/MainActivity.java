@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
                                         }
 
                                     }
+                                    else{
+                                        Toast.makeText(MainActivity.this, "username doesnt exist", Toast.LENGTH_SHORT).show();
+
+                                    }
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {

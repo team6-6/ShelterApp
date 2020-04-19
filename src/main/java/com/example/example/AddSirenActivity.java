@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 public class AddSirenActivity extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseFirestore db2 = FirebaseFirestore.getInstance();
     private static final String TAG = "AddSirenActivity";
     EditText sirenId,Neibor, lat, lon;
     Button addSiren,back;
@@ -68,22 +70,40 @@ public class AddSirenActivity extends AppCompatActivity {
                     DocumentReference noteref = db.collection("zofar").document(siren);
 
                     // Create a new shelter
-                    Map<String, Object> siren_details = new HashMap<>();
+                    final Map<String, Object> siren_details = new HashMap<>();
                     siren_details.put("Neiborhood", Neiborhood);
                     siren_details.put("lat", newlat);
                     siren_details.put("lon", newlon);
 
 
-                    // Add a new document with a generated ID
-                    db.collection("zofar").document(siren).set(siren_details)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void documentReference) {
-                                    Log.d(TAG, "DocumentSnapshot added with ID: " + siren);
-                                    Toast.makeText(AddSirenActivity.this, "Siren added to list", Toast.LENGTH_SHORT).show();
 
+                    db.collection("zofar").document(siren).get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (!documentSnapshot.exists()) {
+                                        db2.collection("zofar").document(siren).set(siren_details)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void documentReference) {
+                                                        Toast.makeText(AddSirenActivity.this, "Siren added", Toast.LENGTH_SHORT).show();
+                                                        Log.d(TAG, "DocumentSnapshot added with ID: " + siren);
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w(TAG, "Error adding document", e);
+                                                        Toast.makeText(AddSirenActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                });
+                                    }
+                                    else{
+                                        Toast.makeText(AddSirenActivity.this, "Siren alredy exist", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            })
+                                })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
