@@ -16,7 +16,7 @@ pipeline {
              steps {
                 script {                                                          
                     if (currentBuild.result == null  || currentBuild.result == 'SUCCESS') {  
-                 sh 'emulator @Nexus_Emulator_API_24
+                 sh 'emulator @Nexus_Emulator_API_24'
                 sh 'appium &'  
      
                 sh 'rspec spec -fd'
