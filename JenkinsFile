@@ -1,5 +1,7 @@
 pipeline {
-    agent any 
+    agent { 
+        image 'windsekirun/jenkins-android-docker:1.1.1'
+    }
        
     stages {
         stage('Build') {
