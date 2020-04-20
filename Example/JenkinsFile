@@ -2,23 +2,20 @@ pipeline {
   agent {
     docker {
       image 'windsekirun/jenkins-android-docker:1.1.1'
-
     }
   }
   options {
     skipStagesAfterUnstable()
-
   }
   stages {
     stage ('Prepare'){
       steps {
         sh 'chmod +x ./Example/gradlew'
-        
       }
     }
     stage('Compile') {
       steps {
-        sh './Example/gradlew'
+        sh './Example/gradlew compileDebugSources'
       }
     }
     stage('Unit test') {
