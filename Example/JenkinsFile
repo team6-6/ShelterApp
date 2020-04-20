@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage ('Prepare'){
       steps {
-      @ENTRYPOINT ["/docker-entrypoint.sh"]
+      @ENTRYPOINT '/docker-entrypoint.sh'
         sh 'chmod +x ./Example/gradlew'
         
       }
