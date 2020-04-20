@@ -10,7 +10,6 @@ pipeline {
   stages {
     stage ('Prepare'){
       steps {
-        sh 'git clone https://github.com/team6-6/ShelterApp.git'
         sh 'chmod +x ./gradlew'
       }
     }
