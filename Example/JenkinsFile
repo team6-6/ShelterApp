@@ -13,10 +13,10 @@ pipeline {
         sh 'chmod +x ./Example/gradlew'
       }
     }
-  }
-  stage('Compile') {
+      stage('Compile') {
       steps {
         sh './Example/gradlew compileDebugSources'
       }
     }
+  }
 }
