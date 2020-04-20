@@ -15,7 +15,7 @@ pipeline {
     }
       stage('Compile') {
       steps {
-        sh './Example/gradlew compileDebugSources'
+        sh './gradlew compileDebugSources'
       }
     }
   }
