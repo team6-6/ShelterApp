@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'windsekirun/jenkins-android-docker:1.1.1'
+      CMD ["irb"]
 
     }
   }
