@@ -30,6 +30,7 @@ pipeline {
         sdCardSize: '200M',
         showWindow: true,
         commandLineOptions: '-noaudio -gpu mesa -qemu -m 1024 -enable-kvm'
+       
     ])
         sh './gradlew connectedAndroidTest'
         
@@ -42,7 +43,7 @@ pipeline {
     }
     stage('Build APK') {
       steps {
-        sh './gradlew assembleDebug'
+ //       sh './gradlew assembleDebug'
       }
     }
   }
