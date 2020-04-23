@@ -15,6 +15,17 @@ pipeline {
     }
     stage('Compile') {
       steps {
+      step([
+        $class: 'AndroidEmulator',
+        osVersion: 'android-23',
+        screenResolution: '1080x1920',
+        screenDensity: 'xxhdpi',
+        deviceLocale: 'en_US',
+        targetAbi: 'x86',
+        sdCardSize: '200M',
+        showWindow: true,
+        commandLineOptions: '-noaudio -gpu mesa -qemu -m 1024 -enable-kvm'
+])
         sh './gradlew compileDebugSources'
       }
     }
