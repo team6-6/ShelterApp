@@ -15,7 +15,12 @@ pipeline {
     }
     stage('Compile') {
       steps {
-      step([
+        sh './gradlew compileDebugSources'
+      }
+    }
+    stage('Unit test') { 
+      steps {
+            step([
         $class: 'AndroidEmulator',
         osVersion: 'android-23',
         screenResolution: '1080x1920',
@@ -26,11 +31,6 @@ pipeline {
         showWindow: true,
         commandLineOptions: '-noaudio -gpu mesa -qemu -m 1024 -enable-kvm'
 ])
-        sh './gradlew compileDebugSources'
-      }
-    }
-    stage('Unit test') { 
-      steps {
         sh './gradlew connectedAndroidTest'
         
        // Compile and run the unit tests for the app and its dependencies
