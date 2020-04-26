@@ -21,7 +21,7 @@ pipeline{
 		stage('Unit test') {
 	  		steps {
 				script{
-					./gradlew installDebug installDebugAndroidTest
+					sh './gradlew installDebug installDebugAndroidTest'
 	  			}
 			}
 		}
