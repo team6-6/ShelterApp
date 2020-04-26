@@ -32,7 +32,7 @@ pipeline{
 		stage('Stage Instrumented Test') {
 			steps{
 				sh "$ADB start-server"
-				def error
+				//def error
 				parallel(
 					launchEmulator: {
 						sh "$ANDROID_HOME/tools/qemu/linux-x86_64/qemu-system-x86_64 -engine classic -prop"
