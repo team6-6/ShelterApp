@@ -39,7 +39,9 @@ sh "$ANDROID_HOME/tools/qemu/linux-x86_64/qemu-system-x86_64 -engine classic -pr
 },
 runAndroidTests:{
 timeout(time: 20, unit: 'SECONDS'){
-sh "$ADB wait-for-device"
+  sh "$ADB wait-for-device"
 }
   }
+}
+}
 }
