@@ -31,7 +31,8 @@ pipeline {
  //       showWindow: true,
 //        commandLineOptions: '-noaudio -gpu mesa -qemu -m 1024 -enable-kvm'
 //])
-        sh './gradlew connectedAndroidTest'
+       // sh './gradlew connectedAndroidTest'
+       sh './gradlew test'
         
        // Compile and run the unit tests for the app and its dependencies
         //sh './gradlew testDebugUnitTest testDebugUnitTest' 
