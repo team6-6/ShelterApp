@@ -26,7 +26,7 @@ pipeline {
     
     stage('StartEmulator'){
         steps {
-            sh "./emulator ${ANDROID_AVD_DEVICE} -engine auto -wipe-data -no-cache -memory 3072 -no-snapshot-save& sleep 60s"
+            sh "./emulator ${ANDROID_SERIAL} -engine auto -wipe-data -no-cache -memory 3072 -no-snapshot-save& sleep 60s"
         }
     }
     
