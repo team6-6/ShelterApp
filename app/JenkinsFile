@@ -10,7 +10,7 @@ pipeline{
     	stages {
 		stage('Prepare') {
 	  		steps {
-				sh 'chmod +x gradlew && ./gradlew --no-daemon --stacktrace cleanupload Jenkins :app:assembleDevDebugAndroidTest'
+				sh 'chmod +x gradlew'
 	  		}
 		}
 		stage('Compile') {
