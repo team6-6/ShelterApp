@@ -1,34 +1,52 @@
-pipeline{
-  	agent {
-		docker {
-	  		image 'windsekirun/jenkins-android-docker:1.1.1'
-		}
- 	}
-  	options {
-		skipStagesAfterUnstable()
-  	}
-    	stages {
-		stage('Prepare') {
-	  		steps {
-				sh 'chmod +x gradlew'
-	  		}
-		}
-		stage('Compile') {
-	  		steps {
-				sh './gradlew compileDebugSources'
-	  		}
-		}
-	
-		stage('Unit test') {
-			steps{
-	  			sh './gradlew --no-daemon --debug :app:connectedDevDebugAndroidTest' 
-			}
-		}
-		stage('Build APK') {
-	  		steps {
-				sh "./gradlew assembleDebug"
-				//sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-	  		}
-		}
-	}
+pipeline {
+  agent {
+    docker {
+      image 'windsekirun/jenkins-android-docker:1.1.1'
+    }
+  }
+  options {
+    skipStagesAfterUnstable()
+  }
+  stages {
+    stage ('Prepare'){
+      steps {
+        sh 'chmod +x ./gradlew'
+      }
+    }
+    stage('Compile') {
+      steps {
+        sh './gradlew compileDebugSources'
+      }
+    }
+    stage('Build APK') {
+      steps {
+        sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+      }
+    }
+    stage('Unit test') { 
+      steps {
+      
+      sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+  //      sh './gradlew connectedAndroidTest -i'
+  //      step([
+  //      $class: 'AndroidEmulator',
+  //      osVersion: 'android-23',
+  //      screenResolution: '1080x1920',
+  //      screenDensity: 'xxhdpi',
+  //      deviceLocale: 'en_US',
+    //    targetAbi: 'x86',
+    //    sdCardSize: '200M',
+   //     showWindow: true,
+  //      commandLineOptions: '-noaudio -gpu mesa -qemu -m 1024 -enable-kvm'
+//])
+      // sh './gradlew test'
+        
+       // Compile and run the unit tests for the app and its dependencies
+     //   sh './gradlew testDebugUnitTest testDebugUnitTest' 
+
+         //Analyse the test results and update the build result as appropriate
+        //junit '*/TEST-.xml'
+      }
+    }
+  }
 }
