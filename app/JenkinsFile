@@ -39,10 +39,10 @@ pipeline{
 					},
 					runAndroidTests : {
 						timeout(time: 20, unit : 'SECONDS') {
-						sh "$ADB wait-for-device"
+							sh "$ADB wait-for-device"
+						}
 					}
 				)
 			}
 		}
-	}
 }
