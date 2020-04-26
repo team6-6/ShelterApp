@@ -18,6 +18,11 @@ pipeline {
         sh './gradlew compileDebugSources'
       }
     }
+    stage('Build APK') {
+      steps {
+        sh './gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}'
+      }
+    }
     stage('Unit test') { 
       steps {
   //      sh './gradlew connectedAndroidTest -i'
@@ -39,11 +44,6 @@ pipeline {
 
          //Analyse the test results and update the build result as appropriate
         //junit '*/TEST-.xml'
-      }
-    }
-    stage('Build APK') {
-      steps {
-        sh './gradlew assembleDebug'
       }
     }
   }
