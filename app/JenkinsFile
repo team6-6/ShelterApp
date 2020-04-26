@@ -18,14 +18,19 @@ pipeline{
 				sh './gradlew compileDebugSources'
 	  		}
 		}
-		stage('Build APK') {
-	  		steps {
-				sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-	  		}
-		}
 		stage('Unit test') {
 	  		steps {
-	  			sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+				script{
+					sh './gradlew clean test --no-daemon'
+					junit '**/build/test-results/testDebugUnitTest/*.xml'
+	  				//sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+	  			}
+			}
+		}
+		stage('Build APK') {
+	  		steps {
+				sh "./gradlew assembleDebug'
+				//sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
 	  		}
 		}
 	}
