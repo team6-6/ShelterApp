@@ -30,6 +30,7 @@ pipeline{
 		}
 
 		stage('Stage Instrumented Test') {
+		step{
 			sh "$ADB start-server"
 			//def error
 			parallel{
@@ -38,6 +39,6 @@ pipeline{
 				}
 
 			}
-		}
+		}}
 	}
 }
