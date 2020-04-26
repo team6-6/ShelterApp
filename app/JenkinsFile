@@ -26,7 +26,7 @@ pipeline {
     
     stage('StartEmulator'){
         steps {
-            sh ./emulator -avd Nexus_5X_API_24 -engine auto -wipe-data -no-cache -memory 3072 -no-snapshot-save& sleep 60s
+            sh './emulator -avd Nexus_5X_API_24 -engine auto -wipe-data -no-cache -memory 3072 -no-snapshot-save& sleep 60s'
         }
     }
     
