@@ -31,7 +31,7 @@ pipeline{
 
 		stage('Stage Instrumented Test') {
 			steps{
-				sh "$ADB start-server"
+				//sh "$ADB start-server"
 				//def error
 				parallel
 					launchEmulator: {
