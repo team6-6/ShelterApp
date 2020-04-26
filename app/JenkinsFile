@@ -7,26 +7,54 @@ pipeline{
   	options {
 		skipStagesAfterUnstable()
   	}
-  	stages {
-		stage('Prepare') {
-	  		steps {
-				sh 'chmod +x ./gradlew'
-	  		}
-		}
-		stage('Compile') {
-	  		steps {
-				sh './gradlew compileDebugSources'
-	  		}
-		}
-		stage('Build APK') {
-	  		steps {
-				sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-	  		}
-		}
-		stage('Unit test') {
-	  		steps {
-	  			sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-	  		}
-		}
-	}
+  
+		
+	   def ANDROID_HOME='/opt/android-sdk-linux'
+    def ADB="$ANDROID_HOME/platform-tools/adb"
+
+    stage('Stage Checkout') {
+      git branch: 'develop', credentialsId: 'd9f13c8b-f917-4374-8849-2b9730885333', url: 'http://git.hostname.com/something.git'
+    }
+
+    stage('Stage Build') {
+      sh "./gradlew clean assembleRelease"
+    }
+
+    stage('Stage Unit Tests') {
+      sh "./gradlew testReleaseUnitTest"
+    }
+
+    stage('Stage Instumental Tests') {
+      sh "$ADB start-server"
+
+      def error
+      parallel (
+        launchEmulator: {
+            sh "$ANDROID_HOME/tools/qemu/linux-x86_64/qemu-system-x86_64 -engine classic -prop persist.sys.language=en -prop persist.sys.country=US -avd test -no-snapshot-load -no-snapshot-save -no-window"
+        },
+        runAndroidTests: {
+            timeout(time: 20, unit: 'SECONDS') {
+              sh "$ADB wait-for-device"
+            }
+            try {
+                sh "./gradlew :MyKet:connectedAndroidTest"
+            } catch(e) {
+                error = e
+            }
+            sh script: '/var/lib/jenkins/kill-emu.sh'
+        }
+      )
+      if (error != null) {
+          throw error
+      }
+    }
+    currentBuild.result = "SUCCESS"
+  } catch (e) {
+    currentBuild.result = "FAILED"
+//    notifyFailed()
+    throw e
+  } finally {
+    stage('Stage Clean') {
+       sh script: '/var/lib/jenkins/clean.sh'
+    }
 }
