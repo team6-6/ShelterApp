@@ -1,49 +1,66 @@
 pipeline{
-  agent {
-	docker {
+  agent
+  {
+	docker 
+	{
 	  image 'windsekirun/jenkins-android-docker:1.1.1'
 	}
   }
-  options {
+  options
+  {
 	skipStagesAfterUnstable()
   }
-  stages {
-	stage('Prepare') {
-	  steps {
-		sh 'chmod +x ./gradlew'
-	  }
-	}
-	stage('Compile') {
-	  steps {
-		sh './gradlew compileDebugSources'
-	  }
-	}
-	stage('Build APK') {
-	  steps {
-		sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-	  }
-	}
-	stage('Unit test') {
-	  steps {
+  stages 
+	{
+		stage('Prepare')
+		{
+			  steps
+			  {
+					sh 'chmod +x ./gradlew'
+			  }
+		}
+		stage('Compile')
+		{
+			steps
+			{
+				sh './gradlew compileDebugSources'
+			 }
+		}
+		stage('Build APK')
+		{
+			 steps
+			 {
+					sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+			 }
+		}
+		stage('Unit test')
+		{
+			steps
+			{
 
-	  sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-	  }
-	}
-
-	stage('Stage Instrumented Test') {
-	sh "$ADB start-server"
-	def error
-		parallel{
-			launchEmulator: {
-				sh "$ANDROID_HOME/tools/qemu/linux-x86_64/qemu-system-x86_64 -engine classic -prop"
-			}
-			runAndroidTests : {
-				timeout(time: 20, unit : 'SECONDS') {
-				sh "$ADB wait-for-device"
-				}
+				  sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
 			}
 		}
+
+		stage('Stage Instrumented Test')
+		{
+				sh "$ADB start-server"
+				def error
+				parallel
+				{
+					launchEmulator:
+					{
+						sh "$ANDROID_HOME/tools/qemu/linux-x86_64/qemu-system-x86_64 -engine classic -prop"
+					},
+					runAndroidTests :
+					{
+						timeout(time: 20, unit : 'SECONDS')
+						{
+						sh "$ADB wait-for-device"
+						}
+					}
+				}
+		}
 	}
-}
 }
 
