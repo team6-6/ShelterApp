@@ -25,35 +25,17 @@ pipeline {
     }
   stage("Instrumented tests on min SDK image") {
         steps {
-            updateGitlabCommitStatus name: "Instrumented tests on min SDK image", state: "running"
+            updateGithabCommitStatus name: "Instrumented tests on min SDK image", state: "running"
             withAvd(hardwareProfile: "Nexus 5X", systemImage: env.MIN_SDK_IMAGE, headless: true) {
                 sh "./gradlew clean connectedDebugAndroidTest"
-            }
-        }
-
-        post {
-            failure {
-                updateGitlabCommitStatus name: "Instrumented tests on min SDK image", state: "failed"
-            }
-            success {
-                updateGitlabCommitStatus name: "Instrumented tests on min SDK image", state: "success"
             }
         }
     }
     stage("Instrumented tests on target SDK image") {
         steps {
-            updateGitlabCommitStatus name: "Instrumented tests on target SDK image", state: "running"
+            updateGithabCommitStatus name: "Instrumented tests on target SDK image", state: "running"
             withAvd(hardwareProfile: "Nexus 5X", systemImage: env.TARGET_SDK_IMAGE, headless: true) {
                 sh "./gradlew clean connectedDebugAndroidTest"
-            }
-        }
-
-        post {
-            failure {
-                updateGitlabCommitStatus name: "Instrumented tests on target SDK image", state: "failed"
-            }
-            success {
-                updateGitlabCommitStatus name: "Instrumented tests on target SDK image", state: "success"
             }
         }
     }
