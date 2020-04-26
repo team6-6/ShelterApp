@@ -20,7 +20,9 @@ pipeline{
 		}
 		
 		stage('Unit test') {
-	  		sh './gradlew --no-daemon --debug :app:connectedDevDebugAndroidTest' 
+			steps{
+	  			sh './gradlew --no-daemon --debug :app:connectedDevDebugAndroidTest' 
+			}
 		}
 		stage('Build APK') {
 	  		steps {
