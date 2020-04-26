@@ -29,7 +29,7 @@ pipeline{
 		}
 		stage('Build APK') {
 	  		steps {
-				sh "./gradlew assembleDebug'
+				sh "./gradlew assembleDebug"
 				//sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
 	  		}
 		}
