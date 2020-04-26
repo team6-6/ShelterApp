@@ -18,29 +18,7 @@ pipeline{
 				sh './gradlew compileDebugSources'
 	  		}
 		}
-		stage("Launch Android Emulador") {
-        		when {
-                		expression { return JOB_PLATFORM_NAME == "android" }
-        		}
-        		steps {
-            			echo "Starting Emulador"
-                		// -- First, you need to go to the Emulator Directory.
-                		// -- Then launch the Emulator
-            			script {
-                		try {
-                		    sh """
-                        		cd ${EMULATOR_DIRECTORY}
-                        		./emulator -avd ${JOB_DEVICE_NAME} -engine auto -wipe-data -no-cache -memory 3072 -no-snapshot-save&
-                        		sleep 60s
-                    			"""
-                		} catch (err) { 
-                    		echo "The emulator is not open"                                          
-      	 			}
-            			}      
-        	}
-    }
-					
-		
+	
 		stage('Unit test') {
 			steps{
 	  			sh './gradlew --no-daemon --debug :app:connectedDevDebugAndroidTest' 
