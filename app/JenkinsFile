@@ -26,7 +26,7 @@ pipeline {
     
     stage('StartEmulator'){
         steps {
-            sh 'adb -s localhost:34564 shell'
+            sh 'adb -s localhost:34564'
         }
     }
     
