@@ -25,6 +25,8 @@ pipeline {
     }
     stage('Unit test') { 
       steps {
+      
+      sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
   //      sh './gradlew connectedAndroidTest -i'
   //      step([
   //      $class: 'AndroidEmulator',
@@ -40,7 +42,7 @@ pipeline {
       // sh './gradlew test'
         
        // Compile and run the unit tests for the app and its dependencies
-        sh './gradlew testDebugUnitTest testDebugUnitTest' 
+     //   sh './gradlew testDebugUnitTest testDebugUnitTest' 
 
          //Analyse the test results and update the build result as appropriate
         //junit '*/TEST-.xml'
