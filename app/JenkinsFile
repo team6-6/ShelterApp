@@ -10,7 +10,7 @@ pipeline{
     	stages {
 		stage('Prepare') {
 	  		steps {
-				sh 'chmod +x ./gradlew'
+				sh 'chmod +x ./gradlew' && ./gradlew --no-daemon --stacktrace clean :app:assembleDevDebug :app:assembleDevDebugAndroidTest'
 	  		}
 		}
 		stage('Compile') {
@@ -18,12 +18,9 @@ pipeline{
 				sh './gradlew compileDebugSources'
 	  		}
 		}
+		
 		stage('Unit test') {
-	  		steps {
-				script{
-					sh './gradlew installDebug installDebugAndroidTest'
-	  			}
-			}
+	  		sh './gradlew --no-daemon --debug :app:connectedDevDebugAndroidTest' 
 		}
 		stage('Build APK') {
 	  		steps {
