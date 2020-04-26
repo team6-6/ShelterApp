@@ -33,7 +33,7 @@ pipeline{
 			steps{
 				sh "$ADB start-server"
 				//def error
-				parallel(
+				parallel
 					launchEmulator: {
 						sh "$ANDROID_HOME/tools/qemu/linux-x86_64/qemu-system-x86_64 -engine classic -prop"
 					},
@@ -42,7 +42,7 @@ pipeline{
 							sh "$ADB wait-for-device"
 						}
 					}
-				)
+				
 			}
 		}
 	}
