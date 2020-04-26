@@ -39,7 +39,7 @@ pipeline {
                 }
             }
             steps {
-                sh './gradlew testDebugUnitTest'
+                sh './gradlew test'
             }
             post {
                 always {
