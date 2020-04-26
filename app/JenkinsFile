@@ -10,7 +10,7 @@ pipeline{
     	stages {
 		stage('Prepare') {
 	  		steps {
-				sh 'chmod +x ./gradlew' && ./gradlew --no-daemon --stacktrace clean :app:assembleDevDebug :app:assembleDevDebugAndroidTest'
+				sh 'chmod +x ./gradlew' && './gradlew --no-daemon --stacktrace clean :app:assembleDevDebug :app:assembleDevDebugAndroidTest'
 	  		}
 		}
 		stage('Compile') {
