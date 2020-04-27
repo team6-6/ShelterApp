@@ -26,26 +26,23 @@ pipeline {
          stage('Unit test') { 
              steps {
                  sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-                  //      sh './gradlew connectedAndroidTest -i'
-                  //      step([
-                  //      $class: 'AndroidEmulator',
-                  //      osVersion: 'android-23',
-                  //      screenResolution: '1080x1920',
-                  //      screenDensity: 'xxhdpi',
-                  //      deviceLocale: 'en_US',
-                    //    targetAbi: 'x86',
-                    //    sdCardSize: '200M',
-                   //     showWindow: true,
-                  //      commandLineOptions: '-noaudio -gpu mesa -qemu -m 1024 -enable-kvm'
-                        //])
-                         // sh './gradlew test'
-
-                    // Compile and run the unit tests for the app and its dependencies
-                  //   sh './gradlew testDebugUnitTest testDebugUnitTest' 
-
-                  //Analyse the test results and update the build result as appropriate
-                 //junit '*/TEST-.xml'
+             
               }
-           }
-         }
-       }
+        }
+        stage('UI Testing') {
+      steps {
+        script {                                  (****)                          
+          if (currentBuild.result == null         
+              || currentBuild.result == 'SUCCESS') {  
+          // Start your emulator, testing tools
+          sh 'emulator @Nexus_Emulator_API_24
+          sh 'appium &'  
+     
+          // You're set to go, now execute your UI test
+          sh 'rspec spec -fd'
+          }
+        }
+      }
+    }
+     }
+}
