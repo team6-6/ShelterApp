@@ -23,6 +23,7 @@ pipeline {
                  sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
              }
          }
+         //{
          stage('Unit test') { 
              steps {
                  sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
