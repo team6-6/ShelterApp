@@ -25,7 +25,7 @@ pipeline {
          
                stage('Start Emulator') { 
              steps {
-             bat "C:Users\edend\AppData\Local\Android\Sdk\emulator.exe -avd Nexus_5X_API_24"
+             bat "D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_API_24"
                  //   sh 'emulator @Nexus_Emulator_API_24'
                  //   sh 'appium &'  
      
