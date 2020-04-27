@@ -34,7 +34,7 @@ pipeline {
         script {                                                   
           
           // Start your emulator, testing tools
-          sh 'emulator @Nexus_Emulator_API_24
+          sh 'emulator @Nexus_Emulator_API_24'
           sh 'appium &'  
      
           // You're set to go, now execute your UI test
