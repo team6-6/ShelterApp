@@ -24,7 +24,14 @@ pipeline {
              }
          }
          //{
-         
+                          stage('Start Emulator') { 
+             steps {
+                   sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
+                    //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
+
+
+              }
+        }
 
          
          stage('Unit test') { 
@@ -33,14 +40,7 @@ pipeline {
              
               }
         }
-                 stage('Start Emulator') { 
-             steps {
-                   sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
-                    //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
 
-
-              }
-        }
 
 
      }
