@@ -39,8 +39,12 @@ pipeline {
                     //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
                //      run 'C:\Users\sapir\.android\avd\Pixel_API_25.avd'
               // sh '/ShelterApp/emulator Nexus_5X_API_24'
-                 sudo apt-get install android-sdk
-
+              //   sudo apt-get install android-sdk
+                    sh 'emulator @Nexus_Emulator_API_24'
+                    sh 'appium &'  
+     
+          // You're set to go, now execute your UI test
+          sh 'rspec spec -fd'
                    }
                }
                         stage('Unit test') { 
