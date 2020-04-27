@@ -22,14 +22,8 @@ pipeline {
                  sh 'chmod +x ./gradlew'
              }
          }
-         stage('Compile') {
-              steps {
-                  sh './gradlew compileDebugSources'
-              }
-         }
          
-         
-            stage('Start Emulator') { 
+                  stage('Start Emulator') { 
              steps {
                   // sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
                     //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
@@ -44,6 +38,15 @@ pipeline {
                    }
                }
          
+         
+         stage('Compile') {
+              steps {
+                  sh './gradlew compileDebugSources'
+              }
+         }
+         
+         
+   
          
          stage('Build APK') {
              steps {
