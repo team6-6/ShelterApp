@@ -36,8 +36,8 @@ pipeline {
              steps {
                    //sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
                     //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
-                sudo -iu jenkins android-sdk/tools/bin/sdkmanager --list --verbose
-            sudo -iu jenkins android-sdk/tools/bin/sdkmanager 'system-images;android-25;google_apis;armeabi-v7a'
+                sudo '-iu jenkins android-sdk/tools/bin/sdkmanager --list --verbose'
+            sudo '-iu jenkins android-sdk/tools/bin/sdkmanager 'system-images;android-25;google_apis;armeabi-v7a''
             echo no | $ANDROID_SDK_ROOT/tools/bin/avdmanager -v create avd --force --package 'system-images;android-25;google_apis;armeabi-v7a' --name Android25 --tag google_apis --abi armeabi-v7a
 
               }
