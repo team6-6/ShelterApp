@@ -32,12 +32,7 @@ pipeline {
                  sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
              }
          }
-         stage('Unit test') { 
-             steps {
-                 sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-             
-              }
-        }
+
          stage('Start Emulator') { 
              steps {
                   // sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
@@ -47,6 +42,12 @@ pipeline {
 
                    }
                }
+                        stage('Unit test') { 
+             steps {
+                 sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+             
+              }
+        }
               
               
      }
