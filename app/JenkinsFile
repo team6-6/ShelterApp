@@ -49,6 +49,30 @@ pipeline {
               //  }
               
               
+               stage("Initial Configuration") {
+        steps {
+
+            script {
+                // -- Set the Directory of the files in the workspace
+                JOB_FILES_DIRECTORY = "${env.JOB_DIRECTORY}"+"/src/test/resources/files"
+                // -- Set the suite name and route parameter
+                SUITE_PATH = "src/test/resources/suites/"+"${JOB_APPIUM_SUITE}"+".xml" 
+
+                // -- Initial Configuration Only If the Platform is Android.
+                if (JOB_PLATFORM_NAME == "android"){
+                    // -- Set the Platform Tool Directory. 
+                    PLATFORM_TOOL_DIRECTORY = "${env.ANDROID_HOME}"+"/platform-tools/"
+                    // -- Set the Emulator Directory.
+                    EMULATOR_DIRECTORY = "${env.ANDROID_HOME}"+"/emulator/"
+                }
+            }
+
+            // -- Clean Workspace
+            echo "Clean Workspace"
+            cleanWs()
+        }
+    }
+              
               
         stage("Execute ADB Server") {
         when {
