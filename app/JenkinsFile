@@ -36,61 +36,8 @@ pipeline {
              steps {
                   // sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
                     //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
-                    
-                    
-                       // get rid of running emulators
-    sh '${ANDROID_HOME}/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do ${ANDROID_HOME}/platform-tools/adb -s $line emu kill; done'
-
-    // start android emulator
-    sh '''
-    START=$SECONDS > /dev/null
-    echo no | ${ANDROID_HOME}/tools/android create avd --force -n test -t android-21 --abi default/armeabi-v7a
-    ${ANDROID_HOME}/tools/emulator -engine classic -avd test -no-window -no-boot-anim -noaudio -verbose &
-    # Wait for Android to finish booting
-    WAIT_CMD="${ANDROID_HOME}/platform-tools/adb wait-for-device shell getprop init.svc.bootanim"
-    until $WAIT_CMD | grep -m 1 stopped; do
-      echo "Waiting..." > /dev/null
-      sleep 1
-    done
-    # Unlock the Lock Screen
-    ${ANDROID_HOME}/platform-tools/adb shell input keyevent 82 &
-    ${ANDROID_HOME}/platform-tools/adb shell input keyevent 4 &
-    duration=$(( SECONDS - START )) > /dev/null
-    echo "Android Emulator started after $duration seconds."
-    '''
-
-    // emulator isn't ready yet, wait 1 min more
-    // prevents APK installation error
-    sh "sleep 60"
-
-    // show available instrumentations (optional)
-    //sh "${ANDROID_HOME}/platform-tools/adb shell \"pm list instrumentation\""
-
-    // uninstall apps first, if needed (optional)
-    //sh "${ANDROID_HOME}/platform-tools/adb shell pm uninstall com.vgaidarji.cimatters"
-    //sh "${ANDROID_HOME}/platform-tools/adb shell pm uninstall com.vgaidarji.cimatters.test"
-
-    // manually install APK's and run instrumentation tests
-    sh "./gradlew assembleDebug -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
-    sh "./gradlew assembleDebugAndroidTest -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
-    sh "${ANDROID_HOME}/platform-tools/adb install app/build/outputs/apk/app-debug.apk"
-    sh "${ANDROID_HOME}/platform-tools/adb install app/build/outputs/apk/app-debug-androidTest.apk"
-    sh "${ANDROID_HOME}/platform-tools/adb shell am instrument -w -r -e debug false -e class com.vgaidarji.cimatters.LoginActivityTest com.vgaidarji.cimatters.test/android.support.test.runner.AndroidJUnitRunner"
-
-    // this variant isn't working, app isn't installed (Exception thrown)
-    //sh "./gradlew connectedAndroidTest -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
-
-    // kill all emulators
-    sh'''
-    ${ANDROID_HOME}/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do ${ANDROID_HOME}/platform-tools/adb -s $line emu kill; done
-    '''
-                    
-                    
-
-              }
-        }
-
-
+                    // sh 'C:\Users\sapir\.android\avd\Pixel_API_25.avd'
+                    }
 
      }
 }
