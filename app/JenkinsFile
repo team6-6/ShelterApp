@@ -25,11 +25,12 @@ pipeline {
          
                stage('Start Emulator') { 
              steps {
-                    sh 'emulator @Nexus_Emulator_API_24'
-                    sh 'appium &'  
+             bat "C:\Users\edend\AppData\Local\Android\Sdk\emulator.exe -avd Nexus_5X_API_24"
+                 //   sh 'emulator @Nexus_Emulator_API_24'
+                 //   sh 'appium &'  
      
           // You're set to go, now execute your UI test
-          sh 'rspec spec -fd'
+    //      sh 'rspec spec -fd'
                    }
                }
          
