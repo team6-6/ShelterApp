@@ -38,6 +38,6 @@ pipeline {
                     //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
                     // sh 'C:\Users\sapir\.android\avd\Pixel_API_25.avd'
                     }
-
+}
      }
 }
