@@ -79,9 +79,6 @@ pipeline {
     // -- STAGE: Launch Android Emulador
     // --------------------------------
     stage("Launch Android Emulador") {
-        when {
-                expression { return JOB_PLATFORM_NAME == "android" }
-        }
         steps {
             echo "Starting Emulador"
                 // -- First, you need to go to the Emulator Directory.
