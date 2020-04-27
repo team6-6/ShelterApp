@@ -1,3 +1,12 @@
+// -- Directory where the Project Files are located.  
+def JOB_FILES_DIRECTORY
+// -- Directory where the Platform Tools is located
+def PLATFORM_TOOL_DIRECTORY
+// -- Directory where the Android Emulator is located
+def EMULATOR_DIRECTORY
+// -- Path of the Suite to execute
+def SUITE_PATH
+
 pipeline {
     agent{
         docker {
@@ -31,12 +40,64 @@ pipeline {
              
               }
         }
-         stage('Start Emulator') { 
-             steps {
+         //stage('Start Emulator') { 
+           //  steps {
                   // sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
                     //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
                      run 'C:\Users\sapir\.android\avd\Pixel_API_25.avd'
-                    }
+             //       }
+              //  }
+              
+              
+              
+        stage("Execute ADB Server") {
+        when {
+                expression { return JOB_PLATFORM_NAME == "android" }
+        }
+        steps {
+            echo "Executing ADB Server"
+            // -- First, you need to go to the Platform Tool Directory.
+            // -- Then run the ADB Server
+            script {
+                try {
+                    sh """
+                        cd ${PLATFORM_TOOL_DIRECTORY}
+                        ./adb start-server&
+                    """
+                } catch (err) { 
+                    echo "The ADB Server is not running"                                          
                 }
+            }  
+        }
+    }
+
+    // Parameters needed: JOB_PLATFORM_NAME, EMULATOR_DIRECTORY, JOB_EMULATOR_VERSION
+    // --------------------------------
+    // -- STAGE: Launch Android Emulador
+    // --------------------------------
+    stage("Launch Android Emulador") {
+        when {
+                expression { return JOB_PLATFORM_NAME == "android" }
+        }
+        steps {
+            echo "Starting Emulador"
+                // -- First, you need to go to the Emulator Directory.
+                // -- Then launch the Emulator
+            script {
+                try {
+                    sh """
+                        cd ${EMULATOR_DIRECTORY}
+                        ./emulator -avd ${JOB_DEVICE_NAME} -engine auto -wipe-data -no-cache -memory 3072 -no-snapshot-save&
+                        sleep 60s
+                    """
+                } catch (err) { 
+                    echo "The emulator is not open"                                          
+                }
+            }      
+        }
+    }
+              
+              
+              
      }
 }
