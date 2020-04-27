@@ -24,18 +24,26 @@ pipeline {
       }
     }
     
-    stage('StartEmulator'){
-        steps {
-            sh 'adb -d localhost:34564'
-        }
-    }
+    stage('Run UI Regression Test') {
+         steps {
+           script {
+             env.testStatus = runUiRegression(env.UI_TESTING_VERSION,env.FOLIO_UI_URL)
+           }
+         }
+      }
     
-    stage('Test'){
-        steps{
-            sh './gradlew testDebugUnitTest testDebugUnitTest' 
-            sh 'adb emu kill'
-
-        }
-    } 
+//    stage('StartEmulator'){
+//        steps {
+//            sh 'adb -d localhost:34564'
+//        }
+//    }
+    
+   // stage('Test'){
+//        steps{
+//            sh './gradlew testDebugUnitTest testDebugUnitTest' 
+//            sh 'adb emu kill'
+//
+//        }
+//    } 
   }
 }
