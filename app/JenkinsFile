@@ -57,9 +57,6 @@ pipeline {
               
               
         stage("Execute ADB Server") {
-        when {
-                expression { return JOB_PLATFORM_NAME == "android" }
-        }
         steps {
             echo "Executing ADB Server"
             // -- First, you need to go to the Platform Tool Directory.
