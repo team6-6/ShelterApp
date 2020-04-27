@@ -42,12 +42,11 @@ pipeline {
                 //SUITE_PATH = "src/test/resources/suites/"+"${JOB_APPIUM_SUITE}"+".xml" 
 
                 // -- Initial Configuration Only If the Platform is Android.
-                if (JOB_PLATFORM_NAME == "android"){
                     // -- Set the Platform Tool Directory. 
-                    PLATFORM_TOOL_DIRECTORY = "${env.ANDROID_HOME}"+"/platform-tools/"
+                 PLATFORM_TOOL_DIRECTORY = "${env.ANDROID_HOME}"+"/platform-tools/"
                     // -- Set the Emulator Directory.
-                    EMULATOR_DIRECTORY = "${env.ANDROID_HOME}"+"/emulator/"
-                }
+                 EMULATOR_DIRECTORY = "${env.ANDROID_HOME}"+"/emulator/"
+                
             }
 
             // -- Clean Workspace
