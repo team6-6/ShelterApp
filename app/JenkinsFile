@@ -30,10 +30,10 @@ pipeline {
         }
     }
     
-    stage('Test'){
-        steps{
-            sh './gradlew testDebugUnitTest testDebugUnitTest' 
-        }
-    } 
+   // stage('Test'){
+   //     steps{
+   //         sh './gradlew testDebugUnitTest testDebugUnitTest' 
+   //     }
+   // } 
   }
 }
