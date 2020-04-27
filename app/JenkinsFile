@@ -32,24 +32,7 @@ pipeline {
                  sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
              }
          }
-
-         
-         stage('Unit test') { 
-             steps {
-                 sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-             
-              }
-        }
-         //stage('Start Emulator') { 
-           //  steps {
-                  // sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
-                    //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
-               //      run 'C:\Users\sapir\.android\avd\Pixel_API_25.avd'
-             //       }
-              //  }
-              
-              
-               stage("Initial Configuration") {
+                    stage("Initial Configuration") {
         steps {
 
             script {
@@ -120,7 +103,21 @@ pipeline {
             }      
         }
     }
-              
+
+         
+         stage('Unit test') { 
+             steps {
+                 sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+             
+              }
+        }
+         //stage('Start Emulator') { 
+           //  steps {
+                  // sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
+                    //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
+               //      run 'C:\Users\sapir\.android\avd\Pixel_API_25.avd'
+             //       }
+              //  }
               
               
      }
