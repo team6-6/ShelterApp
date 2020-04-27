@@ -43,7 +43,7 @@ pipeline {
                   // sh 'D:\Tools\Dev\sdk\tools\emulator.exe -avd Nexus_5X_Marshmallow_API_23'
                     //sh '$ANDROID_SDK/tools/emulator -avd Nexus_5X_API_23 -wipe-data'
                //      run 'C:\Users\sapir\.android\avd\Pixel_API_25.avd'
-               sh '/emulator.exe -avd Nexus_5X_API_24'
+               sh './emulator -avd Nexus_5X_API_24'
 
                    }
                }
