@@ -17,7 +17,7 @@ pipeline {
                stage('Start Emulator') { 
              steps {
              sh '''
-             C:/Users/sapir/AppData/Local/Android/Sdk/emulator/emulator.exe -avd Pixel_API_25'
+             C:/Users/sapir/AppData/Local/Android/Sdk/emulator/emulator.exe -avd Pixel_API_25
              '''
                  //   sh 'emulator @Nexus_Emulator_API_24'
                  //   sh 'appium &'  
