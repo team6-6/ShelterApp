@@ -14,14 +14,14 @@ pipeline {
          stage ('Prepare'){
              steps {
                  sh 'chmod +x ./gradlew'
-                 sh 'chmod +x /var/jenkins_home/workspace/Team_6/PipelineTeam6/emulator.exe'
+                 sh 'chmod +x /var/jenkins_home/workspace/Team_6/PipelineTeam6/emulator'
 
              }
          }
          
                stage('Start Emulator') { 
              steps {
-             sh ' /var/jenkins_home/workspace/Team_6/PipelineTeam6/emulator.exe'
+             sh ' /var/jenkins_home/workspace/Team_6/PipelineTeam6/emulator'
 
                    }
                }
