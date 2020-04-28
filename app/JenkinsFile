@@ -1,37 +1,33 @@
-pipeline { 
-  agent { 
-    docker { 
-      image 'windsekirun/jenkins-android-docker:1.1.1' 
-    } 
-  } 
-  options { 
-    // Stop the build early in case of compile or test failures 
-    skipStagesAfterUnstable() 
-  } 
-  stages { 
-    stage ('Prepare'){ 
-      steps { 
-        sh 'chmod +x ./gradlew' 
-      } 
-    } 
-    stage('Compile') { 
-      steps { 
-        // Compile the app and its dependencies 
-        sh './gradlew compileDebugSources' 
-      } 
-    } 
-    stage('Build APK') { 
-      steps { 
-        // Finish building and packaging the APK 
-        sh './gradlew assembleDebug' 
-      } 
+pipeline {
+  agent {
+    docker {
+      image 'windsekirun/jenkins-android-docker:1.1.1'
     }
-     stage('UnitTests') {
-      //Start all the existing tests in the test package 
-          steps { 
-            sh './gradlew testDebugUnitTest testDebugUnitTest'
-
-      }         
   }
-  } 
+  options {
+    skipStagesAfterUnstable()
+  }
+  stages {
+    stage ('Prepare'){
+      steps {
+        sh 'chmod +x ./gradlew'
+      }
+    }
+    stage('Compile') {
+      steps {
+        sh './gradlew compileDebugSources'
+      }
+    }
+    stage('Build APK') {
+      steps {
+        sh "./gradlew assembleDebug assembleAndroidTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+      }
+    }
+    stage('Unit test') { 
+      steps {
+      
+      sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+      }
+    }
+  }
 }
