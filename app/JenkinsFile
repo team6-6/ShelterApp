@@ -19,7 +19,7 @@ pipeline {
                stage('Start Emulator') { 
              steps {
              sh '''
-               ./emulator.exe         
+               /var/jenkins_home/workspace/Team_6/PipelineTeam6/emulator         
                 '''
                  //   sh 'emulator @Nexus_Emulator_API_24'
                  //   sh 'appium &'  
