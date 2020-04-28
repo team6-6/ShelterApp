@@ -14,14 +14,14 @@ pipeline {
          stage ('Prepare'){
              steps {
                  sh 'chmod +x ./gradlew'
-                 sh 'chmod +x ./emulator.exe'
+                 sh 'chmod +x ./emulator'
 
              }
          }
          
                stage('Start Emulator') { 
              steps {
-             sh ' ./emulator.exe'
+             sh ' ./emulator'
 
                    }
                }
