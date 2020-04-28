@@ -21,8 +21,9 @@ pipeline {
          
                stage('Start Emulator') { 
              steps {
-             sh ' ./emulator'
-
+             bat """
+            cd C:\\Users\\sapir\\AppData\\Local\\Android\\Sdk\\emulator\\emulator.exe
+            """
                    }
                }
          
