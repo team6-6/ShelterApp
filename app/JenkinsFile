@@ -20,9 +20,7 @@ pipeline {
          
                stage('Start Emulator') { 
              steps {
-             bat """
-            cd C:\\Users\\sapir\\AppData\\Local\\Android\\Sdk\\emulator\\emulator.exe
-            """
+             bat 'C:\\Users\\sapir\\AppData\\Local\\Android\\Sdk\\emulator\\emulator.exe -avd PIXEL_API_25'
                    }
                }
          
