@@ -42,21 +42,44 @@ pipeline {
          }
          
          
-   
-         
-         stage('Build APK') {
-             steps {
-                 sh "./gradlew assembleDebug assembleAndroidTest"
-             }
-         }
-
-      
-          stage('Unit test') { 
-             steps {
-                 sh "./gradlew testDebugUnitTest"
-             
+           stage('Lint and Unit Test'){
+      parallel {
+        stage('lint'){
+          steps{
+            script {
+              try {
+                sh './gradlew lint'
+              } catch (Exception e) {
+                echo e.getMessage()
+                echo "Lint failed"
               }
+            }       
+          }
         }
+        stage('test'){
+          steps{
+            script {
+              try {
+                sh './gradlew test'
+              } catch (Exception e) {
+                echo e.getMessage()
+                echo "test failed"
+              }
+            }       
+          }   
+        }
+      }
+    }
+    stage('createAPK'){
+      steps{
+        sh './gradlew assembleRelease'  
+      }
+    }
+  }
+         
+         
+   
+      
               
               
      }
