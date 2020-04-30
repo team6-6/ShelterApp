@@ -28,7 +28,7 @@ pipeline {
       ANDROID_SERIAL=emulator-5556
 
 
-$ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+       "$ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'"
 
 sh './gradlew connectedAndroidTest'
       
