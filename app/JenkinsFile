@@ -25,8 +25,8 @@ pipeline {
     }
     stage('Unit test') { 
       steps {
-      
-      sh "./gradlew testDebugUnitTest runAVD -Pavd=Nexus_4_0_emulator"
+      /nfs/dev/android/sdk/latest/emulator
+      sh "./gradlew testDebugUnitTest"
       }
     }
   }
