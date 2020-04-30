@@ -26,7 +26,7 @@ pipeline {
     stage('Unit test') { 
       steps {
       /nfs/dev/android/sdk/latest/emulator
-      sh "./gradlew testDebugUnitTest"
+      sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
       }
     }
   }
