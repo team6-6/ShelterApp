@@ -26,7 +26,7 @@ pipeline {
     stage('Unit test') { 
       steps {
       
-      sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+      sh "./gradlew testDebugUnitTest runAVD -Pavd"
       }
     }
   }
