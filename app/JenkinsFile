@@ -25,7 +25,6 @@ pipeline {
     }
     stage('Unit test') { 
       steps {
-          emulator -avd @Android28
           sh "./gradlew testDebugUnitTest -PBUILD_NUMBER=${env.BUILD_NUMBER}"
       }
     }
