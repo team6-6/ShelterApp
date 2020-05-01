@@ -52,7 +52,7 @@ public class MainCivilianActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainCivilianActivity.this, AdminSheltersActivity.class);
+                Intent first = new Intent(MainCivilianActivity.this, CivilianShetlerActivity.class);
                 startActivity(first);
             }
         });
