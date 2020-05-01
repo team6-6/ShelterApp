@@ -17,7 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CivilianShetlerActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".EmployeeSirensActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".CivilianShetlerActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".DeleteSirenActivity" />
         <activity android:name=".AddSirenActivity" />
         <activity android:name=".DeleteShelterActivity" />

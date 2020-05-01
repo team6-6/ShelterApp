@@ -60,7 +60,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainEmployeeActivity.this, AdminSirensActivity.class);
+                Intent first = new Intent(MainEmployeeActivity.this, EmployeeSirensActivity.class);
                 startActivity(first);
             }
         });
