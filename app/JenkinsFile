@@ -25,10 +25,10 @@ pipeline {
     }
     stage('Unit test') { 
       steps {
-      ANDROID_SERIAL=emulator-5556
+      //ANDROID_SERIAL=emulator-5556
 
 
-       "$ANDROID_HOME/platform-tools/adb wait-for-device shell"
+      // "$ANDROID_HOME/platform-tools/adb wait-for-device shell"
 
 sh './gradlew connectedAndroidTest'
       
