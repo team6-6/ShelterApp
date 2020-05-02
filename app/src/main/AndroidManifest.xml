@@ -30,7 +30,8 @@
         <activity android:name=".RequestsActivity" />
         <activity android:name=".RateActivity" />
         <activity android:name=".ContactUsActivity" />
-        <activity android:name=".NumbersActivity" />
+        <activity android:name=".NumbersActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AdminSirensActivity" />
         <activity android:name=".AdminSheltersActivity" />
         <activity android:name=".MainCivilianActivity" />

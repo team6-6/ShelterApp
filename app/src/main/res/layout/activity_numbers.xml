@@ -6,4 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".NumbersActivity">
 
+
+    <ListView
+        android:id="@+id/listEmergency"
+        android:layout_width="318dp"
+        android:layout_height="427dp"
+        android:descendantFocusability="afterDescendants"
+        app:layout_constraintBottom_toBottomOf="@+id/backEmergency"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637" />
+
+    <TextView
+        android:id="@+id/backEmergency"
+        android:layout_width="63dp"
+        android:layout_height="24dp"
+        android:clickable="true"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
 </androidx.constraintlayout.widget.ConstraintLayout>
