@@ -88,6 +88,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainEmployeeActivity.this, NumbersActivity.class);
+                first.putExtra("EXTRA_SESSION_ID2", sessionId);
                 startActivity(first);
             }
         });

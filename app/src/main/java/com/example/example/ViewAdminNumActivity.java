@@ -10,37 +10,31 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class NumbersActivity extends AppCompatActivity {
+public class ViewAdminNumActivity extends AppCompatActivity {
 
-    private static final String TAG = "NumbersActivity";
+    private static final String TAG = "ViewAdminNumActivity";
     private ArrayAdapter<String> adpter;
     private ListView listView;
     private TextView backText;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private ArrayList<String> arrayList=new ArrayList<String>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numbers);
-        listView=(ListView) findViewById(R.id.listEmergency);
-        backText=(TextView) findViewById(R.id.backEmergency);
+        setContentView(R.layout.activity_view_admin_num);
+        listView=(ListView) findViewById(R.id.listEmergency2);
+        backText=(TextView) findViewById(R.id.backEmergency2);
         final CollectionReference collectionReference = db.collection("Emergency");
         //Calling the get() method with a callback function
         adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
@@ -74,40 +68,9 @@ public class NumbersActivity extends AppCompatActivity {
         backText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String user = getIntent().getStringExtra("EXTRA_SESSION_ID2");
 
-
-                db.collection("users").document(user).get()
-                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                if (documentSnapshot.exists()) {
-                                    final String permission=documentSnapshot.getString("permission");
-                                    if(permission.equals("C")){
-                                        Intent first = new Intent(NumbersActivity.this, MainCivilianActivity.class);
-                                        first.putExtra("EXTRA_SESSION_ID", user);
-                                        startActivity(first);
-                                    }
-                                    else if(permission.equals("B")){
-                                        Intent first = new Intent(NumbersActivity.this, MainEmployeeActivity.class);
-                                        first.putExtra("EXTRA_SESSION_ID", user);
-                                        startActivity(first);
-                                    }
-                                }
-
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(NumbersActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-
-
-
-
+                Intent first = new Intent(ViewAdminNumActivity.this, EmergencyMenuActivity.class);
+                startActivity(first);
 
             }
         });

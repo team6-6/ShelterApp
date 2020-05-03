@@ -72,7 +72,7 @@ public class MainAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainAdminActivity.this, NumbersActivity.class);
+                Intent first = new Intent(MainAdminActivity.this, EmergencyMenuActivity.class);
                 startActivity(first);
             }
         });
