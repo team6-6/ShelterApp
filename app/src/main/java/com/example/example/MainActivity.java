@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button loginId,registerId;
     TextView change,forgot;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private Checkfunction checkfunction=new Checkfunction();
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String user = usernameId.getText().toString().trim();
                 String pwd = passwordId.getText().toString().trim();
-                if (user.equals("") || pwd.equals("")){
+                if (checkfunction.notEmpty(user)==1 || checkfunction.notEmpty(pwd)==1){
                     Toast.makeText(MainActivity.this, "One or more field are empty !", Toast.LENGTH_SHORT).show();
-
                 }
                 else {
                     db.collection("users").document(user).get()
