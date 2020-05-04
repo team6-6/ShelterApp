@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -59,7 +58,6 @@ public class DeleteEmergencyActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             if (documentSnapshot.exists()) {
-                                DocumentReference noteref = db.collection("Emergency").document(name);
 
                                 db.collection("Emergency").document(name)
                                         .delete().addOnSuccessListener(new OnSuccessListener<Void>() {

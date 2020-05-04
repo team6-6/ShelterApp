@@ -13,13 +13,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 public class AddShelterActivity extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -66,7 +64,6 @@ public class AddShelterActivity extends AppCompatActivity {
             }
             else{
                 try {
-                    DocumentReference noteref = db.collection("shelter").document(name);
 
                     // Create a new shelter
                     final Map<String, Object> shelter_details = new HashMap<>();
@@ -114,9 +111,7 @@ public class AddShelterActivity extends AppCompatActivity {
 
             }
         }
-        catch (NullPointerException e ){
-            Toast.makeText( AddShelterActivity.this, "Field is empty !", Toast.LENGTH_SHORT).show();
-        }
+
         catch (NumberFormatException e ){
             Toast.makeText( AddShelterActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
         }

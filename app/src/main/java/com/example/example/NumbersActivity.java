@@ -17,27 +17,28 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NumbersActivity extends AppCompatActivity {
 
     private static final String TAG = "NumbersActivity";
     private ArrayAdapter<String> adpter;
-    private ListView listView;
-    private TextView backText;
+
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private ArrayList<String> arrayList=new ArrayList<String>();
+    private List<String> arrayList=new ArrayList<String>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         ListView listView;
+         TextView backText;
         setContentView(R.layout.activity_numbers);
         listView=(ListView) findViewById(R.id.listEmergency);
         backText=(TextView) findViewById(R.id.backEmergency);

@@ -7,14 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewAnimator;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -31,6 +27,7 @@ public class EditUserActivity extends AppCompatActivity {
     Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
     Pattern lowerCasePatten = Pattern.compile("[a-z ]");
     Pattern digitCasePatten = Pattern.compile("[0-9 ]");
+    String us="users";
 
 
     int flag=0;
@@ -56,7 +53,7 @@ public class EditUserActivity extends AppCompatActivity {
                     Toast.makeText(EditUserActivity.this, "write user name !", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    db.collection("users").document(userEdit).get()
+                    db.collection(us).document(userEdit).get()
                             .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -85,7 +82,7 @@ public class EditUserActivity extends AppCompatActivity {
                                         }else if(!permission.equals("")&& !password.equals(""))
                                         {
 
-                                            DocumentReference db1=db.collection("users").document(userEdit);
+                                            DocumentReference db1=db.collection(us).document(userEdit);
                                             db1.update(
                                                     "password",password,
                                                     "permission",permission
@@ -109,7 +106,7 @@ public class EditUserActivity extends AppCompatActivity {
                                         else if( !password.equals("") &&  permission.equals("") )
                                         {
 
-                                            DocumentReference db1=db.collection("users").document(userEdit);
+                                            DocumentReference db1=db.collection(us).document(userEdit);
                                             db1.update(
                                                     "password",password
 
@@ -132,7 +129,7 @@ public class EditUserActivity extends AppCompatActivity {
                                         else if(!permission.equals("")&& password.equals(""))
                                         {
 
-                                            DocumentReference db1=db.collection("users").document(userEdit);
+                                            DocumentReference db1=db.collection(us).document(userEdit);
                                             db1.update(
                                                     "permission",permission
 

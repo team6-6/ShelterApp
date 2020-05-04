@@ -21,22 +21,24 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeSirensActivity extends AppCompatActivity {
 
     private static final String TAG = "EmployeeSirensActivity";
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private ListView listView;
+
     private ArrayAdapter<String> adpter;
-    private ArrayList<String> arrayList=new ArrayList<String>();
-    private TextView backText, fieldsearch;
+    private List<String> arrayList=new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_sirens);
-
-        final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        ListView listView;
+        TextView backText, fieldsearch;
+       // final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         listView=(ListView) findViewById(R.id.list_sirens);
         backText=(TextView) findViewById(R.id.listsirenbackmenu);
         final CollectionReference collectionReference = db.collection("zofar");

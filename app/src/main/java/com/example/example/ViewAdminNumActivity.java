@@ -19,20 +19,22 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewAdminNumActivity extends AppCompatActivity {
 
     private static final String TAG = "ViewAdminNumActivity";
     private ArrayAdapter<String> adpter;
-    private ListView listView;
-    private TextView backText;
+
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private ArrayList<String> arrayList=new ArrayList<String>();
+    private List<String> arrayList=new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_admin_num);
+        ListView listView;
+         TextView backText;
         listView=(ListView) findViewById(R.id.listEmergency2);
         backText=(TextView) findViewById(R.id.backEmergency2);
         final CollectionReference collectionReference = db.collection("Emergency");

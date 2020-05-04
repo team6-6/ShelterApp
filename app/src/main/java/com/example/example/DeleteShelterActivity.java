@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DeleteShelterActivity extends AppCompatActivity {
@@ -48,7 +47,6 @@ public class DeleteShelterActivity extends AppCompatActivity {
             Toast.makeText(DeleteShelterActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
         }
         else{
-                DocumentReference noteref = db.collection("shelter").document(name);
 
                 db.collection("shelter").document(name)
                         .delete().addOnSuccessListener(new OnSuccessListener < Void > () {

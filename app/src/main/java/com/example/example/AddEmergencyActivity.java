@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -65,7 +64,6 @@ public class AddEmergencyActivity extends AppCompatActivity {
             }
             else{
                 try {
-                    DocumentReference noteref = db.collection("Emergency").document(name);
 
                     // Create a new shelter
                     final Map<String, Object> numbers_details = new HashMap<>();
@@ -112,9 +110,7 @@ public class AddEmergencyActivity extends AppCompatActivity {
 
             }
         }
-        catch (NullPointerException e ){
-            Toast.makeText( AddEmergencyActivity.this, "Field is empty !", Toast.LENGTH_SHORT).show();
-        }
+
         catch (NumberFormatException e ){
             Toast.makeText( AddEmergencyActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
         }

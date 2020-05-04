@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DeleteSirenActivity extends AppCompatActivity {
@@ -48,7 +47,6 @@ public class DeleteSirenActivity extends AppCompatActivity {
             Toast.makeText(DeleteSirenActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
         }
         else{
-            DocumentReference noteref = db.collection("zofar").document(id);
 
             db.collection("zofar").document(id)
                     .delete().addOnSuccessListener(new OnSuccessListener< Void >() {

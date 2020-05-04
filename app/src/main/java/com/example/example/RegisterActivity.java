@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -26,7 +25,6 @@ public class RegisterActivity extends AppCompatActivity {
         public FirebaseFirestore db2 = FirebaseFirestore.getInstance();
 
     private static final String TAG = "RegisterActivity";
-        private int i=1;
         EditText userId, passwordId, confirmId, q1, q2;
         Button registerId;
         boolean flag=true;
@@ -61,7 +59,10 @@ public class RegisterActivity extends AppCompatActivity {
             Pattern lowerCasePatten = Pattern.compile("[a-z ]");
             Pattern digitCasePatten = Pattern.compile("[0-9 ]");
 
-            if (user.equals("") || pwd.equals("")||quetion1.equals("")||quetion2.equals("")||cfrm.equals("")){
+            if (user.equals("") || pwd.equals("")||cfrm.equals("")){
+                Toast.makeText(RegisterActivity.this, "Field are empty !", Toast.LENGTH_SHORT).show();
+            }
+            else if(quetion1.equals("")||quetion2.equals("")){
                 Toast.makeText(RegisterActivity.this, "Field are empty !", Toast.LENGTH_SHORT).show();
             }
             else if (user.length() <3 ) {
@@ -88,7 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
             else {
                 try {
-                    DocumentReference noteref = db.collection("users").document(user);
 
 
                     // Create a new user with a first and last name

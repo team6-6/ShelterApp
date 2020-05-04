@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -67,7 +66,6 @@ public class AddSirenActivity extends AppCompatActivity {
             }
             else{
                 try {
-                    DocumentReference noteref = db.collection("zofar").document(siren);
 
                     // Create a new shelter
                     final Map<String, Object> siren_details = new HashMap<>();
@@ -78,7 +76,9 @@ public class AddSirenActivity extends AppCompatActivity {
 
 
                     db.collection("zofar").document(siren).get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            .addOnSuccessListener(new
+                                          OnSuccessListener<DocumentSnapshot>()
+                                          {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     if (!documentSnapshot.exists()) {
@@ -115,9 +115,7 @@ public class AddSirenActivity extends AppCompatActivity {
                 }
             }
         }
-        catch (NullPointerException e ){
-            Toast.makeText( AddSirenActivity.this, "Field is empty !", Toast.LENGTH_SHORT).show();
-        }
+
         catch (NumberFormatException e ){
             Toast.makeText( AddSirenActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
         }
