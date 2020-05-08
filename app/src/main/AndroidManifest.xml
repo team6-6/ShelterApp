@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeleteEmergencyActivity"></activity>
+        <activity android:name=".CivilianShelterInformationActivity"></activity>
+        <activity android:name=".DeleteEmergencyActivity" />
         <activity android:name=".AddEmergencyActivity" />
         <activity android:name=".EmergencyMenuActivity" />
         <activity android:name=".ViewAdminNumActivity" />
@@ -25,7 +26,7 @@
             android:name=".EmployeeSirensActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".CivilianShetlerActivity"
+            android:name=".CivilianShelterActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".DeleteSirenActivity" />
         <activity android:name=".AddSirenActivity" />
