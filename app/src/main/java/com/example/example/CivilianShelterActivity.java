@@ -24,7 +24,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class CivilianShelterActivity extends AppCompatActivity {
-
     private static final String TAG = "CivilianShetlerActivity";
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ListView listView;
@@ -38,7 +37,7 @@ public class CivilianShelterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_civilian_shelters);
-        final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        //final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         listView=(ListView) findViewById(R.id.list_sirens);
         backText=(TextView) findViewById(R.id.listsirenbackmenu);
         final CollectionReference collectionReference = db.collection("shelter");
