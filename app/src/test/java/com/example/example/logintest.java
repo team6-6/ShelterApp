@@ -8,6 +8,6 @@ public class logintest {
     @Test
     public void NotEmptyString() {
         Checkfunction c=new Checkfunction();
-        assertEquals(0, c.notEmpty(""));
+        assertEquals(1, c.notEmpty(""));
     }
 }
