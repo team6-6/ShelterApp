@@ -22,7 +22,6 @@ pipeline {
     stage('Unit test') { 
       steps {
            sh './gradlew -i testDebugUnitTest'
-
       }
     }
         stage('Build APK') {
