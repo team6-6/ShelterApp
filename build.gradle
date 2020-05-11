@@ -30,7 +30,7 @@ task clean(type: Delete) {
 tasks.withType(Test) {
     testLogging {
         exceptionFormat "full"
-        events "started", "skipped", "passed", "failed"
-        showStandardStreams true
+     //   events "started", "skipped", "passed", "failed"
+     //   showStandardStreams true
     }
 }
