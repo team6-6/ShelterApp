@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Unit test') { 
       steps {
-           sh './gradlew -i testDebugUnitTest'
+           sh './gradlew testDebugUnitTest'
       }
     }
         stage('Build APK') {
