@@ -27,11 +27,11 @@ android {
         }
     }
 }
-tasks.withType(Test) {
+test {
     testLogging {
         exceptionFormat "full"
-        events "started", "skipped", "passed", "failed"
-        showStandardStreams true
+ //       events "started", "skipped", "passed", "failed"
+    //    showStandardStreams true
     }
 }
 
