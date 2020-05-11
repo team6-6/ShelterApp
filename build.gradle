@@ -27,7 +27,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-tasks.withType(Test) {
+test {
     testLogging {
         exceptionFormat "full"
      //   events "started", "skipped", "passed", "failed"
