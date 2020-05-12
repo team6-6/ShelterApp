@@ -27,7 +27,7 @@ pipeline {
     }
         stage('Build APK') {
       steps {
-        sh "./gradlew assembleDebug"
+        sh "./gradle assembleDebug"
       }
     }
     
