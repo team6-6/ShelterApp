@@ -37,15 +37,15 @@ pipeline {
  
     
   post {
-        always{
+        failure{
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
                 subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'sapirsa3@ac.sce.ac.il'
-        }
-        success {
-            echo 'BUILD SUCCESSFUL - NO EMAIL WILL BE SENT'
+                
+                emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'karindu@ac.sce.ac.il',
+                subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'karindu@ac.sce.ac.il'
         }
 
-        failure { //Send an email to all teammates about broken build
+        success { //Send an email to all teammates about broken build
             emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
                     body: '$DEFAULT_CONTENT',
                     replyTo: 'edenda2@ac.sce.ac.il',
