@@ -50,7 +50,7 @@ pipeline {
         }
 
         failure { //Send an email to all teammates about broken build
-            emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS',
+            emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', attachLog: true,
                     body: '$DEFAULT_CONTENT',
                     replyTo: 'edenda2@ac.sce.ac.il',
                     to: 'edenda2@ac.sce.ac.il'
@@ -70,7 +70,6 @@ pipeline {
                     body: '$DEFAULT_CONTENT',
                     replyTo: 'karindu@ac.sce.ac.il',
                     to: 'karindu@ac.sce.ac.il')
-
 
         }
 
