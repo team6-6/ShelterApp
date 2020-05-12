@@ -37,12 +37,6 @@ tasks.withType(Test) {
 }
 
 
-tasks.withType(Checkstyle) {
- ignoreFailures = true
- reports {
- html.enabled = true
- }
-}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
