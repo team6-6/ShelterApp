@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'checkstyle'
+apply from: 'checkstyle.gradle'
 
 android {
     compileSdkVersion 29
