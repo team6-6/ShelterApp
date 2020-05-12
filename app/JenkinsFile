@@ -38,13 +38,11 @@ pipeline {
  
     
   post {
-  
-          always {
-            step([$class: 'Mailer',
-                notifyEveryUnstableBuild: true,
-                recipients: "sapirsa3@ac.sce.ac.il",
-                sendToIndividuals: true])
-        }
+        archiveArtifacts artifacts: 'build.log', onlyIfSuccessful: true     
+            emailext attachLog: true, attachmentsPattern: 'build.log',
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [developers(), requestor()],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
         success {
             echo 'BUILD SUCCESSFUL - NO EMAIL WILL BE SENT'
         }
@@ -55,8 +53,6 @@ pipeline {
                     replyTo: 'edenda2@ac.sce.ac.il',
                     to: 'edenda2@ac.sce.ac.il'
             )
-emailext attachmentsPattern: '**/report.html', body: 'Find attachments', subject: 'test', to: 'sapirsa3@ac.sce.ac.il'
-
             emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
                     body: '$DEFAULT_CONTENT', 
                     replyTo: 'sapirsa3@ac.sce.ac.il',
