@@ -38,8 +38,10 @@ pipeline {
     
   post {
         always {
-          step([$class: 'CoberturaPublisher', coberturaReportFile: 'output/coverage/jest/cobertura-coverage.xml'])
-        
+      emailext mimeType: 'text/html',
+        body: '${FILE,path="Seleniun/test-output/emailable-report.html"}', 
+        subject: 'Selenium: Job '${env.JOB_NAME}' Status: currentBuild.result, 
+        to:  'sapirsa3@ac.sce.ac.il'       
       }
         failure{
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
