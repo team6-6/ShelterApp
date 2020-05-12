@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Checkstyle') {
     steps {
-        sh '/var/jenkins_home/workspace/Team_6/app1 --report=checkstyle --report-file=`pwd`/build/logs/checkstyle.xml --standard=PSR2 --extensions=php --ignore=autoload.php --ignore=vendor/ . || exit 0'
+        sh 'vendor/bin/phpmd --report=checkstyle --report-file=`pwd`/build/logs/checkstyle.xml --standard=PSR2 --extensions=php --ignore=autoload.php --ignore=vendor/ . || exit 0'
         checkstyle pattern: 'build/logs/checkstyle.xml'
     }
 }
