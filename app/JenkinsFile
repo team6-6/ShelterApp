@@ -19,29 +19,7 @@ pipeline {
         sh './gradlew compileDebugSources'
       }
     }
-    stage('RuboCop code analyzer') {
-  node {
-    sh '/var/lib/jenkins/ci-projects/test/build-scripts/run-rubocop-tests.sh'
 
-    publishHTML(target: [
-      allowMissing: false,
-      alwaysLinkToLastBuild: true,
-      keepAll: true,
-      reportDir: '/var/lib/jenkins/ci-projects/test/build-reports/',
-      reportFiles: 'rubocop-index.html',
-      reportName: 'RuboCop HTML Report'
-    ])
-
-    step([$class: 'CheckStylePublisher',
-      canRunOnFailed: true,
-      defaultEncoding: '',
-      healthy: '100',
-      pattern: '**/rubocop-checkstyle-result.xml',
-      unHealthy: '90',
-      useStableBuildAsReference: true
-    ])
-  }
-} 
     stage('Unit test') { 
       steps {
            sh './gradlew testDebugUnitTest '
