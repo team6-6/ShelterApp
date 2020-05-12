@@ -21,22 +21,6 @@ pipeline {
     }
 
 
-  stage('static code'){
-      steps{
-          sh './gradlew checkstyleMain'   
-           publishHTML (target:  [
-              reportDir: 'build/reports/checkstyle/',
-              reportFiles: 'main.html',
-              reportNmame:"checkstyle report"])
-           
-      
-  
-  }
-  
-  }
-
-
-
     stage('Unit test') { 
       steps {
            sh './gradlew testDebugUnitTest '
