@@ -39,6 +39,8 @@ tasks.withType(Checkstyle) {
  ignoreFailures = true
  reports {
  html.enabled = true
+     toolVersion = "7.8.1"
+
  }
 }
 dependencies {
