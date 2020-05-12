@@ -23,7 +23,7 @@ pipeline {
 
   stage('static code'){
       steps{
-          sh './gradlew checkstyleMain'   
+          sh './gradlew checkstyle'   
            publishHTML (target:  [
               reportDir: 'build/reports/checkstyle/',
               reportFiles: 'main.html',
