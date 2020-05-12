@@ -37,11 +37,12 @@ tasks.withType(Test) {
 }
 
 
-
-task codeQuality() {
-  dependsOn tasks.withType(CheckStyle)
+tasks.withType(Checkstyle) {
+ ignoreFailures = true
+ reports {
+ html.enabled = true
+ }
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
