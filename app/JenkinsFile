@@ -37,6 +37,10 @@ pipeline {
  
     
   post {
+        always {
+          step([$class: 'CoberturaPublisher', coberturaReportFile: 'output/coverage/jest/cobertura-coverage.xml'])
+        
+      }
         failure{
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
                 subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'sapirsa3@ac.sce.ac.il'
@@ -71,6 +75,8 @@ pipeline {
                     body: '$DEFAULT_CONTENT',
                     replyTo: 'karindu@ac.sce.ac.il',
                     to: 'karindu@ac.sce.ac.il')
+                    
+                    
 
         }
 
