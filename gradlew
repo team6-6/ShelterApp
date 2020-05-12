@@ -6,6 +6,28 @@
 ##
 ##############################################################################
 
+
+
+###############
+def configDir = "${project.rootDir}/quality"
+checkstyle {
+    toolVersion '7.8.1'
+    configFile file("$configDir/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
+}
+checkstyleMain {
+    source ='src/main/java'
+}
+checkstyleTest {
+    source ='src/test/java'
+}
+
+
+############
+
+
+
+
 # Attempt to set APP_HOME
 # Resolve links: $0 may be a link
 PRG="$0"
@@ -46,22 +68,8 @@ die () {
 
 
 
-###############
-def configDir = "${project.rootDir}/quality"
-checkstyle {
-    toolVersion '7.8.1'
-    configFile file("$configDir/checkstyle/checkstyle.xml")
-    configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
-}
-checkstyleMain {
-    source ='src/main/java'
-}
-checkstyleTest {
-    source ='src/test/java'
-}
 
 
-############
 
 
 
