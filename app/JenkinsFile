@@ -56,8 +56,8 @@ pipeline {
                     to: 'edenda2@ac.sce.ac.il'
             )
 
-            emailext(attachLog: true,
-                    body: '$DEFAULT_CONTENT',
+            emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
+                    body: '$DEFAULT_CONTENT', attachLog: true,
                     replyTo: 'sapirsa3@ac.sce.ac.il',
                     to: 'sapirsa3@ac.sce.ac.il')
 
