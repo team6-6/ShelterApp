@@ -40,7 +40,7 @@ pipeline {
         always {
       emailext mimeType: 'text/html',
         body: '${FILE,path="Seleniun/test-output/emailable-report.html"}', 
-        subject: 'Selenium: Job ${JOB_NAME} Status: ${currentBuild.result}, 
+        subject: 'Selenium: Job ${JOB_NAME} Status: ${currentBuild.result}', 
         to:  'sapirsa3@ac.sce.ac.il'       
       }
         failure{
