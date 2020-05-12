@@ -13,15 +13,7 @@ pipeline {
         sh 'chmod +x ./gradlew'
       }
     }
-    stage('Static code analysis') {
-    steps {
-        sh './gradlew checkstyleMain'
-        publishHTML (target: [
-            reportDir: 'build/report/checkstyle/',
-            reportFiles: 'main.html',
-            reportName:"checkstyle report'])
-    }
-}
+
     stage('Compile') {
       steps {
       //here error
