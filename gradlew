@@ -27,22 +27,6 @@ cd "$SAVED" >/dev/null
 APP_NAME="Gradle"
 APP_BASE_NAME=`basename "$0"`
 
-###############
-def configDir = "${project.rootDir}/quality"
-checkstyle {
-    toolVersion '7.8.1'
-    configFile file("$configDir/checkstyle/checkstyle.xml")
-    configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
-}
-checkstyleMain {
-    source ='src/main/java'
-}
-checkstyleTest {
-    source ='src/test/java'
-}
-
-
-############
 # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
 DEFAULT_JVM_OPTS=""
 
@@ -59,6 +43,27 @@ die () {
     echo
     exit 1
 }
+
+
+
+###############
+def configDir = "${project.rootDir}/quality"
+checkstyle {
+    toolVersion '7.8.1'
+    configFile file("$configDir/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
+}
+checkstyleMain {
+    source ='src/main/java'
+}
+checkstyleTest {
+    source ='src/test/java'
+}
+
+
+############
+
+
 
 # OS specific support (must be 'true' or 'false').
 cygwin=false
