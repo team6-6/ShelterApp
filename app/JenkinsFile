@@ -37,11 +37,13 @@ pipeline {
  
     
   post {
-        archiveArtifacts artifacts: 'build.log', onlyIfSuccessful: true     
-            emailext attachLog: true, attachmentsPattern: 'build.log',
+        always{
+                archiveArtifacts artifacts: 'build.log', onlyIfSuccessful: true     
+                emailext attachLog: true, attachmentsPattern: 'build.log',
                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: [developers(), requestor()],
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+        }
         success {
             echo 'BUILD SUCCESSFUL - NO EMAIL WILL BE SENT'
         }
