@@ -20,7 +20,6 @@ pipeline {
             reportDir: 'build/report/checkstyle/',
             reportFiles: 'main.html',
             reportName:"checkstyle report'])
-           
     }
 }
     stage('Compile') {
