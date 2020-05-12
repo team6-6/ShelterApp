@@ -13,7 +13,6 @@ pipeline {
         sh 'chmod +x ./gradlew'
       }
     }
-
     stage('Compile') {
       steps {
       //here error
