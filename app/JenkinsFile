@@ -27,7 +27,7 @@ pipeline {
     }
         stage('Build APK') {
       steps {
-        sh "./gradle assembleDebug"
+        sh "./gradlew assembleDebug"
       }
     }
     
@@ -58,7 +58,7 @@ pipeline {
                     to: 'edenda2@ac.sce.ac.il'
             )
             emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
-                    body: '$DEFAULT_CONTENT', 
+                    body: '${https://medium.com/@gustavo.guss/jenkins-send-email-with-attachment-cec1e052583a}', 
                     replyTo: 'sapirsa3@ac.sce.ac.il',
                     to: 'sapirsa3@ac.sce.ac.il')
 
