@@ -35,16 +35,16 @@ pipeline {
   
   }
   
-      post {
-        always {
+ 
+    
+  post {
+  
+          always {
             step([$class: 'Mailer',
                 notifyEveryUnstableBuild: true,
                 recipients: "sapirsa3@ac.sce.ac.il",
                 sendToIndividuals: true])
         }
-    }
-    
-  post {
         success {
             echo 'BUILD SUCCESSFUL - NO EMAIL WILL BE SENT'
         }
