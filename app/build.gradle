@@ -35,14 +35,14 @@ tasks.withType(Test) {
        showStandardStreams true
     }
 }
-tasks.withType(Checkstyle) {
- ignoreFailures = true
- reports {
- html.enabled = true
-     toolVersion = "7.8.1"
 
- }
+
+
+task codeQuality() {
+  dependsOn tasks.withType(CheckStyle)
 }
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
