@@ -34,11 +34,5 @@ tasks.withType(Test) {
      //   showStandardStreams true
     }
 }
-tasks.withType(Checkstyle) {
- ignoreFailures = true
- reports {
- html.enabled = true
- }
-}
 
 
