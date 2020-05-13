@@ -22,12 +22,13 @@ public class ChangeActivity extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
      EditText userChange,Oldpass,newPass,confirmnewPass;
      Button changepwd;
+    private Checkfunction checkfunction=new Checkfunction();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change);
-
         Oldpass=(EditText)findViewById(R.id.Oldpassword);
         newPass=(EditText)findViewById(R.id.newPwd);
         confirmnewPass=(EditText)findViewById(R.id.confirmNewPwd);
@@ -44,7 +45,7 @@ public class ChangeActivity extends AppCompatActivity {
                 final String newpwd = newPass.getText().toString().trim();
                 final String confirm = confirmnewPass.getText().toString().trim();
 
-                if ( old.equals("")|| newpwd.equals("")|| confirm.equals("")) {
+                if ( checkfunction.notEmpty(old)==1|| checkfunction.notEmpty(newpwd)==1|| checkfunction.notEmpty(confirm)==1) {
                     Toast.makeText(ChangeActivity.this, "One or more field are empty !", Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -57,7 +58,7 @@ public class ChangeActivity extends AppCompatActivity {
                                         String oldPws = documentSnapshot.getString("password");
                                         final String permission=documentSnapshot.getString("permission");
                                         if (old.equals(oldPws) ) {
-                                            if(newpwd.equals(confirm)) {
+                                            if(checkfunction.SamePassword(newpwd,confirm)) {
                                                 DocumentReference db1=db.collection("users").document(user);
                                                 db1.update(
                                                         "password",newpwd

@@ -16,6 +16,7 @@ public class DeleteShelterActivity extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText nameShelter;
     Button deleteShelter,back;
+    private Checkfunction checkfunction=new Checkfunction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class DeleteShelterActivity extends AppCompatActivity {
 
     private void deleteShelter() {
         final String name = nameShelter.getText().toString().trim();
-        if (name.equals("")) {
+        if ( checkfunction.notEmpty(name)==1) {
             Toast.makeText(DeleteShelterActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
         }
         else{

@@ -32,8 +32,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -78,6 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationEnabled();
         updateLocationUI();
         getDeviceLocation();
+        Places();
     }
 
 
@@ -95,6 +99,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    public void Places(){
+        final CollectionReference collectionReference = db.collection("shelter");
+        //Calling the get() method with a callback function
+        collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    //Task is successful
+                    //Running enhanced for loop to get each document
+                    for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
+                        String i=documentSnapshot.get("lat").toString();
+                        String k=documentSnapshot.get("lon").toString();
+                        Double lat=Double.parseDouble(i);
+                        Double lon=Double.parseDouble(k);
+                        LatLng place=new LatLng(lat,lon);
+                        moveCamera(place, 16, documentSnapshot.getId());
+                        //Printing data of each document to log
+                        Log.i(TAG, "onComplete: query data: " + documentSnapshot.getData());
+                    }
+                }else{
+                    //Task was not successful
+                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
+                }
+            }
+        });
+
+    }
+
+    private void moveCamera(LatLng latLng, float zoom, String title){
+        Log.d("MapsActivity", "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+
+        if(!title.equals("My Current Location")){
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title(title);
+            mMap.addMarker(options);
+        }
+
+        // hideSoftKeyboard();
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

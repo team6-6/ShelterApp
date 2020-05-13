@@ -22,6 +22,8 @@ public class DeleteEmergencyActivity extends AppCompatActivity {
     EditText nameOrganization;
     Button deleteNumber,back;
     private FirebaseFirestore db2=FirebaseFirestore.getInstance();
+    private Checkfunction checkfunction=new Checkfunction();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class DeleteEmergencyActivity extends AppCompatActivity {
 
     private void deleteNum() {
         final String name = nameOrganization.getText().toString().trim();
-        if (name.equals("")) {
+        if ( checkfunction.notEmpty(name)==1) {
             Toast.makeText(DeleteEmergencyActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
         }
         else{

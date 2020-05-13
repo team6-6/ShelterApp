@@ -28,6 +28,7 @@ public class EditUserActivity extends AppCompatActivity {
     Pattern lowerCasePatten = Pattern.compile("[a-z ]");
     Pattern digitCasePatten = Pattern.compile("[0-9 ]");
     String us="users";
+    private Checkfunction checkfunction=new Checkfunction();
 
 
     int flag=0;
@@ -49,7 +50,7 @@ public class EditUserActivity extends AppCompatActivity {
                 password = pass.getText().toString().trim();
                 permission = per.getText().toString().trim();
 
-                if (userEdit.equals("")  ) {
+                if (checkfunction.notEmpty(userEdit)==1  ){
                     Toast.makeText(EditUserActivity.this, "write user name !", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -59,10 +60,10 @@ public class EditUserActivity extends AppCompatActivity {
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     if (documentSnapshot.exists()) {
 
-                                        if(password.equals("")  && permission.equals("") ) {
+                                        if(checkfunction.notEmpty(password)==1  && checkfunction.notEmpty(permission)==1 ) {
                                             Toast.makeText(EditUserActivity.this, "write atleast one of the changes  !", Toast.LENGTH_SHORT).show();
                                         }
-                                        else  if (password.length() < 8 || password.length() > 12) {
+                                        else if (checkfunction.RangeValues(8,12,password)==true) {
                                             Toast.makeText(EditUserActivity.this, "Password lenght must be 8-12 character !!", Toast.LENGTH_SHORT).show();
                                         } else if (!UpperCasePatten.matcher(password).find() && !lowerCasePatten.matcher(password).find() && !digitCasePatten.matcher(password).find()) {
                                             Toast.makeText(EditUserActivity.this, "Password must contains only letters & digits !!", Toast.LENGTH_SHORT).show();
@@ -77,9 +78,9 @@ public class EditUserActivity extends AppCompatActivity {
                                             Toast.makeText(EditUserActivity.this, "Password must have atleast one digit !!", Toast.LENGTH_SHORT).show();
 
                                         }
-                                        else if (!permission.equals("A") && !permission.equals("B") && !permission.equals("C") && !permission.equals("")) {
+                                        else if (checkfunction.CheckPermission(permission) && !permission.equals("")) {
                                             Toast.makeText(EditUserActivity.this, "Choose only A / B / C", Toast.LENGTH_SHORT).show();
-                                        }else if(!permission.equals("")&& !password.equals(""))
+                                        }else if(checkfunction.notEmpty(permission)==0&& checkfunction.notEmpty(password)==0)
                                         {
 
                                             DocumentReference db1=db.collection(us).document(userEdit);
@@ -103,7 +104,7 @@ public class EditUserActivity extends AppCompatActivity {
                                             });
 
                                         }
-                                        else if( !password.equals("") &&  permission.equals("") )
+                                        else if( checkfunction.notEmpty(password)==0 &&  checkfunction.notEmpty(permission)==1 )
                                         {
 
                                             DocumentReference db1=db.collection(us).document(userEdit);
@@ -126,7 +127,7 @@ public class EditUserActivity extends AppCompatActivity {
                                             });
 
                                         }
-                                        else if(!permission.equals("")&& password.equals(""))
+                                        else if(checkfunction.notEmpty(permission)==0 && checkfunction.notEmpty(password)==1)
                                         {
 
                                             DocumentReference db1=db.collection(us).document(userEdit);

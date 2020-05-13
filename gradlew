@@ -6,12 +6,6 @@
 ##
 ##############################################################################
 
-
-
-
-
-
-
 # Attempt to set APP_HOME
 # Resolve links: $0 may be a link
 PRG="$0"
@@ -49,13 +43,6 @@ die () {
     echo
     exit 1
 }
-
-
-
-
-
-
-
 
 # OS specific support (must be 'true' or 'false').
 cygwin=false

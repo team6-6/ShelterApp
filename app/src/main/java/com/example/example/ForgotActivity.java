@@ -23,7 +23,7 @@ public class ForgotActivity extends AppCompatActivity {
     Button send;
     TextView showpass ;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    private Checkfunction checkfunction=new Checkfunction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,9 @@ public class ForgotActivity extends AppCompatActivity {
                 final String daddy = father.getText().toString().trim();
                 final String school1 = school.getText().toString().trim();
                 String user = username.getText().toString().trim();
+                if(checkfunction.validName(daddy)){
+                    Toast.makeText(ForgotActivity.this, "Invalid name !", Toast.LENGTH_SHORT).show();
+                }
                 if (user.equals("") || daddy.equals("") || school1.equals("")) {
                     Toast.makeText(ForgotActivity.this, "One or more field are empty !", Toast.LENGTH_SHORT).show();
                 } else {

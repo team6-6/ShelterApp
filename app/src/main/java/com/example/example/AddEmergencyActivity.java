@@ -25,6 +25,7 @@ public class AddEmergencyActivity extends AppCompatActivity {
     private static final String TAG = "AddEmergencyActivity";
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private FirebaseFirestore db2=FirebaseFirestore.getInstance();
+    private Checkfunction checkfunction=new Checkfunction();
     EditText nameOrganization, num;
     Button addNum;
     TextView back;
@@ -57,57 +58,63 @@ public class AddEmergencyActivity extends AppCompatActivity {
     private void addNumber() {
         final String name = nameOrganization.getText().toString().trim();
         try{
-            Double Numberadding = Double.parseDouble(num.getText().toString());
-
-            if (name.equals("")) {
-                Toast.makeText(AddEmergencyActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
+            String string=checkfunction.ParseToDouble(num.getText().toString());
+            if(string.equals("null")){
+                Toast.makeText(AddEmergencyActivity.this, "Field num is empty !", Toast.LENGTH_SHORT).show();
             }
-            else{
-                try {
+            else if(string.equals("exception")){
+                Toast.makeText( AddEmergencyActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Double Numberadding = Double.parseDouble(num.getText().toString());
 
-                    // Create a new shelter
-                    final Map<String, Object> numbers_details = new HashMap<>();
-                    numbers_details.put("number", Numberadding);
+                if (name.equals("")) {
+                    Toast.makeText(AddEmergencyActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+
+                        // Create a new shelter
+                        final Map<String, Object> numbers_details = new HashMap<>();
+                        numbers_details.put("number", Numberadding);
 
 
+                        db.collection("Emergency").document(name).get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        if (!documentSnapshot.exists()) {
+                                            db2.collection("Emergency").document(name).set(numbers_details)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void documentReference) {
+                                                            Toast.makeText(AddEmergencyActivity.this, "Number added", Toast.LENGTH_SHORT).show();
+                                                            Log.d(TAG, "DocumentSnapshot added with ID: " + name);
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Log.w(TAG, "Error adding document", e);
+                                                            Toast.makeText(AddEmergencyActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
 
-                    db.collection("Emergency").document(name).get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    if (!documentSnapshot.exists()) {
-                                        db2.collection("Emergency").document(name).set(numbers_details)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void documentReference) {
-                                                        Toast.makeText(AddEmergencyActivity.this, "Number added", Toast.LENGTH_SHORT).show();
-                                                        Log.d(TAG, "DocumentSnapshot added with ID: " + name);
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Log.w(TAG, "Error adding document", e);
-                                                        Toast.makeText(AddEmergencyActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
-
-                                                    }
-                                                });
+                                                        }
+                                                    });
+                                        } else {
+                                            Toast.makeText(AddEmergencyActivity.this, "Number alredy exist", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                    else{
-                                        Toast.makeText(AddEmergencyActivity.this, "Number alredy exist", Toast.LENGTH_SHORT).show();
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error adding document", e);
                                     }
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error adding document", e);
-                                }
-                            });
-                } catch (Exception e) {
-                    Toast.makeText(AddEmergencyActivity.this, "already exist!", Toast.LENGTH_SHORT).show();
+                                });
+                    } catch (Exception e) {
+                        Toast.makeText(AddEmergencyActivity.this, "already exist!", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-
             }
         }
 

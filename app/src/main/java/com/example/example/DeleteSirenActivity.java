@@ -16,6 +16,7 @@ public class DeleteSirenActivity extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText sirenId;
     Button deleteSiren,back;
+    private Checkfunction checkfunction=new Checkfunction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class DeleteSirenActivity extends AppCompatActivity {
 
     private void deleteSiren() {
         final String id = sirenId.getText().toString().trim();
-        if (id.equals("")) {
+        if (checkfunction.notEmpty(id)==1) {
             Toast.makeText(DeleteSirenActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
         }
         else{

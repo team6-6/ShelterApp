@@ -23,6 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         public FirebaseFirestore db = FirebaseFirestore.getInstance();
         public FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+        private Checkfunction checkfunction=new Checkfunction();
+
 
     private static final String TAG = "RegisterActivity";
         EditText userId, passwordId, confirmId, q1, q2;
@@ -59,31 +61,31 @@ public class RegisterActivity extends AppCompatActivity {
             Pattern lowerCasePatten = Pattern.compile("[a-z ]");
             Pattern digitCasePatten = Pattern.compile("[0-9 ]");
 
-            if (user.equals("") || pwd.equals("")||cfrm.equals("")){
+            if (checkfunction.notEmpty(user)==1 || checkfunction.notEmpty(pwd)==1 ||checkfunction.notEmpty(cfrm)==1){
                 Toast.makeText(RegisterActivity.this, "Field are empty !", Toast.LENGTH_SHORT).show();
             }
-            else if(quetion1.equals("")||quetion2.equals("")){
+            else if(checkfunction.notEmpty(quetion1)==1||checkfunction.notEmpty(quetion2)==1){
                 Toast.makeText(RegisterActivity.this, "Field are empty !", Toast.LENGTH_SHORT).show();
             }
-            else if (user.length() <3 ) {
+            else if (checkfunction.RangeValue(3,user)==true ) {
                 Toast.makeText(RegisterActivity.this, "user lenght must be atleast 3 character !!", Toast.LENGTH_SHORT).show();
             }
-            else if (pwd.length() < 8 || pwd.length() > 12) {
+            else if (checkfunction.RangeValues(8,12,pwd)==true) {
                 Toast.makeText(RegisterActivity.this, "Password lenght must be 8-12 character !!", Toast.LENGTH_SHORT).show();
             }
-            else if (!UpperCasePatten.matcher(pwd).find() && !lowerCasePatten.matcher(pwd).find() && !digitCasePatten.matcher(pwd).find()) {
+            else if (!checkfunction.CheckPassword(UpperCasePatten,pwd) && !checkfunction.CheckPassword(lowerCasePatten,pwd) && !checkfunction.CheckPassword(digitCasePatten,pwd)) {
                 Toast.makeText(RegisterActivity.this, "Password must contains only letters & digits !!", Toast.LENGTH_SHORT).show();
 
             }
-            else if (!UpperCasePatten.matcher(pwd).find()) {
+            else if (!checkfunction.CheckPassword(UpperCasePatten,pwd)) {
                 Toast.makeText(RegisterActivity.this, "Password must have atleast one upper character !!", Toast.LENGTH_SHORT).show();
 
             }
-            else if (!lowerCasePatten.matcher(pwd).find()) {
+            else if (!checkfunction.CheckPassword(lowerCasePatten,pwd)) {
                 Toast.makeText(RegisterActivity.this, "Password must have atleast one lower character !!", Toast.LENGTH_SHORT).show();
 
             }
-            else if (!digitCasePatten.matcher(pwd).find()) {
+            else if (!checkfunction.CheckPassword(digitCasePatten,pwd)) {
                 Toast.makeText(RegisterActivity.this, "Password must have atleast one digit !!", Toast.LENGTH_SHORT).show();
 
             }
