@@ -39,7 +39,7 @@ pipeline {
   post {
         always {
       emailext mimeType: 'text/html',
-        body: 'junit '**/reports/junit/*.xml'', 
+        body: junit '**/reports/junit/*.xml', 
         subject: 'Selenium: Job ${JOB_NAME} Status: ${currentBuild.result}', 
         to:  'sapirsa3@ac.sce.ac.il'   
         
