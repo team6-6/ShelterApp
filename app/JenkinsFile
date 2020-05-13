@@ -39,9 +39,11 @@ pipeline {
   post {
         always {
       emailext mimeType: 'text/html',
-        body: '${FILE,path="Seleniun/test-output/emailable-report.html"}', 
+        body: 'junit '**/reports/junit/*.xml', 
         subject: 'Selenium: Job ${JOB_NAME} Status: ${currentBuild.result}', 
-        to:  'sapirsa3@ac.sce.ac.il'       
+        to:  'sapirsa3@ac.sce.ac.il'   
+        
+        
       }
         failure{
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
