@@ -29,8 +29,7 @@ pipeline {
 
     stage('Unit test and integration') { 
       steps {
-            sh './gradlew test --rerun-tasks'
-            sh './gradlew dependencies'
+            sh './gradlew -i -d test'
 
 
       }
