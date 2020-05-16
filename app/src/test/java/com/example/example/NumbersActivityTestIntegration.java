@@ -12,10 +12,15 @@ import android.os.Build;
 import static org.junit.Assert.*;
 
 @Config(sdk = 21)
-@RunWith(RobolectricTestRunner.class)
-public class NumbersActivityTestIntegration {
+//@RunWith(RobolectricTestRunner.class)
+public class NumbersActivityTestIntegration extends RobolectricTestRunner{
 
 
+    public NumbersActivityTestIntegration(Class<?> testClass) throws InitializationError {
+        super(testClass);
+    }
+    
+    
     @Test
     public void TransferInfoTest(){
         NumbersActivity activity= Robolectric.buildActivity(NumbersActivity.class).create().get();
