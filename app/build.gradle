@@ -41,7 +41,7 @@ android {
             includeAndroidResources = true
         }
         unitTests.all {
-            systemProperty 'robolectric.enabledSdks', '28'
+            systemProperty 'robolectric.enabledSdks', '21'
         }
 
     }
