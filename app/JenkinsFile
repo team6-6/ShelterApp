@@ -11,12 +11,12 @@ pipeline {
   stages {
     stage ('Prepare'){
       steps {
-      sh './gradlew clean'
         sh 'chmod +x ./gradlew'
       }
     }
     stage('Compile') {
       steps {
+        sh './gradlew clean'
         sh './gradlew compileDebugSources'
       }
     }
