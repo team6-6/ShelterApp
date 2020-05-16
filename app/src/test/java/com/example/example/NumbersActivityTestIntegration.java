@@ -11,7 +11,7 @@ import android.os.Build;
 
 import static org.junit.Assert.*;
 
-@Config(sdk = 28)
+@Config(sdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class NumbersActivityTestIntegration {
 
