@@ -29,7 +29,6 @@ pipeline {
 
     stage('Unit test and integration') { 
       steps {
-      @RunWith(RobolectricTestRunner.class)
             sh './gradlew test'
 
 
