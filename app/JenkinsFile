@@ -29,7 +29,7 @@ pipeline {
 
     stage('Unit test and integration') { 
       steps {
-            sh './gradlew testDebug --stacktrace'
+            sh './gradlew testDebug'
 
 
       }
