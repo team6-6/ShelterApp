@@ -24,6 +24,7 @@ pipeline {
            sh './gradlew testDebugUnitTest '
       }
     }
+    
         stage('Build APK') {
       steps {
         sh "./gradlew assembleDebug"
