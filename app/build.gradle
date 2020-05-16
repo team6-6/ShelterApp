@@ -16,10 +16,10 @@ android {
 
 
     sourceSets{
-
-        androidTest {
-            setRoot('src/androidTest')
-        }
+    
+    androidTest {
+        setRoot('src/test')
+    }
         main{
             java.srcDirs=['src/main/java']
         }
