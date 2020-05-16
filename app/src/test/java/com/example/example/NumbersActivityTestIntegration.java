@@ -10,7 +10,7 @@ import org.robolectric.annotation.Config;
 import com.example.example.RobolectricGradleTestRunner;
 import static org.junit.Assert.*;
 
-@Config(sdk = 21)
+@Config(sdk = Build.VERSION_CODES.O_MR1)
 @RunWith(RobolectricGradleTestRunner.class)
 public class NumbersActivityTestIntegration {
 
