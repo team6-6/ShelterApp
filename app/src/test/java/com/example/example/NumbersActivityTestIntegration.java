@@ -8,7 +8,7 @@ import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.*;
 
-@Config(sdk = 21, packageName  = com.example.example)
+@Config(sdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class NumbersActivityTestIntegration {
 
