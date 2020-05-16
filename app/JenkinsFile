@@ -29,7 +29,7 @@ pipeline {
 
     stage('Unit test and integration') { 
       steps {
-            sh './gradlew test'
+            sh './gradlew -i -d test'
 
 
       }
