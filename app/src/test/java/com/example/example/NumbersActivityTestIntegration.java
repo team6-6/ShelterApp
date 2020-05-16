@@ -1,17 +1,15 @@
 package com.example.example;
 
-import android.os.Build;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import com.example.example.RobolectricGradleTestRunner;
-import static org.junit.Assert.*;
 
-@Config(sdk = 21,packageName="com.example.example")
+import static org.junit.Assert.*;
 @RunWith(RobolectricGradleTestRunner.class)
+@Config(sdk = 21, packageName="com.example.example")
+
 public class NumbersActivityTestIntegration {
 
 
@@ -25,6 +23,7 @@ public class NumbersActivityTestIntegration {
         activity.setUser1(use);
         assertEquals(activity.CheckPermissions(activity.user1.permission),"Civilian");
     }
+
 
     @Test
     public void ViewOnScreenTest(){
