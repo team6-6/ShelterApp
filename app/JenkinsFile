@@ -20,9 +20,9 @@ pipeline {
       }
     }
 
-    stage('Unit test') { 
+    stage('Unit test and integration') { 
       steps {
-           sh './gradlew test '
+            sh './gradlew test --rerun-tasks'
       }
     }
     
