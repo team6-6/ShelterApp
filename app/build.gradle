@@ -4,8 +4,13 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    sourceSets{
 
-    sourceSets{main{java.srcDirs=['src/main/java']}}
+        main{
+            java.srcDirs=['src/main/java']
+        }
+
+    }
 
     defaultConfig {
         applicationId "com.example.example"
