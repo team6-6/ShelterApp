@@ -16,7 +16,6 @@ pipeline {
     }
     stage('Compile') {
       steps {
-        sh './gradlew clean'
         sh './gradlew compileDebugSources'
       }
     }
@@ -30,6 +29,8 @@ pipeline {
 
     stage('Unit test and integration') { 
       steps {
+              sh './gradlew clean'
+
             sh './gradlew test'
 
 
