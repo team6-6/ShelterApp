@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 public class MainEmployeeActivity extends AppCompatActivity {
 
+    String sessionId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
         contant= (ImageView)findViewById(R.id.ContantUs);
         change= (TextView) findViewById(R.id.changePass);
         logout= (TextView) findViewById(R.id.logout);
-        final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,9 +43,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainEmployeeActivity.this, ChangeActivity.class);
-                first.putExtra("EXTRA_SESSION_ID2", sessionId);
-                startActivity(first);
+                ToChangePassword();
             }
         });
 
@@ -105,10 +105,31 @@ public class MainEmployeeActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent first = new Intent(MainEmployeeActivity.this, MainActivity.class);
-                startActivity(first);
+                Logout();
             }
         });
     }
+
+    public void setSessionId() {
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+    }
+
+    public Intent ToChangePassword(){
+        Intent first1 = new Intent(MainEmployeeActivity.this, ChangeActivity.class);
+        first1.putExtra("EXTRA_SESSION_ID2", sessionId);
+        startActivity(first1);
+        return first1;
+    }
+
+    public boolean Logout(){
+        try {
+            Intent first = new Intent(this, MainActivity.class);
+            startActivity(first);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
 }

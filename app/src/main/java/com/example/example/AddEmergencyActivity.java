@@ -113,7 +113,6 @@ public class AddEmergencyActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         Toast.makeText(AddEmergencyActivity.this, "already exist!", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
         }

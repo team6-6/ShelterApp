@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,49 +30,21 @@ public class NumbersActivity extends AppCompatActivity {
 
     private static final String TAG = "NumbersActivity";
     private ArrayAdapter<String> adpter;
+    private Intent intent;
+    private FirebaseFirestore db;
+    private List<String> arrayList = new ArrayList<String>();
+    User user1 = new User();
+    boolean flag=true;
 
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private List<String> arrayList=new ArrayList<String>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         ListView listView;
-         TextView backText;
-        setContentView(R.layout.activity_numbers);
-        listView=(ListView) findViewById(R.id.listEmergency);
-        backText=(TextView) findViewById(R.id.backEmergency);
-        final CollectionReference collectionReference = db.collection("Emergency");
-        //Calling the get() method with a callback function
-        adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
-        listView.setAdapter(adpter);
-
-        collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    //Task is successful
-                    //Running enhanced for loop to get each document
-                    String text1="\nOrganization                     Number";
-                    arrayList.add(text1);
-                    for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
-                        String id=documentSnapshot.getId();
-                        String i=documentSnapshot.get("number").toString();
-                        String text=id+"                     "+i;
-                        arrayList.add(text);
-                        adpter.notifyDataSetChanged();
-
-                        //Printing data of each document to log
-                        Log.i(TAG, "onComplete: query data: " + documentSnapshot.getData());
-                    }
-                }else{
-                    //Task was not successful
-                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
-                }
-            }
-        });
-
+        FirebaseApp.initializeApp(this);
+        viewData();
+        TextView backText;
+        backText = (TextView) findViewById(R.id.backEmergency);
         backText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,17 +56,8 @@ public class NumbersActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 if (documentSnapshot.exists()) {
-                                    final String permission=documentSnapshot.getString("permission");
-                                    if(permission.equals("C")){
-                                        Intent first = new Intent(NumbersActivity.this, MainCivilianActivity.class);
-                                        first.putExtra("EXTRA_SESSION_ID", user);
-                                        startActivity(first);
-                                    }
-                                    else if(permission.equals("B")){
-                                        Intent first = new Intent(NumbersActivity.this, MainEmployeeActivity.class);
-                                        first.putExtra("EXTRA_SESSION_ID", user);
-                                        startActivity(first);
-                                    }
+                                    final String permission = documentSnapshot.getString("permission");
+                                    CheckPermissions(permission);
                                 }
 
                             }
@@ -105,13 +69,81 @@ public class NumbersActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-
-
-
             }
         });
 
     }
+
+    public boolean viewData() {
+
+
+        db = FirebaseFirestore.getInstance();
+        ListView listView;
+        setContentView(R.layout.activity_numbers);
+        listView = (ListView) findViewById(R.id.listEmergency);
+        final CollectionReference collectionReference = db.collection("Emergency");
+        //Calling the get() method with a callback function
+        adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(adpter);
+
+        collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    //Task is successful
+                    //Running enhanced for loop to get each document
+                    String text1 = "\nOrganization                     Number";
+                    arrayList.add(text1);
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                        String id = documentSnapshot.getId();
+                        String i = documentSnapshot.get("number").toString();
+                        String text = id + "                     " + i;
+                        arrayList.add(text);
+                        adpter.notifyDataSetChanged();
+
+                        //Printing data of each document to log
+                        Log.i(TAG, "onComplete: query data: " + documentSnapshot.getData());
+                    }
+                    flag=true;
+                } else {
+                    flag=false;
+                    //Task was not successful
+                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage());
+                }
+            }
+        });
+        return flag;
+    }
+
+
+
+
+    public void setUser1(User user1) {
+        this.user1 = user1;
+    }
+
+    public void putIntent(Class activity){
+        intent=new Intent(this,activity);
+        CheckLogin(intent,user1.name);
+        startActivity(intent);
+    }
+
+    public void CheckLogin(Intent i,String m){
+        i.putExtra("EXTRA_SESSION_ID",m);
+    }
+
+    public String CheckPermissions(String permission){
+
+        if(permission.equals("B")){
+            putIntent(MainEmployeeActivity.class);
+            return "Employee";
+
+        }
+        else if(permission.equals("C")){
+            putIntent(MainCivilianActivity.class);
+            return "Civilian";
+        }
+        return "NULL";
+    }
+
 }

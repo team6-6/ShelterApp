@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.OnClickAction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,19 +15,27 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    User user=new User();
     EditText usernameId,passwordId;
     Button loginId,registerId;
     TextView forgot;
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Intent intentq;
+
+    public FirebaseFirestore db;
     private Checkfunction checkfunction=new Checkfunction();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+        db = FirebaseFirestore.getInstance();
+
         setContentView(R.layout.activity_main);
         registerId = (Button) findViewById(R.id.registerBtn);
         usernameId = (EditText) findViewById(R.id.username);
@@ -36,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         loginId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String user = usernameId.getText().toString().trim();
                 String pwd = passwordId.getText().toString().trim();
+                setUserInfo(user,pwd);
                 if (checkfunction.notEmpty(user)==1 || checkfunction.notEmpty(pwd)==1){
                     Toast.makeText(MainActivity.this, "One or more field are empty !", Toast.LENGTH_SHORT).show();
                 }
@@ -53,21 +64,6 @@ public class MainActivity extends AppCompatActivity {
                                         String pass=documentSnapshot.getString("password");
                                         if (pass.equals(passwordId.getText().toString().trim())){
                                             String permission = documentSnapshot.getString("permission");
-                                            if(permission.equals("A")){
-                                                Intent intent = new Intent(MainActivity.this, MainAdminActivity.class);
-                                                intent.putExtra("EXTRA_SESSION_ID", user);
-                                                startActivity(intent);
-                                            }
-                                            else if(permission.equals("B")){
-                                                Intent intent = new Intent(MainActivity.this, MainEmployeeActivity.class);
-                                                intent.putExtra("EXTRA_SESSION_ID", user);
-                                                startActivity(intent);
-                                            }
-                                            else if(permission.equals("C")){
-                                                Intent intent = new Intent(MainActivity.this, MainCivilianActivity.class);
-                                                intent.putExtra("EXTRA_SESSION_ID", user);
-                                                startActivity(intent);
-                                            }
 
                                         }
                                         else {
@@ -88,12 +84,12 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                 }
-
-
             }
-
-
         });
+
+
+
+
 
         registerId.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,5 +113,49 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setUserInfo(String name, String pas) {
+
+        this.user.setName(name);
+        this.user.setPassword(pas);
+
+    }
+
+    public void setUserPermission(String per) {
+        this.user.setPermission(per);
+    }
+
+    public void putIntent(Class activity){
+        intentq=new Intent(this,activity);
+        CheckLogin(intentq,user.name);
+        startActivity(intentq);
+    }
+
+    public void CheckLogin(Intent i,String m){
+        i.putExtra("EXTRA_SESSION_ID",m);
+    }
+
+    public String CheckPermissions(String permission){
+        if(permission.equals("A")){
+            setUserPermission("A");
+            putIntent(MainAdminActivity.class);
+            return "Admin User";
+        }
+        else if(permission.equals("B")){
+            setUserPermission("B");
+            putIntent(MainEmployeeActivity.class);
+            return "Employee User";
+
+        }
+        else if(permission.equals("C")){
+            setUserPermission("C");
+            putIntent(MainCivilianActivity.class);
+            return "Civilian User";
+        }
+        return "NULL";
+    }
 }
 

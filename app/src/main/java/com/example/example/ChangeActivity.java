@@ -22,7 +22,9 @@ public class ChangeActivity extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
      EditText userChange,Oldpass,newPass,confirmnewPass;
      Button changepwd;
+     User user1=new User();
     private Checkfunction checkfunction=new Checkfunction();
+
 
 
     @Override
@@ -33,14 +35,13 @@ public class ChangeActivity extends AppCompatActivity {
         newPass=(EditText)findViewById(R.id.newPwd);
         confirmnewPass=(EditText)findViewById(R.id.confirmNewPwd);
         changepwd=(Button)findViewById(R.id.createnewpwd);
-
+        final String user = getIntent().getStringExtra("EXTRA_SESSION_ID2");
+        user1.setName(user);
 
         changepwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // final String user = userChange.getText().toString().trim();
-                final String user = getIntent().getStringExtra("EXTRA_SESSION_ID2");
-
                 final String old = Oldpass.getText().toString().trim();
                 final String newpwd = newPass.getText().toString().trim();
                 final String confirm = confirmnewPass.getText().toString().trim();
@@ -114,5 +115,9 @@ public class ChangeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public User getUser1() {
+        return user1;
     }
 }
