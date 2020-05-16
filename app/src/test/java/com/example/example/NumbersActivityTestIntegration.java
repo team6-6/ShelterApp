@@ -23,7 +23,7 @@ public class NumbersActivityTestIntegration {
         use.setPassword("Aa123456");
         use.setPermission("C");
         activity.setUser1(use);
-        assertEquals(activity.CheckPermissions(activity.user1.permission),"Civilian");
+        assertEquals(activity.CheckPermissions(activity.user1.permission),"Civiliddan");
     }
 
     @Test
