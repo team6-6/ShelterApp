@@ -7,21 +7,14 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.junit.runners.model.InitializationError;
-import android.os.Build;
-
+import com.example.example.RobolectricGradleTestRunner;
 import static org.junit.Assert.*;
 
 @Config(sdk = 21)
-//@RunWith(RobolectricTestRunner.class)
-public class NumbersActivityTestIntegration extends RobolectricTestRunner{
+@RunWith(RobolectricGradleTestRunner.class)
+public class NumbersActivityTestIntegration {
 
 
-    public NumbersActivityTestIntegration(Class<?> testClass) throws InitializationError {
-        super(testClass);
-    }
-    
-    
     @Test
     public void TransferInfoTest(){
         NumbersActivity activity= Robolectric.buildActivity(NumbersActivity.class).create().get();
