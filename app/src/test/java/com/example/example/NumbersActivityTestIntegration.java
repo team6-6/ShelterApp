@@ -26,7 +26,6 @@ public class NumbersActivityTestIntegration {
         assertEquals(activity.CheckPermissions(activity.user1.permission),"Civilian");
     }
 
-
     @Test
     public void ViewOnScreenTest(){
         NumbersActivity activity= Robolectric.buildActivity(NumbersActivity.class).create().get();
