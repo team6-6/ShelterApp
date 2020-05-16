@@ -5,11 +5,10 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import android.os.Build;
 
 import static org.junit.Assert.*;
 
-@Config(sdk = Build.VERSION_CODES.O_MR1)
+@Config(sdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class NumbersActivityTestIntegration {
 
