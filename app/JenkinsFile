@@ -20,17 +20,20 @@ pipeline {
       }
     }
 
+     stage('Build APK') {
+      steps {
+        sh "./gradlew assembleDebug"
+      }
+    }
+
+
     stage('Unit test and integration') { 
       steps {
             sh './gradlew test --rerun-tasks'
       }
     }
     
-        stage('Build APK') {
-      steps {
-        sh "./gradlew assembleDebug"
-      }
-    }
+   
     
   
   }
