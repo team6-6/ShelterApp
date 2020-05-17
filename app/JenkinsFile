@@ -1,0 +1,88 @@
+pipeline {
+  agent {
+    docker {
+      image 'windsekirun/jenkins-android-docker:1.1.1'
+    }
+  }
+  
+  options {
+    skipStagesAfterUnstable()
+  }
+  stages {
+    stage ('Prepare'){
+      steps {
+        sh 'chmod +x ./gradlew'
+      }
+    }
+    stage('Compile') {
+      steps {
+        sh './gradlew compileDebugSources'
+      }
+    }
+
+     stage('Build APK') {
+      steps {
+        sh "./gradlew assembleDebug"
+      }
+    }
+
+
+    stage('Unit test and integration') { 
+      steps {
+              sh './gradlew clean'
+
+            sh './gradlew test'
+
+
+      }
+    }
+    
+   
+    
+  
+  }
+  post {
+
+        failure{
+                emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
+                subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'sapirsa3@ac.sce.ac.il'
+                
+                emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'karindu@ac.sce.ac.il',
+                subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'karindu@ac.sce.ac.il'
+                
+                emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'edenda2@ac.sce.ac.il',
+                subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'edenda2@ac.sce.ac.il'
+                
+                emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'yaelbu11@ac.sce.ac.il',
+                subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'yaelbu11@ac.sce.ac.il'
+        }
+
+        success { //Send an email to all teammates about broken build
+            emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
+                    body: '$DEFAULT_CONTENT',
+                    replyTo: 'edenda2@ac.sce.ac.il',
+                    to: 'edenda2@ac.sce.ac.il'
+            )
+            emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
+                    body: '$DEFAULT_CONTENT', 
+                    replyTo: 'sapirsa3@ac.sce.ac.il',
+                    to: 'sapirsa3@ac.sce.ac.il')
+
+            emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS',
+                    body: '$DEFAULT_CONTENT',
+                    replyTo: 'yaelbu11@ac.sce.ac.il',
+                    to: 'yaelbu11@ac.sce.ac.il')
+
+            emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS',
+                    body: '$DEFAULT_CONTENT',
+                    replyTo: 'karindu@ac.sce.ac.il',
+                    to: 'karindu@ac.sce.ac.il')
+                    
+                    
+
+        }
+
+    }
+ 
+    
+}
