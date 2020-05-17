@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 tasks.withType(Test) {
     testLogging {
         exceptionFormat "full"
@@ -7,6 +6,7 @@ tasks.withType(Test) {
         showStandardStreams true
     }
 }
+
 
 android {
     compileSdkVersion 29
