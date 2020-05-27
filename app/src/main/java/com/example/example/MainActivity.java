@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                                         String pass=documentSnapshot.getString("password");
                                         if (pass.equals(passwordId.getText().toString().trim())){
                                             String permission = documentSnapshot.getString("permission");
-
+                                            CheckPermissions(permission);
                                         }
                                         else {
                                             Toast.makeText(MainActivity.this, "password incorrect", Toast.LENGTH_SHORT).show();

@@ -1,15 +1,5 @@
 package com.example.example;
 
-import android.content.Intent;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.regex.Pattern;
 
 public class Checkfunction {
@@ -58,7 +48,7 @@ public class Checkfunction {
     public boolean CheckPermission(String string){
 
         if (!string.equals("A") && !string.equals("B") && !string.equals("C")){
-               return true;
+            return true;
         }
         return false;
     }

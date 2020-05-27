@@ -17,11 +17,11 @@ public class MainCivilianActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_civilian);
 
-        ImageView list,map,numbers,rate,contant;
+        ImageView list,map,numbers,rate,contant,signal;
         TextView change,logout ;
 
 
-
+        signal=(ImageView)findViewById(R.id.Reportdanger);
         map= (ImageView)findViewById(R.id.MapOption);
         list= (ImageView)findViewById(R.id.Shelterlist);
         numbers= (ImageView)findViewById(R.id.EmergencyNumber);
@@ -46,6 +46,16 @@ public class MainCivilianActivity extends AppCompatActivity {
 
                 ToChangePassword();
 
+            }
+        });
+
+
+        signal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent first = new Intent(MainCivilianActivity.this, RequestCivilianActivity.class);
+                startActivity(first);
             }
         });
 

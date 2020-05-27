@@ -1,12 +1,4 @@
 apply plugin: 'com.android.application'
-tasks.withType(Test) {
-    testLogging {
-        exceptionFormat "full"
-        events "started", "skipped", "passed", "failed"
-        showStandardStreams true
-    }
-}
-
 
 android {
     compileSdkVersion 29
@@ -35,15 +27,15 @@ android {
 
     }
 
-    sourceSets{
+    sourceSets {
 
 
         androidTest {
             setRoot('src/androidTest')
         }
 
-        main{
-            java.srcDirs=['src/main/java']
+        main {
+            java.srcDirs = ['src/main/java']
         }
     }
 
@@ -84,7 +76,11 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.2.1'
     androidTestImplementation 'org.robolectric:robolectric:4.2.1'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.material:material:1.0.0'
 
+    //implementation "com.android.support:design:27.1.0"
+
+    //implementation 'com.android.support:appcompat-v7:26.+'
 
 }
 apply plugin: 'com.google.gms.google-services'
