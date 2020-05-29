@@ -51,7 +51,9 @@ public class MainEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainEmployeeActivity.this, AdminSheltersActivity.class);
+                Intent first = new Intent(MainEmployeeActivity.this, CivilianShelterActivity.class);
+                first.putExtra("KIND_OF_PERMISSION", "Employee");
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });

@@ -65,6 +65,7 @@ public class MainCivilianActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainCivilianActivity.this, CivilianShelterActivity.class);
+                first.putExtra("KIND_OF_PERMISSION", "Civilian");
                 startActivity(first);
             }
         });

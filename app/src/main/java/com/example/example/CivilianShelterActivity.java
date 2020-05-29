@@ -30,13 +30,14 @@ public class CivilianShelterActivity extends AppCompatActivity {
     private ArrayAdapter<String> adpter;
     private ArrayList<String> arrayList=new ArrayList<String>();
     private TextView backText, fieldsearch;
-
+    private String sessionId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_civilian_shelters);
+        sessionId = getIntent().getStringExtra("KIND_OF_PERMISSION");
         //final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         listView=(ListView) findViewById(R.id.list_sirens);
         backText=(TextView) findViewById(R.id.listsirenbackmenu);
@@ -70,20 +71,37 @@ public class CivilianShelterActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                sessionId = getIntent().getStringExtra("KIND_OF_PERMISSION");
                 String currentShelter=adapterView.getItemAtPosition(position).toString();
-
-                Intent InfoShelterIntent = new Intent(CivilianShelterActivity.this,CivilianShelterInformationActivity.class);
-                InfoShelterIntent.putExtra("ShelterInfo",currentShelter);
-                startActivity(InfoShelterIntent);
+                if(sessionId.equals("Civilian")) {
+                    Intent InfoShelterIntent = new Intent(CivilianShelterActivity.this, CivilianShelterInformationActivity.class);
+                    InfoShelterIntent.putExtra("ShelterInfo", currentShelter);
+                    startActivity(InfoShelterIntent);
+                }
+                else if(sessionId.equals("Employee")) {
+                    Intent InfoShelterIntent = new Intent(CivilianShelterActivity.this, EditShelterEmployeeActivity.class);
+                    InfoShelterIntent.putExtra("ShelterInfo", currentShelter);
+                    startActivity(InfoShelterIntent);
+                }
             }
         });
 
         backText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (sessionId.equals("Civilian")){
+                    Intent first = new Intent(CivilianShelterActivity.this, MainCivilianActivity.class);
+                    String sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
+                    first.putExtra("EXTRA_SESSION_ID", sessionId2);
+                    startActivity(first);
+                }
+                else if (sessionId.equals("Employee")){
+                    Intent first = new Intent(CivilianShelterActivity.this, MainEmployeeActivity.class);
+                    String sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
+                    first.putExtra("EXTRA_SESSION_ID", sessionId2);
+                    startActivity(first);
+                }
 
-                Intent first = new Intent(CivilianShelterActivity.this, MainCivilianActivity.class);
-                startActivity(first);
 
             }
         });
