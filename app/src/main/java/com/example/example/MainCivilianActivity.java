@@ -95,6 +95,7 @@ public class MainCivilianActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainCivilianActivity.this, RateActivity.class);
+                first.putExtra("EXTRA_SESSION_ID2", sessionId);
                 startActivity(first);
             }
         });
