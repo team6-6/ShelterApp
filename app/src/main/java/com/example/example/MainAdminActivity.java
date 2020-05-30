@@ -82,7 +82,6 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, ContactUsActivity.class);
-                first.putExtra("EXTRA_SESSION_ID","A");
                 startActivity(first);
             }
         });
