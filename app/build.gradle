@@ -69,7 +69,7 @@ pmd {
 
 
 task checkstyle(type: Checkstyle) {
-    configFile = file("${rootDir}/checkstyle/checkstyle.xml")
+    configFile = file("${rootDir}/checkstyle.xml")
 
     source 'src/main/java'
     include '**/*.java'
