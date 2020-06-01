@@ -40,6 +40,8 @@ pipeline {
        stage('Static Code Analysis') {
             steps {
                 script {
+               sh './gradlew check'
+
                     sh './gradlew checkstyle'
                     recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'app/build/reports/checkstyle/checkstyle.xml')
                 }
