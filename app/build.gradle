@@ -2,9 +2,7 @@ apply plugin: 'com.android.application'
 
 
 
-task codeQuality() {
-  tasks.withType(CheckStyle)
-}
+
 
 android {
     compileSdkVersion 29
