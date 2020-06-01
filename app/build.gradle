@@ -71,9 +71,7 @@ android {
 
 }
 
-checkstyle {
-	toolVersion "7.6.1"
-}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
