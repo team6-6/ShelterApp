@@ -91,7 +91,7 @@ project.afterEvaluate {
 
 
 
-task PMD(type: PMD) {
+task pmd(type: pmd) {
     configFile = file("${rootDir}/pmd.xml")
 
     source 'src/main/java'
@@ -106,7 +106,7 @@ task PMD(type: PMD) {
 
 
 pmd {
-    toolVersion "8.17"
+    toolVersion "6.21.0""
 }
 
 project.afterEvaluate {
