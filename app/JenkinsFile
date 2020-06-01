@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh './gradlew tslint --no-daemon'
+                        sh './gradlew lint --no-daemon'
                     } finally { //Make checkstyle results available
                         checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'publicapi/frontend/tslint-result.xml', unHealthy: ''
                     }
