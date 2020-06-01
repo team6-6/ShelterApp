@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 
 task codeQuality() {
-  dependsOn tasks.withType(CheckStyle)
+  tasks.withType(CheckStyle)
 }
 
 android {
