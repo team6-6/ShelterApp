@@ -153,7 +153,6 @@
       <properties>
           <property name="ignoredAnnotations" value="" />
           <property name="regex" value="\/\*\s+(package)\s+\*\/" />
-          <property name="checkTopLevelTypes" value="false" />
       </properties>
   </rule>
 
