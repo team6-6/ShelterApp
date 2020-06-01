@@ -37,12 +37,7 @@ android {
 
     }
     
-    findbugs{
-    findbugsTest.enabled=false
-}
-pmd {
-    pmdTest.enabled=false
-}
+
 
 
     sourceSets {
