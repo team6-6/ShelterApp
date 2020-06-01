@@ -87,6 +87,7 @@ public class RateActivity extends AppCompatActivity {
             public void onClick(View v) {//check id user
 
                                     Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
+                                    intent.putExtra("EXTRA_SESSION_ID", user);
                                     startActivity(intent);
 
             }

@@ -17,7 +17,7 @@ public class MainCivilianActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_civilian);
 
-        ImageView list,map,numbers,rate,contant,signal;
+        ImageView list,map,numbers,rate,signal;
         TextView change,logout ;
 
 
@@ -25,11 +25,11 @@ public class MainCivilianActivity extends AppCompatActivity {
         map= (ImageView)findViewById(R.id.MapOption);
         list= (ImageView)findViewById(R.id.Shelterlist);
         numbers= (ImageView)findViewById(R.id.EmergencyNumber);
-        contant= (ImageView)findViewById(R.id.ContantUs);
         rate=(ImageView)findViewById(R.id.RateUs);
         change= (TextView) findViewById(R.id.changePass);
         logout= (TextView) findViewById(R.id.logout);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +53,9 @@ public class MainCivilianActivity extends AppCompatActivity {
         signal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setSessionId();
                 Intent first = new Intent(MainCivilianActivity.this, RequestCivilianActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -66,6 +67,7 @@ public class MainCivilianActivity extends AppCompatActivity {
 
                 Intent first = new Intent(MainCivilianActivity.this, CivilianShelterActivity.class);
                 first.putExtra("KIND_OF_PERMISSION", "Civilian");
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -73,22 +75,15 @@ public class MainCivilianActivity extends AppCompatActivity {
         numbers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setSessionId();
                 Intent first = new Intent(MainCivilianActivity.this, NumbersActivity.class);
-                first.putExtra("EXTRA_SESSION_ID2", sessionId);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
 
             }
         });
 
-        contant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent first = new Intent(MainCivilianActivity.this, ContactUsActivity.class);
-                startActivity(first);
-            }
-        });
 
         rate.setOnClickListener(new View.OnClickListener() {
             @Override

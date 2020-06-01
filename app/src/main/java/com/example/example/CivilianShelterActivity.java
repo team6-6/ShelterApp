@@ -30,7 +30,7 @@ public class CivilianShelterActivity extends AppCompatActivity {
     private ArrayAdapter<String> adpter;
     private ArrayList<String> arrayList=new ArrayList<String>();
     private TextView backText, fieldsearch;
-    private String sessionId;
+    private String sessionId, sessionId2;;
 
 
     @Override
@@ -38,6 +38,7 @@ public class CivilianShelterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_civilian_shelters);
         sessionId = getIntent().getStringExtra("KIND_OF_PERMISSION");
+         sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
         //final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         listView=(ListView) findViewById(R.id.list_sirens);
         backText=(TextView) findViewById(R.id.listsirenbackmenu);
@@ -75,11 +76,13 @@ public class CivilianShelterActivity extends AppCompatActivity {
                 String currentShelter=adapterView.getItemAtPosition(position).toString();
                 if(sessionId.equals("Civilian")) {
                     Intent InfoShelterIntent = new Intent(CivilianShelterActivity.this, CivilianShelterInformationActivity.class);
+                    InfoShelterIntent.putExtra("EXTRA_SESSION_ID", sessionId2);
                     InfoShelterIntent.putExtra("ShelterInfo", currentShelter);
                     startActivity(InfoShelterIntent);
                 }
                 else if(sessionId.equals("Employee")) {
                     Intent InfoShelterIntent = new Intent(CivilianShelterActivity.this, EditShelterEmployeeActivity.class);
+                    InfoShelterIntent.putExtra("EXTRA_SESSION_ID", sessionId2);
                     InfoShelterIntent.putExtra("ShelterInfo", currentShelter);
                     startActivity(InfoShelterIntent);
                 }
@@ -91,13 +94,14 @@ public class CivilianShelterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (sessionId.equals("Civilian")){
                     Intent first = new Intent(CivilianShelterActivity.this, MainCivilianActivity.class);
-                    String sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
+                    first.putExtra("KIND_OF_PERMISSION", sessionId);
                     first.putExtra("EXTRA_SESSION_ID", sessionId2);
                     startActivity(first);
                 }
                 else if (sessionId.equals("Employee")){
                     Intent first = new Intent(CivilianShelterActivity.this, MainEmployeeActivity.class);
                     String sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
+                    first.putExtra("KIND_OF_PERMISSION", sessionId);
                     first.putExtra("EXTRA_SESSION_ID", sessionId2);
                     startActivity(first);
                 }

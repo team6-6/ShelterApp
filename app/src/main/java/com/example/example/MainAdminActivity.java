@@ -48,6 +48,7 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, EditUserActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -64,6 +65,7 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, AdminSheltersActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -73,6 +75,7 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, EmergencyMenuActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -82,6 +85,8 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, ContactUsActivity.class);
+
+                first.putExtra("EXTRA_SESSION_ID","A");
                 startActivity(first);
             }
         });
@@ -90,8 +95,8 @@ public class MainAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainAdminActivity.this, RateActivity.class);
-                startActivity(first);
+                //Intent first = new Intent(MainAdminActivity.this, RateActivity.class);
+                //startActivity(first);
             }
         });
 
@@ -100,7 +105,7 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, AdminSirensActivity.class);
-                first.putExtra("EXTRA_SESSION_ID2", sessionId);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });

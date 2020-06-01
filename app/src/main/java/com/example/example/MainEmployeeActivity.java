@@ -22,7 +22,6 @@ public class MainEmployeeActivity extends AppCompatActivity {
         list_shelters=(ImageView)findViewById(R.id.Shelterlist) ;
         list_sirens= (ImageView)findViewById(R.id.Sirenlist);
         map= (ImageView)findViewById(R.id.MapOption);
-        requests=(ImageView)findViewById(R.id.Requests);
         requests_admin=(ImageView)findViewById(R.id.Requests_Admin);
         numbers= (ImageView)findViewById(R.id.EmergencyNumber);
         contant= (ImageView)findViewById(R.id.ContantUs);
@@ -63,24 +62,19 @@ public class MainEmployeeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainEmployeeActivity.this, EmployeeSirensActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
 
-        requests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent first = new Intent(MainEmployeeActivity.this, RequestsActivity.class);
-                startActivity(first);
-            }
-        });
 
         requests_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent first = new Intent(MainEmployeeActivity.this, RequestsAdminActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -90,7 +84,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainEmployeeActivity.this, NumbersActivity.class);
-                first.putExtra("EXTRA_SESSION_ID2", sessionId);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -100,6 +94,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainEmployeeActivity.this, ContactUsActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });

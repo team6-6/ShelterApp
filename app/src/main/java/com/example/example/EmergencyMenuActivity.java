@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class EmergencyMenuActivity extends AppCompatActivity {
     Button addNumber,deleteNumber, viewlist;
     TextView back;
+    String sessionId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,12 +20,14 @@ public class EmergencyMenuActivity extends AppCompatActivity {
         deleteNumber = (Button) findViewById(R.id.DeleteEmer);
         back= (TextView) findViewById(R.id.backEmer);
         viewlist=(Button) findViewById(R.id.ViewList);
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         addNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(EmergencyMenuActivity.this, AddEmergencyActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
@@ -34,6 +37,7 @@ public class EmergencyMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(EmergencyMenuActivity.this, DeleteEmergencyActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
@@ -42,6 +46,7 @@ public class EmergencyMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EmergencyMenuActivity.this, ViewAdminNumActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
@@ -50,6 +55,7 @@ public class EmergencyMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EmergencyMenuActivity.this, MainAdminActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });

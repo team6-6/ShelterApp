@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class CivilianShelterInformationActivity extends AppCompatActivity {
     private static final String TAG = "CivilianShelterInformationActivity";
 
-    private String currentShelter;
+    private String currentShelter,sessionId2;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private TextView Sheltername,laat,loon;
     private Button btn;
@@ -32,12 +32,16 @@ public class CivilianShelterInformationActivity extends AppCompatActivity {
         btn=(Button)findViewById(R.id.infobtn);
         currentShelter = getIntent().getExtras().get("ShelterInfo").toString();
         Sheltername.setText("Shelter name : " + currentShelter);
+        sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent first = new Intent(CivilianShelterInformationActivity.this, CivilianShelterActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId2);
+                first.putExtra("KIND_OF_PERMISSION", "Civilian");
                 startActivity(first);
 
             }

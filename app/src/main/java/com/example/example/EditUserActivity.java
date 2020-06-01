@@ -23,7 +23,7 @@ public class EditUserActivity extends AppCompatActivity {
     EditText user,pass,per;
     Button back,changeNsave;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String userEdit ,  password ,permission;
+    String userEdit ,  password ,permission,sessionId;
     Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
     Pattern lowerCasePatten = Pattern.compile("[a-z ]");
     Pattern digitCasePatten = Pattern.compile("[0-9 ]");
@@ -41,6 +41,7 @@ public class EditUserActivity extends AppCompatActivity {
         user = (EditText) findViewById(R.id.useredit);
         pass= (EditText) findViewById(R.id.editpass);
         per= (EditText) findViewById(R.id.editper);
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
 
         changeNsave.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +173,7 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditUserActivity.this, MainAdminActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });

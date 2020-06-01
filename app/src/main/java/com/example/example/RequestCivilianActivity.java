@@ -11,6 +11,7 @@ public class RequestCivilianActivity extends AppCompatActivity {
 
 
     Button search,create,back;
+    String sessionId;
 
 
     @Override
@@ -21,6 +22,9 @@ public class RequestCivilianActivity extends AppCompatActivity {
         search= (Button)findViewById(R.id.SearchButton);
         create= (Button)findViewById(R.id.CreateButton);
         back=  (Button)findViewById(R.id.baaack);
+        sessionId=getIntent().getStringExtra("EXTRA_SESSION_ID");
+
+
 
 
 
@@ -28,6 +32,7 @@ public class RequestCivilianActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RequestCivilianActivity.this, CreateRequestCivilianActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
@@ -35,8 +40,9 @@ public class RequestCivilianActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(RequestCivilianActivity.this, SearchRequestCivilianActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(RequestCivilianActivity.this, SearchRequestCivilianActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
+                startActivity(intent);
             }
         });
 
@@ -45,6 +51,7 @@ public class RequestCivilianActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RequestCivilianActivity.this, MainCivilianActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
