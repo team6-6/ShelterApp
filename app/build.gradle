@@ -125,6 +125,9 @@ task findbugs(type: FindBugs) {
 }
 
 
+check.dependsOn 'findbugs', 'pmd'
+
+
 
 
 dependencies {
