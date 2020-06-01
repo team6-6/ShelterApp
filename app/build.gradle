@@ -96,16 +96,13 @@ task pmd(type: Pmd) {
     ruleSets = []
 
     //source 'src'
-    source = fileTree('src/main/java')
+   
+    source 'src/main/java'
     include '**/*.java'
     exclude '**/gen/**'
 
     reports {
-        //xml.enabled = false
         html.enabled = true
-//        xml {
-//            destination "$project.buildDir/reports/pmd/pmd.xml"
-//        }
         html {
             destination "$project.buildDir/reports/pmd/pmd.html"
         }
