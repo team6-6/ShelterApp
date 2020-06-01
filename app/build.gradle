@@ -91,28 +91,19 @@ project.afterEvaluate {
 
 
 
-task pmd(type: pmd) {
-    configFile = file("${rootDir}/pmd.xml")
-
+task pmd(type: Pmd) {
+    ruleSetFiles = files("${rootDir}/pmd.xml")
+    ignoreFailures = false
+    ruleSets = []
     source 'src/main/java'
     include '**/*.java'
     exclude '**/gen/**'
-
-    ignoreFailures true
-    showViolations true
-
-    classpath = files()
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        html.destination = file("$project.buildDir/outputs/pmd/pmd.html")
+    }
 }
-
-
-pmd {
-    toolVersion "6.21.0"
-}
-
-project.afterEvaluate {
-    preBuild.dependsOn 'pmd'
-}
-
 
 
 
