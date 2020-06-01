@@ -92,7 +92,7 @@ project.afterEvaluate {
 
 
 task pmd(type: Pmd) {
-    configFile = file("${rootDir}/pmd.xml")
+    ruleSetFiles = files("${rootDir}/pmd.xml")
     ignoreFailures = false
     ruleSets = []
    source 'src/main/java'
