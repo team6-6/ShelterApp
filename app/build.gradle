@@ -7,6 +7,14 @@ apply plugin: 'pmd'
 apply plugin: 'findbugs'
 
 
+findbugs{
+    findbugsTest.enabled=false
+}
+pmd {
+    pmdTest.enabled=false
+}
+
+
 
 android {
     compileSdkVersion 29
