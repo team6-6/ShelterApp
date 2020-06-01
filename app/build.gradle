@@ -87,6 +87,37 @@ project.afterEvaluate {
 
 
 
+
+
+
+
+task PMD(type: PMD) {
+    configFile = file("${rootDir}/pmd.xml")
+
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    ignoreFailures true
+    showViolations true
+
+    classpath = files()
+}
+
+
+pmd {
+    toolVersion "8.17"
+}
+
+project.afterEvaluate {
+    preBuild.dependsOn 'pmd'
+}
+
+
+
+
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
