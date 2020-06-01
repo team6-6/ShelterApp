@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+
+
+task codeQuality() {
+  dependsOn tasks.withType(CheckStyle)
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
