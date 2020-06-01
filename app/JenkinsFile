@@ -38,15 +38,7 @@ pipeline {
     }
     
     
-    
-    
-         stage('Frontend Static Code Analysis') {
-            steps {
-              
-     
-              
-              }
-        }
+        
         
         
         
