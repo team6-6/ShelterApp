@@ -24,6 +24,14 @@ allprojects {
     }
 }
 
+findbugs{
+    findbugsTest.enabled=false
+}
+pmd {
+    pmdTest.enabled=false
+}
+
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
