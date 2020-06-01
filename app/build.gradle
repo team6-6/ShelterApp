@@ -98,6 +98,11 @@ task pmd(type: Pmd) {
    source 'src/main/java'
     include '**/*.java'
     exclude '**/gen/**'
+    
+    
+       showViolations true
+
+    classpath = files()
 
 }
 
