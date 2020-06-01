@@ -44,7 +44,7 @@ pipeline {
                   sh './gradlew checkstyle'
                     recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'app/build/reports/checkstyle/checkstyle.xml')
                 
-                    sh './gradlew check'
+                    sh './gradlew pmd'
   
                 }
             }
