@@ -100,7 +100,6 @@ task pmd(type: Pmd) {
     exclude '**/gen/**'
     
     
-       showViolations true
 
     classpath = files()
 
