@@ -98,11 +98,7 @@ task pmd(type: Pmd) {
    source 'src/main/java'
     include '**/*.java'
     exclude '**/gen/**'
-    reports {
-        xml.enabled = false
-        html.enabled = true
-        html.destination = file("$project.buildDir/outputs/pmd/pmd.html")
-    }
+
 }
 
 
