@@ -40,7 +40,11 @@ pipeline {
        stage('Static Code Analysis') {
             steps {
                 script {
-               sh './gradlew check'
+
+
+                    sh './gradlew pmd'
+                    recordIssues enabledForFailure: true, aggregatingResults: true, tool: pmd(pattern: 'app/build/reports/pmd/pmd.xml')
+
 
                     sh './gradlew checkstyle'
                     recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'app/build/reports/checkstyle/checkstyle.xml')
