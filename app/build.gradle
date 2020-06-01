@@ -106,7 +106,7 @@ task pmd(type: pmd) {
 
 
 pmd {
-    toolVersion "6.21.0""
+    toolVersion "6.21.0"
 }
 
 project.afterEvaluate {
