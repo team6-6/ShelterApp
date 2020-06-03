@@ -67,8 +67,6 @@ public class RateActivity extends AppCompatActivity {
                                 public void onSuccess(DocumentReference documentReference) {
                                     Toast.makeText(RateActivity.this, "Your rating is accepted", Toast.LENGTH_SHORT).show();
                                     Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                                    Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
-                                    startActivity(intent);
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -78,18 +76,33 @@ public class RateActivity extends AppCompatActivity {
                                 }
                             });
                 }
-
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//check id user
-
-                                    Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
-                                    intent.putExtra("EXTRA_SESSION_ID", user);
+                db.collection("users").document(user).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                String permission = documentSnapshot.getString("permission");
+                                if(permission.equals("A")){
+                                    Intent intent = new Intent(RateActivity.this, MainAdminActivity.class);
                                     startActivity(intent);
+                                }
+                                else if(permission.equals("C")){
+                                    Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
+                                    startActivity(intent);
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error reading from database", e);
 
+                    }
+                });
             }
         });
     }

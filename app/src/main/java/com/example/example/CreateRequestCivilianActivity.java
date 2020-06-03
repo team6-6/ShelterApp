@@ -51,8 +51,6 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
     private TextView  fieldsearch,fieldsearch1;
     private Button BackMenu,Save;
     private EditText DetailsDanger;//description
-    String sessionId;
-    //String sessionId;
 
 
     @Override
@@ -67,7 +65,6 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
         DetailsDanger.setPadding(25,25 ,25,25);
         Save=(Button) findViewById(R.id.SaveInfo);
         BackMenu=(Button)findViewById(R.id.BackMenu);
-        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         final CollectionReference collectionReference = db.collection("shelter");
         final CollectionReference collectionReference1=db.collection("Type_Request");
@@ -91,7 +88,6 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(CreateRequestCivilianActivity.this, RequestCivilianActivity.class);
-                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
 
             }
@@ -256,7 +252,6 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
 
             Toast.makeText(CreateRequestCivilianActivity.this, "Your request number is : "+RequestId, Toast.LENGTH_SHORT).show();
             Intent first = new Intent(CreateRequestCivilianActivity.this, MainCivilianActivity.class);
-            first.putExtra("EXTRA_SESSION_ID", sessionId);
             startActivity(first);
 
         }

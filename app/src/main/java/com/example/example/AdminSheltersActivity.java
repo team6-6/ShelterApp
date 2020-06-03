@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class AdminSheltersActivity extends AppCompatActivity {//עבור מנהל-הוספה ועדכון מקלט
     Button addShelter,deleteShelter;
-    String sessionId;
     TextView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +19,12 @@ public class AdminSheltersActivity extends AppCompatActivity {//עבור מנה�
         addShelter = (Button) findViewById(R.id.AddBtn);
         deleteShelter = (Button) findViewById(R.id.DeleteBotn);
         back= (TextView) findViewById(R.id.goback);
-        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
-
 
         addShelter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(AdminSheltersActivity.this, AddShelterActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
@@ -38,7 +34,6 @@ public class AdminSheltersActivity extends AppCompatActivity {//עבור מנה�
             public void onClick(View v) {
 
                 Intent intent = new Intent(AdminSheltersActivity.this, DeleteShelterActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
@@ -47,7 +42,6 @@ public class AdminSheltersActivity extends AppCompatActivity {//עבור מנה�
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminSheltersActivity.this, MainAdminActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });

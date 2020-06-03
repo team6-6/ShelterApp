@@ -23,7 +23,6 @@ public class DeleteEmergencyActivity extends AppCompatActivity {
     Button deleteNumber,back;
     private FirebaseFirestore db2=FirebaseFirestore.getInstance();
     private Checkfunction checkfunction=new Checkfunction();
-    String sessionId;
 
 
     @Override
@@ -33,7 +32,6 @@ public class DeleteEmergencyActivity extends AppCompatActivity {
         nameOrganization = (EditText) findViewById(R.id.nameNumDelete);
         deleteNumber = (Button) findViewById(R.id.deletenum);
         back= (Button) findViewById(R.id.gobacknum);
-        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         deleteNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +44,6 @@ public class DeleteEmergencyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DeleteEmergencyActivity.this, EmergencyMenuActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });

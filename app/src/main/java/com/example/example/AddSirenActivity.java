@@ -25,7 +25,6 @@ public class AddSirenActivity extends AppCompatActivity {
     private static final String TAG = "AddSirenActivity";
     EditText sirenId,Neibor, lat, lon;
     Button addSiren,back;
-    String sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class AddSirenActivity extends AppCompatActivity {
         lon = (EditText) findViewById(R.id.lon);
         addSiren = (Button) findViewById(R.id.Addbutton);
         back= (Button) findViewById(R.id.goback);
-        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         addSiren.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +49,6 @@ public class AddSirenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddSirenActivity.this, AdminSirensActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });

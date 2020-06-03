@@ -29,7 +29,6 @@ public class AddShelterActivity extends AppCompatActivity {
     Button addShelter,back;
     private boolean flag=false;
     Checkfunction checkfunction=new Checkfunction();
-    String sessionId;
 
     public void setFlag(boolean flag) {
         this.flag = flag;
@@ -48,21 +47,14 @@ public class AddShelterActivity extends AppCompatActivity {
         lon = (EditText) findViewById(R.id.lon);
         addShelter = (Button) findViewById(R.id.AddingBtn);
         back= (Button) findViewById(R.id.goback);
-        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         addShelter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String name = nameShelter.getText().toString().trim();
-                if (checkfunction.ParseToDouble(lat.getText().toString()).equals("true") && checkfunction.ParseToDouble(lon.getText().toString()).equals("true")){
-                    Double newlat = Double.parseDouble(lat.getText().toString());
-                    Double newlon = Double.parseDouble(lon.getText().toString());
-                    addShelter(name, newlat, newlon, false);
-                }
-                else{
-                    Toast.makeText(AddShelterActivity.this,"lat and lon need to be numbers",Toast.LENGTH_SHORT).show();
-                }
-
+                Double newlat = Double.parseDouble(lat.getText().toString());
+                Double newlon = Double.parseDouble(lon.getText().toString());
+                addShelter(name, newlat, newlon, false);
             }
         });
 
@@ -70,7 +62,6 @@ public class AddShelterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddShelterActivity.this, AdminSheltersActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });
@@ -86,7 +77,6 @@ public class AddShelterActivity extends AppCompatActivity {
         }
 
         try{
-
             FirebaseApp.initializeApp(this);
             db= FirebaseFirestore.getInstance();
             db2 = FirebaseFirestore.getInstance();
@@ -131,7 +121,7 @@ public class AddShelterActivity extends AppCompatActivity {
                                     }
                                     else{
                                         setFlag(false);
-                                        Toast.makeText(AddShelterActivity.this, "Shelter already exists", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddShelterActivity.this, "Shelter alredy exist", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             })

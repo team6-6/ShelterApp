@@ -30,7 +30,6 @@ public class EmployeeSirensActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> adpter;
     private List<String> arrayList=new ArrayList<String>();
-    String sessionId2;
 
 
     @Override
@@ -45,9 +44,6 @@ public class EmployeeSirensActivity extends AppCompatActivity {
         final CollectionReference collectionReference = db.collection("zofar");
         //Calling the get() method with a callback function
         adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
-        sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
-
-
         listView.setAdapter(adpter);
 
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -80,7 +76,6 @@ public class EmployeeSirensActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(EmployeeSirensActivity.this, MainEmployeeActivity.class);
-                first.putExtra("EXTRA_SESSION_ID", sessionId2);
                 startActivity(first);
 
             }

@@ -29,7 +29,6 @@ public class AddEmergencyActivity extends AppCompatActivity {
     EditText nameOrganization, num;
     Button addNum;
     TextView back;
-    String sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,6 @@ public class AddEmergencyActivity extends AppCompatActivity {
         num = (EditText) findViewById(R.id.addNumber);
         addNum = (Button) findViewById(R.id.buttonaddEmerg);
         back= (TextView) findViewById(R.id.backaddemerg);
-        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
-
 
         addNum.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +50,6 @@ public class AddEmergencyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddEmergencyActivity.this, EmergencyMenuActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }
         });

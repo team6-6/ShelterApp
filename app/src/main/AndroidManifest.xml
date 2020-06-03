@@ -17,17 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchRequestCivilianActivity"></activity>
-        <activity android:name=".ResultSearchRequestCivilianActivity" />
-        <activity
-            android:name=".ContantUsAdminActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".ContantUsInfoActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".EditShelterEmployeeActivity"
-            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ReportsActivity"></activity>
+        <activity android:name=".EditShelterEmployeeActivity" />
         <activity android:name=".RequestCivilianActivity" />
         <activity
             android:name=".CreateRequestCivilianActivity"
@@ -47,13 +38,10 @@
         <activity android:name=".AddSirenActivity" />
         <activity android:name=".DeleteShelterActivity" />
         <activity android:name=".AddShelterActivity" />
-        <activity android:name=".RequestsAdminActivity"
-            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".RequestsAdminActivity" />
         <activity android:name=".RequestsActivity" />
         <activity android:name=".RateActivity" />
-        <activity
-            android:name=".ContactUsActivity"
-            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ContactUsActivity" />
         <activity
             android:name=".NumbersActivity"
             android:windowSoftInputMode="adjustPan" />

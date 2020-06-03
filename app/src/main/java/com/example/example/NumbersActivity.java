@@ -35,15 +35,12 @@ public class NumbersActivity extends AppCompatActivity {
     private List<String> arrayList = new ArrayList<String>();
     User user1 = new User();
     boolean flag=true;
-    String user ;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        user= getIntent().getStringExtra("EXTRA_SESSION_ID");
-        func(user);
         FirebaseApp.initializeApp(this);
         viewData();
         TextView backText;
@@ -51,7 +48,7 @@ public class NumbersActivity extends AppCompatActivity {
         backText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(NumbersActivity.this, "--"+user, Toast.LENGTH_SHORT).show();
+                final String user = getIntent().getStringExtra("EXTRA_SESSION_ID2");
 
 
                 db.collection("users").document(user).get()
@@ -59,7 +56,6 @@ public class NumbersActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 if (documentSnapshot.exists()) {
-
                                     final String permission = documentSnapshot.getString("permission");
                                     CheckPermissions(permission);
                                 }
@@ -120,10 +116,7 @@ public class NumbersActivity extends AppCompatActivity {
     }
 
 
-public void func(String val){
-        user1.name=val;
 
-}
 
     public void setUser1(User user1) {
         this.user1 = user1;

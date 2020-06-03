@@ -60,19 +60,6 @@
         app:srcCompat="@drawable/map" />
 
     <ImageView
-        android:id="@+id/ContantUs"
-        android:layout_width="106dp"
-        android:layout_height="93dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765"
-        app:srcCompat="@drawable/message" />
-
-    <ImageView
         android:id="@+id/RateUs"
         android:layout_width="103dp"
         android:layout_height="94dp"
@@ -169,10 +156,10 @@
         app:layout_constraintVertical_bias="0.613" />
 
     <TextView
-        android:id="@+id/ContantUsText"
+        android:id="@+id/ReportsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contant us"
+        android:text="Reports"
         android:textColor="#090606"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -231,5 +218,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
+
+    <ImageView
+        android:id="@+id/reports"
+        android:layout_width="101dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.764"
+        app:srcCompat="@drawable/reports" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
