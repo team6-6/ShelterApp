@@ -47,7 +47,8 @@
         <activity android:name=".AddSirenActivity" />
         <activity android:name=".DeleteShelterActivity" />
         <activity android:name=".AddShelterActivity" />
-        <activity android:name=".RequestsAdminActivity" />
+        <activity android:name=".RequestsAdminActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".RequestsActivity" />
         <activity android:name=".RateActivity" />
         <activity
