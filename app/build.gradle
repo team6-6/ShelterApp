@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin:'checkstyle'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -38,6 +38,27 @@ android {
             java.srcDirs = ['src/main/java']
         }
     }
+
+checkstyle {
+    toolVersion = '6.4.1'
+    sourceSets = [sourceSets.main]
+    configFile = rootProject.file("config/checkstyle/checkstyle.xml");
+    showViolations = true
+    ignoreFailures = true
+}
+
+checkstyleTest {
+    enabled = false
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+    html.destination rootProject.file("build/reports/checkstyle.html")
+  }
+}
+
+
+
 
 
     buildTypes {
