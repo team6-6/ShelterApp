@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainCivilianActivity">
+
+    <ImageView
+        android:id="@+id/EmergencyNumber"
+        android:layout_width="118dp"
+        android:layout_height="102dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414"
+        app:srcCompat="@drawable/emergency" />
+
+    <ImageView
+        android:id="@+id/Shelterlist"
+        android:layout_width="105dp"
+        android:layout_height="90dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121"
+        app:srcCompat="@drawable/list" />
+
+    <ImageView
+        android:id="@+id/MapOption"
+        android:layout_width="134dp"
+        android:layout_height="117dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.104"
+        app:srcCompat="@drawable/map" />
+
+
+    <ImageView
+        android:id="@+id/Reportdanger"
+        android:layout_width="117dp"
+        android:layout_height="105dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.714"
+        app:srcCompat="@drawable/request" />
+
+
+    <ImageView
+        android:id="@+id/RateUs"
+        android:layout_width="115dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.418"
+        app:srcCompat="@drawable/rate" />
+
+    <TextView
+        android:id="@+id/ShelterlistText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shelter list"
+        android:textColor="#0B0808"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.271" />
+
+    <TextView
+        android:id="@+id/MapOptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map"
+        android:textColor="#1B1010"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.271" />
+
+    <TextView
+        android:id="@+id/EmergencyNumberText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency numbers"
+        android:textColor="#120B0B"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.839"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <TextView
+        android:id="@+id/RateUsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate us"
+        android:textColor="#070404"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <TextView
+        android:id="@+id/contantUsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Requests"
+        android:textColor="#090606"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.787" />
+
+    <TextView
+        android:id="@+id/changePass"
+        android:layout_width="335dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="Want to Change Password? click here"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.901" />
+
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="92dp"
+        android:layout_height="21dp"
+        android:text="Civilian User"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+</androidx.constraintlayout.widget.ConstraintLayout>
