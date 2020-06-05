@@ -1,0 +1,68 @@
+pipeline {
+  agent {
+    docker {
+      image 'windsekirun/jenkins-android-docker:1.1.1'
+    }
+  }
+  
+  options {
+    skipStagesAfterUnstable()
+  }
+  stages {
+    stage ('Prepare'){
+      steps {
+        sh 'chmod +x ./gradlew'
+      }
+    }
+    stage('Compile') {
+      steps {
+        sh './gradlew compileDebugSources'
+      }
+    }
+
+     stage('Build APK') {
+      steps {
+        sh "./gradlew assembleDebug"
+      }
+    }
+
+
+    stage('Unit test and integration') { 
+      steps {
+              sh './gradlew clean'
+
+            sh './gradlew test'
+
+
+      }
+    }
+    
+       stage('Static Code Analysis') {
+            steps {
+                script {
+
+                  sh './gradlew checkstyle'
+                    recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'app/build/reports/checkstyle/checkstyle.xml')
+                
+                    sh './gradlew pmd'
+                    sh './gradlew findbugs'
+  
+                }
+            }
+        }
+    
+    
+        
+        
+        
+        
+        
+        
+    
+    
+  
+  }
+
+ 
+    
+}
