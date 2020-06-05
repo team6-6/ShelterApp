@@ -1,7 +1,13 @@
 apply plugin: 'com.android.application'
+
+
+
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
+
+
+
 
 
 android {
@@ -30,6 +36,9 @@ android {
         }
 
     }
+    
+
+
 
     sourceSets {
 
@@ -43,20 +52,41 @@ android {
         }
     }
 
-task pmd(type: Pmd) {
-    ruleSetFiles = files("${rootDir}/pmd.xml")
-    ignoreFailures = true
-  ruleSets = []
-    source 'src/main/java'
-    include '**/*.java'
-    
-     reports {
-        xml.enabled = false
-        html.enabled = true
-                html.destination = file("$project.buildDir/outputs/pmd/pmd.html")
 
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+}
+
+
+task checkstyle(type: Checkstyle) {
+    configFile = file("${rootDir}/checkstyle.xml")
+
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    ignoreFailures true
+    showViolations true
+
+    classpath = files()
+}
+
+
+checkstyle {
+    toolVersion "8.17"
+}
+
+project.afterEvaluate {
+    preBuild.dependsOn 'checkstyle'
+}
+
+
+
 
 task findbugs(type: FindBugs) {
     ignoreFailures = true
@@ -74,36 +104,32 @@ task findbugs(type: FindBugs) {
 }
 
 
-checkstyle {
-    toolVersion = '6.4.1'
-    sourceSets = [sourceSets.main]
-    configFile = rootProject.file("${rootDir}/checkstyle.xml");
-    showViolations = true
+
+task pmd(type: Pmd) {
+    ruleSetFiles = files("${rootDir}/pmd.xml")
     ignoreFailures = true
+  ruleSets = []
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        html.destination = file("$project.buildDir/outputs/pmd/pmd.html")
+    }
 }
 
-checkstyleTest {
-    enabled = false
-}
 
-tasks.withType(Checkstyle) {
-  reports {
-    html.destination rootProject.file("build/reports/checkstyle.html")
-  }
-}
+
+
+
+
 
 check.dependsOn  'pmd','findbugs'
 
 
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
