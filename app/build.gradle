@@ -1,15 +1,5 @@
 apply plugin: 'com.android.application'
 
-
-
-apply plugin: 'checkstyle'
-apply plugin: 'pmd'
-apply plugin: 'findbugs'
-
-
-
-
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -36,9 +26,6 @@ android {
         }
 
     }
-    
-
-
 
     sourceSets {
 
@@ -61,75 +48,6 @@ android {
     }
 
 }
-
-
-task checkstyle(type: Checkstyle) {
-    configFile = file("${rootDir}/checkstyle.xml")
-
-    source 'src/main/java'
-    include '**/*.java'
-    exclude '**/gen/**'
-
-    ignoreFailures true
-    showViolations true
-
-    classpath = files()
-}
-
-
-checkstyle {
-    toolVersion "8.17"
-}
-
-project.afterEvaluate {
-    preBuild.dependsOn 'checkstyle'
-}
-
-
-
-
-task findbugs(type: FindBugs) {
-    ignoreFailures = true
-    effort = "max"
-    reportLevel = "low"
-    classes = files("$project.buildDir/intermediates/javac")
-    excludeFilter = file("${rootDir}/findbugs.xml")
-    source 'src/main/java'
-    classpath = files()
-    reports {
-        xml.enabled = false
-        html.enabled = true
-        html.destination file("$project.buildDir/outputs/findbugs/findbugs-output.html")
-    }
-}
-
-
-
-task pmd(type: Pmd) {
-    ruleSetFiles = files("${rootDir}/pmd.xml")
-    ignoreFailures = true
-  ruleSets = []
-    source 'src/main/java'
-    include '**/*.java'
-    exclude '**/gen/**'
-
-    reports {
-        xml.enabled = false
-        html.enabled = true
-        html.destination = file("$project.buildDir/outputs/pmd/pmd.html")
-    }
-}
-
-
-
-
-
-
-
-check.dependsOn  'pmd','findbugs'
-
-
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
