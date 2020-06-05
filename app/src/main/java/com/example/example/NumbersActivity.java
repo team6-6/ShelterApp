@@ -35,12 +35,15 @@ public class NumbersActivity extends AppCompatActivity {
     private List<String> arrayList = new ArrayList<String>();
     User user1 = new User();
     boolean flag=true;
+    String user ;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        user= getIntent().getStringExtra("EXTRA_SESSION_ID");
+        func(user);
         FirebaseApp.initializeApp(this);
         viewData();
         TextView backText;
@@ -48,15 +51,17 @@ public class NumbersActivity extends AppCompatActivity {
         backText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String user = getIntent().getStringExtra("EXTRA_SESSION_ID2");
 
 
                 db.collection("users").document(user).get()
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
+
                                 if (documentSnapshot.exists()) {
+
                                     final String permission = documentSnapshot.getString("permission");
+
                                     CheckPermissions(permission);
                                 }
 
@@ -92,12 +97,15 @@ public class NumbersActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     //Task is successful
                     //Running enhanced for loop to get each document
-                    String text1 = "\nOrganization                     Number";
+                    String text1 = "\nOrganization                       Number";
                     arrayList.add(text1);
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                         String id = documentSnapshot.getId();
                         String i = documentSnapshot.get("number").toString();
-                        String text = id + "                     " + i;
+                        int space=23+(12-id.length());
+                        String text = id ;
+                        for(int j=0;j<=space;j++){text+=" ";}
+                        text+=i;
                         arrayList.add(text);
                         adpter.notifyDataSetChanged();
 
@@ -116,7 +124,10 @@ public class NumbersActivity extends AppCompatActivity {
     }
 
 
+public void func(String val){
+        user1.name=val;
 
+}
 
     public void setUser1(User user1) {
         this.user1 = user1;
@@ -125,6 +136,7 @@ public class NumbersActivity extends AppCompatActivity {
     public void putIntent(Class activity){
         intent=new Intent(this,activity);
         CheckLogin(intent,user1.name);
+        intent.putExtra("EXTRA_SESSION_ID", user);
         startActivity(intent);
     }
 
@@ -134,8 +146,15 @@ public class NumbersActivity extends AppCompatActivity {
 
     public String CheckPermissions(String permission){
 
+        if(permission.equals("A")){
+            putIntent(MainAdminActivity.class);
+            setUser1(user1);
+            return "Admin";
+
+        }
         if(permission.equals("B")){
             putIntent(MainEmployeeActivity.class);
+
             return "Employee";
 
         }

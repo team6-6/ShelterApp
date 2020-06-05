@@ -19,7 +19,7 @@ public class MainAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
 
-        ImageView list,list_sirens,map,edit,numbers,rate,reports;
+        ImageView list,list_sirens,map,edit,numbers,reports,contant;
         TextView change,logout ;
 
 
@@ -28,11 +28,13 @@ public class MainAdminActivity extends AppCompatActivity {
         list_sirens= (ImageView)findViewById(R.id.Sirenlist);
         edit= (ImageView)findViewById(R.id.EditUserAdmin);
         numbers= (ImageView)findViewById(R.id.EmergencyNumber);
-        rate= (ImageView)findViewById(R.id.RateUs );
         reports= (ImageView)findViewById(R.id.reports);
         change= (TextView) findViewById(R.id.changePass);
         logout= (TextView) findViewById(R.id.logout);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+
+        contant= (ImageView)findViewById(R.id.ContantUs);
+
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,11 +45,23 @@ public class MainAdminActivity extends AppCompatActivity {
             }
         });
 
+        contant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent first = new Intent(MainAdminActivity.this, ContactUsActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
+                first.putExtra("per", "A");
+                startActivity(first);
+            }
+        });
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, EditUserActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -64,6 +78,7 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, AdminSheltersActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -73,6 +88,7 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, EmergencyMenuActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -82,25 +98,19 @@ public class MainAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, ReportsActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
+
                 startActivity(first);
             }
         });
 
-        rate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent first = new Intent(MainAdminActivity.this, RateActivity.class);
-                first.putExtra("EXTRA_SESSION_ID2", sessionId);
-                startActivity(first);
-            }
-        });
 
         list_sirens.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent first = new Intent(MainAdminActivity.this, AdminSirensActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(first);
             }
         });
@@ -121,7 +131,7 @@ public class MainAdminActivity extends AppCompatActivity {
 
     public Intent ToChangePassword(){
         Intent first1 = new Intent(MainAdminActivity.this, ChangeActivity.class);
-        first1.putExtra("EXTRA_SESSION_ID2", sessionId);
+        first1.putExtra("EXTRA_SESSION_ID", sessionId);
         startActivity(first1);
         return first1;
     }

@@ -8,15 +8,15 @@
 
     <ImageView
         android:id="@+id/EmergencyNumber"
-        android:layout_width="114dp"
-        android:layout_height="94dp"
+        android:layout_width="118dp"
+        android:layout_height="102dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406"
+        app:layout_constraintVertical_bias="0.414"
         app:srcCompat="@drawable/emergency" />
 
     <ImageView
@@ -45,19 +45,6 @@
         app:layout_constraintVertical_bias="0.104"
         app:srcCompat="@drawable/map" />
 
-    <ImageView
-        android:id="@+id/ContantUs"
-        android:layout_width="117dp"
-        android:layout_height="105dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698"
-        app:srcCompat="@drawable/message" />
-
 
     <ImageView
         android:id="@+id/Reportdanger"
@@ -66,23 +53,23 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71"
+        app:layout_constraintVertical_bias="0.714"
         app:srcCompat="@drawable/request" />
+
 
     <ImageView
         android:id="@+id/RateUs"
         android:layout_width="115dp"
         android:layout_height="98dp"
-        android:layout_marginStart="240dp"
-        android:layout_marginLeft="240dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409"
+        app:layout_constraintVertical_bias="0.418"
         app:srcCompat="@drawable/rate" />
 
     <TextView
@@ -94,11 +81,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254" />
-
+        app:layout_constraintVertical_bias="0.271" />
 
     <TextView
         android:id="@+id/MapOptionText"
@@ -112,7 +98,7 @@
         app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintVertical_bias="0.271" />
 
     <TextView
         android:id="@+id/EmergencyNumberText"
@@ -123,10 +109,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.839"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.509" />
+        app:layout_constraintVertical_bias="0.525" />
 
     <TextView
         android:id="@+id/RateUsText"
@@ -137,24 +123,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.509" />
-
-    <TextView
-        android:id="@+id/ContantUsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contant us"
-        android:textColor="#090606"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.525" />
 
     <TextView
         android:id="@+id/contantUsText"
@@ -165,10 +137,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.772"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.787" />
 
     <TextView
         android:id="@+id/changePass"

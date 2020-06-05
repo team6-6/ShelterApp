@@ -23,7 +23,7 @@ public class EditShelterEmployeeActivity extends AppCompatActivity {
 
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private static final String TAG = "EditShelterEmployeeActivity";
-    String currentShelter;
+    String currentShelter,sessionId2;
     private TextView Sheltername,lat,lon, information;
     private Button edit;
     private TextView btn;
@@ -34,7 +34,7 @@ public class EditShelterEmployeeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_shelter_employee);
         currentShelter = getIntent().getExtras().get("ShelterInfo").toString();
-
+        sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
         lat = (TextView) findViewById(R.id.lanShelterEdit);
         lon = (TextView) findViewById(R.id.lonShelterEdit);
         Sheltername = (TextView) findViewById(R.id.nameshelterEdit);
@@ -50,6 +50,7 @@ public class EditShelterEmployeeActivity extends AppCompatActivity {
 
                 Intent first = new Intent(EditShelterEmployeeActivity.this, CivilianShelterActivity.class);
                 first.putExtra("KIND_OF_PERMISSION", "Employee");
+                first.putExtra("EXTRA_SESSION_ID", sessionId2);
                 startActivity(first);
 
             }

@@ -20,8 +20,9 @@ public class ReportsActivity extends AppCompatActivity {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private static final String TAG = "ReportsActivity";
     public int count;
-    public double ans1,ans2,ans3,ans4,ans5,average;
+    public float ans1,ans2,ans3,ans4,ans5,average;
     TextView res1,res2,res3,res4,res5,res6,back;
+    String sessionId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,16 +34,18 @@ public class ReportsActivity extends AppCompatActivity {
         res5 = (TextView) findViewById(R.id.res5);
         res6 = (TextView) findViewById(R.id.res6);
         back= (TextView) findViewById(R.id.backac);
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+
         db.collection("Rating").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
-                   ans1=0;
-                   ans2=0;
-                   ans3=0;
-                   ans4=0;
-                   ans5=0;
-                   average=0;
+                    ans1=0;
+                    ans2=0;
+                    ans3=0;
+                    ans4=0;
+                    ans5=0;
+                    average=0;
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         count++;
                         double rate1 = document.getDouble("Question1");
@@ -73,6 +76,8 @@ public class ReportsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReportsActivity.this, MainAdminActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
+
                 startActivity(intent);
             }
         });

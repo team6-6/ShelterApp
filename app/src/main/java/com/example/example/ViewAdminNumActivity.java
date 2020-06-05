@@ -28,7 +28,7 @@ public class ViewAdminNumActivity extends AppCompatActivity {
 
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private List<String> arrayList=new ArrayList<String>();
-
+String sessionId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,8 @@ public class ViewAdminNumActivity extends AppCompatActivity {
         final CollectionReference collectionReference = db.collection("Emergency");
         //Calling the get() method with a callback function
         adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+
         listView.setAdapter(adpter);
 
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -48,12 +50,15 @@ public class ViewAdminNumActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     //Task is successful
                     //Running enhanced for loop to get each document
-                    String text1="\nOrganization                     Number";
+                    String text1="\nOrganization                       Number";
                     arrayList.add(text1);
                     for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
                         String id=documentSnapshot.getId();
                         String i=documentSnapshot.get("number").toString();
-                        String text=id+"                     "+i;
+                        int space=23+(12-id.length());
+                        String text = id ;
+                        for(int j=0;j<=space;j++){text+=" ";}
+                        text+=i;
                         arrayList.add(text);
                         adpter.notifyDataSetChanged();
 
@@ -72,6 +77,8 @@ public class ViewAdminNumActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent first = new Intent(ViewAdminNumActivity.this, EmergencyMenuActivity.class);
+                first.putExtra("EXTRA_SESSION_ID", sessionId);
+
                 startActivity(first);
 
             }

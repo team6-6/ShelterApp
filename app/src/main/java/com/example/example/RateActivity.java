@@ -27,12 +27,12 @@ public class RateActivity extends AppCompatActivity {
     TextView back;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private static final String TAG = "RateActivity";
+String sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate);
-        final String user = getIntent().getStringExtra("EXTRA_SESSION_ID2");
         ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
         ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
         ratingBar3 = (RatingBar) findViewById(R.id.ratingBar3);
@@ -40,6 +40,8 @@ public class RateActivity extends AppCompatActivity {
         ratingBar5 = (RatingBar) findViewById(R.id.ratingBar5);
         back= (TextView) findViewById(R.id.backactivity);
         submit = (Button)findViewById(R.id.submit);
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +69,9 @@ public class RateActivity extends AppCompatActivity {
                                 public void onSuccess(DocumentReference documentReference) {
                                     Toast.makeText(RateActivity.this, "Your rating is accepted", Toast.LENGTH_SHORT).show();
                                     Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                                    Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
+                                    intent.putExtra("EXTRA_SESSION_ID", sessionId);
+                                    startActivity(intent);
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -76,33 +81,18 @@ public class RateActivity extends AppCompatActivity {
                                 }
                             });
                 }
+
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//check id user
-                db.collection("users").document(user).get()
-                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                String permission = documentSnapshot.getString("permission");
-                                if(permission.equals("A")){
-                                    Intent intent = new Intent(RateActivity.this, MainAdminActivity.class);
-                                    startActivity(intent);
-                                }
-                                else if(permission.equals("C")){
-                                    Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
-                                    startActivity(intent);
-                                }
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error reading from database", e);
+            public void onClick(View v) {
+                Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
 
-                    }
-                });
+                startActivity(intent);
+
             }
         });
     }

@@ -35,7 +35,7 @@ public class ChangeActivity extends AppCompatActivity {
         newPass=(EditText)findViewById(R.id.newPwd);
         confirmnewPass=(EditText)findViewById(R.id.confirmNewPwd);
         changepwd=(Button)findViewById(R.id.createnewpwd);
-        final String user = getIntent().getStringExtra("EXTRA_SESSION_ID2");
+        final String user = getIntent().getStringExtra("EXTRA_SESSION_ID");
         user1.setName(user);
 
         changepwd.setOnClickListener(new View.OnClickListener() {
@@ -70,14 +70,20 @@ public class ChangeActivity extends AppCompatActivity {
                                                             Toast.makeText(ChangeActivity.this, "its been update!", Toast.LENGTH_SHORT).show();
                                                             if(permission.equals("A")){
                                                                 Intent intent = new Intent(ChangeActivity.this, MainAdminActivity.class);
+                                                                intent.putExtra("EXTRA_SESSION_ID", user);
+
                                                                 startActivity(intent);
                                                             }
                                                             else if(permission.equals("B")){
                                                                 Intent intent = new Intent(ChangeActivity.this, MainEmployeeActivity.class);
+                                                                intent.putExtra("EXTRA_SESSION_ID", user);
+
                                                                 startActivity(intent);
                                                             }
                                                             else if(permission.equals("C")){
                                                                 Intent intent = new Intent(ChangeActivity.this, MainCivilianActivity.class);
+                                                                intent.putExtra("EXTRA_SESSION_ID", user);
+
                                                                 startActivity(intent);
                                                             }
                                                         }
