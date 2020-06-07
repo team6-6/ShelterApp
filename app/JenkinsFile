@@ -57,16 +57,6 @@ pipeline {
 
 
 post {
-always{
-          publishHTML target: [
-              allowMissing: false,
-              alwaysLinkToLastBuild: false,
-              keepAll: true,
-              reportDir: 'coverage',
-              reportFiles: 'index.html',
-              reportName: 'RCov Report'
-            ]
-}
 
         failure{
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
@@ -89,7 +79,7 @@ always{
                     to: 'edenda2@ac.sce.ac.il'
             )
             emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
-                    body: '${FILE,path="http://147.234.32.36/job/Team_6/job/app1/315/execution/node/3/ws/app/build/reports/tests/testDebugUnitTest/index.html"}', 
+                    body: '$DEFAULT_CONTENT', 
                     replyTo: 'sapirsa3@ac.sce.ac.il',
                     to: 'sapirsa3@ac.sce.ac.il')
 
