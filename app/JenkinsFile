@@ -57,8 +57,8 @@ pipeline {
 
 
 post {
-        always {
-            junit 'build/reports/tests/testDebugUnitTest/index.xml'
+always {
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
         }
         failure{
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
