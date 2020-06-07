@@ -78,7 +78,7 @@ post {
                     to: 'edenda2@ac.sce.ac.il'
             )
             emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
-                    body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+                    body: '${FILE,path="app/build/reports/tests/testDebugUnitTest.index.html"}', 
                     replyTo: 'sapirsa3@ac.sce.ac.il',
                     to: 'sapirsa3@ac.sce.ac.il')
 
