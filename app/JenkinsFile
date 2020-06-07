@@ -58,7 +58,7 @@ pipeline {
 
 post {
         always {
-            junit 'build/reports/**/*.xml'
+            junit 'build/reports/tests/testDebugUnitTest/index.xml'
         }
         failure{
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'sapirsa3@ac.sce.ac.il',
