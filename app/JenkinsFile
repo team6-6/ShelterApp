@@ -71,6 +71,7 @@ post {
                 emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'yaelbu11@ac.sce.ac.il',
                 subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'yaelbu11@ac.sce.ac.il'
         }
+        
 
         success { //Send an email to all teammates about broken build
             emailext(subject: '$JOB_NAME - Build# $BUILD_NUMBER - $BUILD_STATUS', 
