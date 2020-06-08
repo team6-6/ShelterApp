@@ -17,7 +17,6 @@ import static org.testng.Assert.assertEquals;
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, packageName="com.example.example")
 public class CivilianShelterTestIntegration {
-
     @Test
     public void ViewShelterListTest() {
         MainActivity main = Robolectric.buildActivity(MainActivity.class).create().get();
@@ -49,5 +48,4 @@ public class CivilianShelterTestIntegration {
         activity.fieldsearch.setText("a");
         assertEquals(activity.listView.getAdapter().getCount(),2,0);
     }
-
 }
