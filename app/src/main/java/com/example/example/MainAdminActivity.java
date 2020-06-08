@@ -13,6 +13,7 @@ public class MainAdminActivity extends AppCompatActivity {
 
   //  Intent first1;
     String sessionId;
+    TextView texthello;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class MainAdminActivity extends AppCompatActivity {
         ImageView list,list_sirens,map,edit,numbers,reports,contant;
         TextView change,logout ;
 
-
+        texthello=(TextView)findViewById(R.id.helloText);
         map= (ImageView)findViewById(R.id.MapOption);
         list= (ImageView)findViewById(R.id.Shelterlist);
         list_sirens= (ImageView)findViewById(R.id.Sirenlist);
@@ -32,7 +33,7 @@ public class MainAdminActivity extends AppCompatActivity {
         change= (TextView) findViewById(R.id.changePass);
         logout= (TextView) findViewById(R.id.logout);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
-
+        ViewMenuAdmin();
         contant= (ImageView)findViewById(R.id.ContantUs);
 
 
@@ -145,5 +146,9 @@ public class MainAdminActivity extends AppCompatActivity {
         catch (Exception e){
             return false;
         }
+    }
+
+    public void ViewMenuAdmin(){
+        texthello.setText("Hello "+sessionId);
     }
 }

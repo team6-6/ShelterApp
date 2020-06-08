@@ -42,8 +42,8 @@ public class ForgotActivity extends AppCompatActivity {
                 final String daddy = father.getText().toString().trim();
                 final String school1 = school.getText().toString().trim();
                 String user = username.getText().toString().trim();
-                if(checkfunction.validName(daddy)){
-                    Toast.makeText(ForgotActivity.this, "Invalid name !", Toast.LENGTH_SHORT).show();
+                if((checkfunction.validName(daddy) && checkfunction.validName(school1))==false ){
+                    Toast.makeText(ForgotActivity.this, "", Toast.LENGTH_SHORT).show();
                 }
                 if (user.equals("") || daddy.equals("") || school1.equals("")) {
                     Toast.makeText(ForgotActivity.this, "One or more field are empty !", Toast.LENGTH_SHORT).show();
@@ -63,6 +63,7 @@ public class ForgotActivity extends AppCompatActivity {
                                             Toast.makeText(ForgotActivity.this, "you insert wrong answers!", Toast.LENGTH_SHORT).show();
                                         }
                                     }
+
 
                                 }
                             })

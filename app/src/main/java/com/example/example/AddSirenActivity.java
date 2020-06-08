@@ -26,6 +26,7 @@ public class AddSirenActivity extends AppCompatActivity {
     EditText sirenId,Neibor, lat, lon;
     Button addSiren,back;
     String sessionId;
+    Checkfunction checkfunction=new Checkfunction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class AddSirenActivity extends AppCompatActivity {
             Double newlat = Double.parseDouble(lat.getText().toString());
             Double newlon = Double.parseDouble(lon.getText().toString());
 
-            if (siren.equals("") || Neiborhood.equals("")) {
+            if (checkfunction.notEmpty(siren)==1 || checkfunction.notEmpty(Neiborhood)==1) {
                 Toast.makeText(AddSirenActivity.this, "Field is empty !", Toast.LENGTH_SHORT).show();
             }
             else{

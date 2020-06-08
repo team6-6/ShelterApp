@@ -40,8 +40,9 @@ public class RequestCivilianActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RequestCivilianActivity.this, SearchRequestCivilianActivity.class);
+                Intent intent = new Intent(RequestCivilianActivity.this, SearchRequestActivity.class);
                 intent.putExtra("EXTRA_SESSION_ID", sessionId);
+                intent.putExtra("per","C");
                 startActivity(intent);
             }
         });

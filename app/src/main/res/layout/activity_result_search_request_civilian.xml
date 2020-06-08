@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultSearchRequestCivilianActivity">
+    tools:context=".ResultSearchRequestActivity">
 
     <TextView
         android:id="@+id/type_req"
@@ -50,7 +50,8 @@
         android:layout_height="54dp"
         android:gravity="center"
         android:text="Request ID"
-        android:textSize="30dp"
+        android:textColor="#009688"
+        android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

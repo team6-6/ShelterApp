@@ -154,12 +154,14 @@ public void func(String val){
         }
         if(permission.equals("B")){
             putIntent(MainEmployeeActivity.class);
+            setUser1(user1);
 
             return "Employee";
 
         }
         else if(permission.equals("C")){
             putIntent(MainCivilianActivity.class);
+            setUser1(user1);
             return "Civilian";
         }
         return "NULL";

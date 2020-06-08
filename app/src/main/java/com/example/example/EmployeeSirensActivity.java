@@ -26,19 +26,20 @@ import java.util.List;
 public class EmployeeSirensActivity extends AppCompatActivity {
 
     private static final String TAG = "EmployeeSirensActivity";
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseFirestore db;
 
-    private ArrayAdapter<String> adpter;
-    private List<String> arrayList=new ArrayList<String>();
+    ArrayAdapter<String> adpter;
+    List<String> arrayList=new ArrayList<String>();
     String sessionId2;
+    ListView listView;
+    TextView backText, fieldsearch;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_sirens);
-        ListView listView;
-        TextView backText, fieldsearch;
+        db = FirebaseFirestore.getInstance();
         listView=(ListView) findViewById(R.id.list_sirens);
         backText=(TextView) findViewById(R.id.listsirenbackmenu);
         final CollectionReference collectionReference = db.collection("zofar");
@@ -58,9 +59,12 @@ public class EmployeeSirensActivity extends AppCompatActivity {
                     String text1="\nid                     Neiborhood";
                     arrayList.add(text1);
                     for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
+                        Siren siren=new Siren();
                         String id=documentSnapshot.getId();
                         String i=documentSnapshot.get("Neiborhood").toString();
-                        String text=id+"                     "+i;
+                        siren.setName(id);
+                        siren.setNeiborhood(i);
+                        String text=siren.getName()+"                     "+siren.getNeiborhood();
                         arrayList.add(text);
                         adpter.notifyDataSetChanged();
 

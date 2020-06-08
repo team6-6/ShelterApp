@@ -17,9 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReportsActivity"></activity>
-        <activity android:name=".SearchRequestCivilianActivity" />
-        <activity android:name=".ResultSearchRequestCivilianActivity" />
+        <activity android:name=".ReportRequestActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ReportRatingActivity" />
+        <activity android:name=".TreatmentRequestActivity" />
+        <activity android:name=".ReportsActivity" />
+        <activity android:name=".SearchRequestActivity" />
+        <activity android:name=".ResultSearchRequestActivity" />
         <activity
             android:name=".ContantUsAdminActivity"
             android:windowSoftInputMode="adjustPan" />

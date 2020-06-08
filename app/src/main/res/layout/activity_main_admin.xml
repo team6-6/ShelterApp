@@ -22,7 +22,7 @@
         android:id="@+id/ContantUsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Public Inquiries"
+        android:text="Treatment Employee Requests"
         android:textColor="#090606"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -229,5 +229,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.554"
         app:srcCompat="@drawable/reports" />
+
+    <TextView
+        android:id="@+id/helloText"
+        android:layout_width="107dp"
+        android:layout_height="19dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

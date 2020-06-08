@@ -94,7 +94,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent first = new Intent(MainEmployeeActivity.this, ContactUsActivity.class);
+                Intent first = new Intent(MainEmployeeActivity.this, TreatmentRequestActivity.class);
                 first.putExtra("EXTRA_SESSION_ID", sessionId);
                 first.putExtra("per", "B");
                 startActivity(first);

@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ResultSearchRequestCivilianActivity extends AppCompatActivity {
+public class ResultSearchRequestActivity extends AppCompatActivity {
 
 
     private static final String TAG = "ResultSearchRequestCivilianActivity";
@@ -22,6 +22,7 @@ public class ResultSearchRequestCivilianActivity extends AppCompatActivity {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private TextView RequestID,ShelterID,Status,Type_Req,DescriptionReq;
     private Button btn;
+    private  String sessionId,sessionId2;
 
 
 
@@ -30,8 +31,8 @@ public class ResultSearchRequestCivilianActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_search_request_civilian);
 
-
-
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        sessionId2 =getIntent().getStringExtra("per");
         DescriptionReq=(TextView) findViewById(R.id.descriptionRequest);
         RequestID = (TextView) findViewById(R.id.request_id);
         ShelterID = (TextView) findViewById(R.id.Shelter_name);
@@ -39,18 +40,25 @@ public class ResultSearchRequestCivilianActivity extends AppCompatActivity {
         Type_Req = (TextView) findViewById(R.id.type_req);
         btn=(Button)findViewById(R.id.button_back);
         currentRequest = getIntent().getExtras().get("RequestInfo").toString();
-        RequestID.setText("Request : " + currentRequest);
+        RequestID.setText(currentRequest);
         RequestID.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent first = new Intent(ResultSearchRequestCivilianActivity.this, RequestCivilianActivity.class);
-                final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+                if(sessionId2.equals("AA")){
+                    Intent first = new Intent(ResultSearchRequestActivity.this, ReportRequestActivity.class);
+                    first.putExtra("EXTRA_SESSION_ID", sessionId);
+                    first.putExtra("per", sessionId2);
+                    startActivity(first);
+                }
+                else{
+                Intent first = new Intent(ResultSearchRequestActivity.this, SearchRequestActivity.class);
                 first.putExtra("EXTRA_SESSION_ID", sessionId);
+                first.putExtra("per", sessionId2);
                 startActivity(first);
+                }
 
             }
         });

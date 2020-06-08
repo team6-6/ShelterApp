@@ -22,19 +22,21 @@ import static org.junit.Assert.assertTrue;
 public class MainActivityTestIntegration {
 
     String name;
-
+    //working!!
     @Test
     public void TransferInfoTest(){
         MainActivity activity= Robolectric.buildActivity(MainActivity.class).create().get();
+        Intent intent=new Intent(activity,MainAdminActivity.class);
         User use=new User();
         use.setName("edenda2");
         use.setPassword("Aa123456");
         use.setPermission("A");
         activity.setUserInfo(use.name,use.password);
         activity.setUserPermission(use.permission);
-        activity.putIntent(MainAdminActivity.class);
-        assertEquals(activity.intentq.getExtras().getString("EXTRA_SESSION_ID"),"edenda2");
+        activity.CheckLogin(intent);
+        assertEquals(intent.getExtras().getString("EXTRA_SESSION_ID"),"edenda2");
     }
+
 
 @Test
     public void ShowCorrectPageTest(){

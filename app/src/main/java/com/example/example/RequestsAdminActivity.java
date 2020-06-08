@@ -1,9 +1,11 @@
 package com.example.example;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -173,7 +175,7 @@ public class RequestsAdminActivity extends AppCompatActivity {//בקשות של 
 
     private void addcreateRequest() {
         final String descriptionrequest = DetailsDanger.getText().toString().trim();
-        final String fieldcurrentshelter = "NULL";
+        final String fieldcurrentshelter = " Empty";
         final String fieldRequestType = textstring;
 
         final Map<String, Object> request_details = new HashMap<>();
@@ -209,14 +211,8 @@ public class RequestsAdminActivity extends AppCompatActivity {//בקשות של 
             String RequestId = db.collection("Requests").document().getId();
 
 
-            //Snackbar snackbar = Snackbar.make(coordinatorLayout,RequestId,Snackbar.LENGTH_INDEFINITE);
-            //snackbar.show();
+            buildDialog(RequestId);
 
-            Toast.makeText(RequestsAdminActivity.this, "Your request number is : " + RequestId, Toast.LENGTH_SHORT).show();
-            Intent first = new Intent(RequestsAdminActivity.this, MainEmployeeActivity.class);
-            sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
-            first.putExtra("EXTRA_SESSION_ID", sessionId);
-            startActivity(first);
 
 
         }
@@ -274,4 +270,20 @@ public class RequestsAdminActivity extends AppCompatActivity {//בקשות של 
         }
 
     }
+
+    private void buildDialog(String requestid) {
+        new AlertDialog.Builder(this)
+                //.setTitle("Confirm")
+                .setMessage("Your request number is : " + requestid)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent first = new Intent(RequestsAdminActivity.this, MainEmployeeActivity.class);
+                        first.putExtra("EXTRA_SESSION_ID", sessionId);
+                        startActivity(first);
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
+    }
+
 }

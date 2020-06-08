@@ -25,11 +25,11 @@ import java.util.ArrayList;
 
 public class CivilianShelterActivity extends AppCompatActivity {
     private static final String TAG = "CivilianShetlerActivity";
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private ListView listView;
-    private ArrayAdapter<String> adpter;
-    private ArrayList<String> arrayList=new ArrayList<String>();
-    private TextView backText, fieldsearch;
+    public FirebaseFirestore db;
+    ListView listView;
+    ArrayAdapter<String> adpter;
+    ArrayList<String> arrayList=new ArrayList<String>();
+    TextView backText, fieldsearch;
     private String sessionId, sessionId2;;
 
 
@@ -37,6 +37,7 @@ public class CivilianShelterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_civilian_shelters);
+        db = FirebaseFirestore.getInstance();
         sessionId = getIntent().getStringExtra("KIND_OF_PERMISSION");
          sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
         //final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
@@ -54,9 +55,11 @@ public class CivilianShelterActivity extends AppCompatActivity {
                     //Task is successful
                     //Running enhanced for loop to get each document
                     for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
+                        Shelter shelter=new Shelter();
                         String id=documentSnapshot.getId().toString();
                         String text=id;
-                        arrayList.add(text);
+                        shelter.setName(text);
+                        arrayList.add(shelter.getName());
                         adpter.notifyDataSetChanged();
 
                         //Printing data of each document to log

@@ -71,6 +71,10 @@ public class EditShelterEmployeeActivity extends AppCompatActivity {
                         }
                     }
                 });
+                Intent first = new Intent(EditShelterEmployeeActivity.this, CivilianShelterActivity.class);
+                first.putExtra("KIND_OF_PERMISSION", "Employee");
+                first.putExtra("EXTRA_SESSION_ID", sessionId2);
+                startActivity(first);
 
             }
         });

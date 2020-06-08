@@ -1,36 +1,26 @@
 package com.example.example;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class SearchRequestCivilianActivity extends AppCompatActivity {
+public class SearchRequestActivity extends AppCompatActivity {
 
     private static final String TAG = "SearchRequestCivilianActivity";
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText fieldRequestID;
     private Button Back, Search;
     private Checkfunction checkfunction = new Checkfunction();
-    String sessionId;
+    String sessionId,sessionId2;
 
 
     @Override
@@ -43,18 +33,29 @@ public class SearchRequestCivilianActivity extends AppCompatActivity {
         Search = (Button) findViewById(R.id.Search_but);
         Back = (Button) findViewById(R.id.Baack);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        sessionId2=getIntent().getStringExtra("per");
         // private Checkfunction checkfunction=new Checkfunction();
 
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent first = new Intent(SearchRequestCivilianActivity.this, RequestCivilianActivity.class);
+        if(sessionId2.equals("C"))
+        {
+                Intent first = new Intent(SearchRequestActivity.this, RequestCivilianActivity.class);
                 first.putExtra("EXTRA_SESSION_ID", sessionId);
+                first.putExtra("per",sessionId2);
                 startActivity(first);
 
-            }
+            } else if (sessionId2.equals("B"))
+                        {
+
+                            Intent first = new Intent(SearchRequestActivity.this, TreatmentRequestActivity.class);
+                            first.putExtra("EXTRA_SESSION_ID", sessionId);
+                            first.putExtra("per",sessionId2);
+                            startActivity(first);
+                        }
+        }
         });
 
 
@@ -68,7 +69,7 @@ public class SearchRequestCivilianActivity extends AppCompatActivity {
 
 
                 if (checkfunction.notEmpty(ReqID)==1 ){
-                    Toast.makeText(SearchRequestCivilianActivity.this, "Enter a Request Number !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchRequestActivity.this, "Enter a Request Number !", Toast.LENGTH_SHORT).show();
                     //Toast.makeText(SearchRequestCivilianActivity.this, "ID = "+ReqID, Toast.LENGTH_SHORT).show();
 
                 }
@@ -79,8 +80,9 @@ public class SearchRequestCivilianActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     if (documentSnapshot.exists()) {
-                                        Intent SearchRequestIntent = new Intent(SearchRequestCivilianActivity.this,ResultSearchRequestCivilianActivity.class);
+                                        Intent SearchRequestIntent = new Intent(SearchRequestActivity.this, ResultSearchRequestActivity.class);
                                         SearchRequestIntent.putExtra("EXTRA_SESSION_ID", sessionId);
+                                        SearchRequestIntent.putExtra("per", sessionId2);
                                         SearchRequestIntent.putExtra("RequestInfo",ReqID);
                                         startActivity(SearchRequestIntent);
 
@@ -89,7 +91,7 @@ public class SearchRequestCivilianActivity extends AppCompatActivity {
                                     }
                                     else{
 
-                                        Toast.makeText(SearchRequestCivilianActivity.this, "Enter an exist Request Number !", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SearchRequestActivity.this, "Enter an exist Request Number !", Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
@@ -97,10 +99,6 @@ public class SearchRequestCivilianActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
 
 
 

@@ -102,8 +102,8 @@
 
     <TextView
         android:id="@+id/MapOptionText"
-        android:layout_width="36dp"
-        android:layout_height="14dp"
+        android:layout_width="48dp"
+        android:layout_height="26dp"
         android:text="Map"
         android:textColor="#1B1010"
         android:textStyle="bold"
@@ -160,7 +160,7 @@
         android:id="@+id/ContantUsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contant us"
+        android:text="Requests Treatment"
         android:textColor="#090606"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

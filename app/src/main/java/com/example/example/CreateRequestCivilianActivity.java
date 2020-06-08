@@ -2,9 +2,11 @@ package com.example.example;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -52,8 +54,6 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
     private Button BackMenu,Save;
     private EditText DetailsDanger;//description
     String sessionId;
-    //String sessionId;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,15 +249,25 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
             String RequestId = db.collection("Requests").document().getId();
 
 
-            //Snackbar snackbar = Snackbar.make(coordinatorLayout,RequestId,Snackbar.LENGTH_INDEFINITE);
-            //snackbar.show();
-
-            Toast.makeText(CreateRequestCivilianActivity.this, "Your request number is : "+RequestId, Toast.LENGTH_SHORT).show();
-            Intent first = new Intent(CreateRequestCivilianActivity.this, MainCivilianActivity.class);
-            first.putExtra("EXTRA_SESSION_ID", sessionId);
-            startActivity(first);
+            buildDialog(RequestId);
 
         }
 
+    }
+
+
+    private void buildDialog(String requestid) {
+        new AlertDialog.Builder(this)
+                //.setTitle("Confirm")
+                .setMessage("Your request number is : " + requestid)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent first = new Intent(CreateRequestCivilianActivity.this, MainCivilianActivity.class);
+                        first.putExtra("EXTRA_SESSION_ID", sessionId);
+                        startActivity(first);
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
     }
 }

@@ -96,7 +96,8 @@ public class ContactUsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String currentRequest=adapterView.getItemAtPosition(position).toString();
-
+                Toast.makeText(ContactUsActivity.this, sessionId, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContactUsActivity.this,sessionId2, Toast.LENGTH_SHORT).show();
 
                 if (sessionId2.equals("B")){
                     Intent InfoRequestIntent = new Intent(ContactUsActivity.this,ContantUsInfoActivity.class);
@@ -125,14 +126,15 @@ public class ContactUsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(sessionId2.equals("B")) {
-                    Intent intent = new Intent(ContactUsActivity.this, MainEmployeeActivity.class);
+                    Intent intent = new Intent(ContactUsActivity.this, TreatmentRequestActivity.class);
                     intent.putExtra("EXTRA_SESSION_ID",sessionId);
+                    intent.putExtra("per", "B");
                     startActivity(intent);
                 }
                 else if(sessionId2.equals("A")) {
                     Intent intent = new Intent(ContactUsActivity.this, MainAdminActivity.class);
                     intent.putExtra("EXTRA_SESSION_ID",sessionId);
-
+                    intent.putExtra("per", "A");
                     startActivity(intent);
                 }
 

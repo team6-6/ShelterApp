@@ -1,8 +1,10 @@
 package com.example.example;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +20,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,11 +71,8 @@ String sessionId;
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(RateActivity.this, "Your rating is accepted", Toast.LENGTH_SHORT).show();
                                     Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                                    Intent intent = new Intent(RateActivity.this, MainCivilianActivity.class);
-                                    intent.putExtra("EXTRA_SESSION_ID", sessionId);
-                                    startActivity(intent);
+                                    buildDialog();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -95,6 +96,22 @@ String sessionId;
 
             }
         });
+    }
+
+    public void buildDialog() {
+        new AlertDialog.Builder(this)
+                //.setTitle("Confirm")
+                .setMessage("Thank You " + sessionId + " for your opinion")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent first = new Intent(RateActivity.this, MainCivilianActivity.class);
+                        first.putExtra("EXTRA_SESSION_ID", sessionId);
+                        startActivity(first);
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
+
     }
 
 }

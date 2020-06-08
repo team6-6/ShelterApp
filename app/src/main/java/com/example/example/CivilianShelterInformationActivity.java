@@ -17,7 +17,7 @@ public class CivilianShelterInformationActivity extends AppCompatActivity {
 
     private String currentShelter,sessionId2;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private TextView Sheltername,laat,loon;
+    private TextView Sheltername,laat,loon,infoo;
     private Button btn;
 
 
@@ -28,6 +28,7 @@ public class CivilianShelterInformationActivity extends AppCompatActivity {
 
         laat = (TextView) findViewById(R.id.infolat);
         loon = (TextView) findViewById(R.id.infolon);
+        infoo = (TextView) findViewById(R.id.MoreInfo);
         Sheltername = (TextView) findViewById(R.id.sheltername);
         btn=(Button)findViewById(R.id.infobtn);
         currentShelter = getIntent().getExtras().get("ShelterInfo").toString();
@@ -56,8 +57,12 @@ public class CivilianShelterInformationActivity extends AppCompatActivity {
                         if (documentSnapshot.exists()) {
                             Double lati = documentSnapshot.getDouble("lat");
                             Double longi = documentSnapshot.getDouble("lon");
+                            String moreInformation = documentSnapshot.get("info").toString();
                             laat.setText("Shelter latitude : "+String.valueOf(lati));
-                            loon.setText("Shelter longitute : "+String.valueOf(longi));;
+                            loon.setText("Shelter longitute : "+String.valueOf(longi));
+                            infoo.setText("More Details : "+ moreInformation);
+
+
                         }
 
                     }

@@ -130,12 +130,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void putIntent(Class activity){
         intentq=new Intent(this,activity);
-        CheckLogin(intentq,user.name);
+        CheckLogin(intentq);
         startActivity(intentq);
+        finish();
     }
 
-    public void CheckLogin(Intent i,String m){
-        i.putExtra("EXTRA_SESSION_ID",m);
+    public void CheckLogin(Intent i){
+        i.putExtra("EXTRA_SESSION_ID",user.name);
     }
 
     public String CheckPermissions(String permission){

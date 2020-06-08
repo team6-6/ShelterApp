@@ -49,7 +49,8 @@ public class ContantUsInfoActivity extends AppCompatActivity {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(ContantUsInfoActivity.this, sessionId, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContantUsInfoActivity.this,sessionId2, Toast.LENGTH_SHORT).show();
                 buildDialog();
 
             }
@@ -90,7 +91,8 @@ public class ContantUsInfoActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(ContantUsInfoActivity.this, sessionId, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContantUsInfoActivity.this,sessionId2, Toast.LENGTH_SHORT).show();
                 Intent first = new Intent(ContantUsInfoActivity.this, ContactUsActivity.class);
                 first.putExtra("EXTRA_SESSION_ID", sessionId);
                 first.putExtra("per", sessionId2);
@@ -116,7 +118,7 @@ public class ContantUsInfoActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ContantUsInfoActivity.this, "Requesth has done", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ContantUsInfoActivity.this, "Request has done", Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -125,6 +127,7 @@ public class ContantUsInfoActivity extends AppCompatActivity {
                         });
                         Intent first = new Intent(ContantUsInfoActivity.this, ContactUsActivity.class);
                         first.putExtra("EXTRA_SESSION_ID", sessionId);
+                        first.putExtra("per", sessionId2);
 
                         startActivity(first);
                     }
