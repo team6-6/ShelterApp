@@ -25,7 +25,7 @@ public class MainEmployeeActivityTestIntegration {
         activity.getIntent().putExtra("EXTRA_SESSION_ID",use.getName());
         activity.setSessionId();
         Intent intent=activity.ToChangePassword();
-        assertEquals(intent.getExtras().getString("EXTRA_SESSION_ID2"),use.getName());
+        assertEquals(intent.getExtras().getString("EXTRA_SESSION_ID"),use.getName());
     }
 
 
