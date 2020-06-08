@@ -18,7 +18,7 @@ import static org.testng.Assert.assertEquals;
 @Config(sdk = 21, packageName="com.example.example")
 public class ReportRequestTestIntegration {
     @Test
-    public void Search_Meetings_Test() {
+    public void ViewListReportTest() {
         MainActivity main = Robolectric.buildActivity(MainActivity.class).create().get();
         ((TextView)main.findViewById(R.id.username)).setText("edenda2");
         ((TextView)main.findViewById(R.id.password)).setText("Aa123456");

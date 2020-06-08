@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.annotation.Config;
+import org.testng.Assert;
 
 import static org.junit.Assert.assertEquals;
 import static org.robolectric.Shadows.shadowOf;
@@ -19,8 +20,17 @@ public class RateActivityTestIntegration {
 
     //working!!
     @Test
-    public void SendWhatYouGetAdminTest(){
+    public void AvgRateTest(){
 
+        MainActivity main = Robolectric.buildActivity(MainActivity.class).create().get();
+        ((TextView)main.findViewById(R.id.username)).setText("edenda2");
+        ((TextView)main.findViewById(R.id.password)).setText("Aa123456");
+        main.setUserInfo(main.usernameId.getText().toString(),main.passwordId.getText().toString());
+        main.setUserPermission("A");
+        ((Button)main.findViewById(R.id.loginBtn)).performClick();
+        main.CheckPermissions(main.user.permission);
+        shadowOf(Looper.getMainLooper()).idle();
+        Assert.assertEquals(main.isFinishing(),true);
         ReportRatingActivity rateActivity= Robolectric.buildActivity(ReportRatingActivity.class).create().get();
         Rating rat1=new Rating(3,3,3,3,3);
         rateActivity.ratingArrayList.add(rat1);
