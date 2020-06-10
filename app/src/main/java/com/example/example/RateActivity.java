@@ -27,11 +27,10 @@ import java.util.Map;
 
 public class RateActivity extends AppCompatActivity {
     RatingBar ratingBar1,ratingBar2,ratingBar3,ratingBar4,ratingBar5;
-    Button submit;
-    TextView back;
+    Button submit,back;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private static final String TAG = "RateActivity";
-String sessionId;
+    String sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ String sessionId;
         ratingBar3 = (RatingBar) findViewById(R.id.ratingBar3);
         ratingBar4 = (RatingBar) findViewById(R.id.ratingBar4);
         ratingBar5 = (RatingBar) findViewById(R.id.ratingBar5);
-        back= (TextView) findViewById(R.id.backactivity);
+        back= (Button) findViewById(R.id.backactivity);
         submit = (Button)findViewById(R.id.submit);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 

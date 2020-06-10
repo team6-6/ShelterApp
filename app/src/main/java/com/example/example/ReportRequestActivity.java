@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,13 +32,8 @@ public class ReportRequestActivity extends AppCompatActivity {
     String sessionId;
 
     private static final String TAG = "ReportRequestActivity";
-    TextView backText, fieldsearch;
-
-
-
-
-
-
+    TextView fieldsearch;
+    Button backText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +42,7 @@ public class ReportRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_request);
         final CollectionReference collectionReference = db.collection("Requests");
         //Calling the get() method with a callback function
-        backText= (TextView) findViewById(R.id.listrequestbackmenureport);
+        backText= (Button) findViewById(R.id.listrequestbackmenureport);
         listView=(ListView) findViewById(R.id.list_requestreport);
         adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(adpter);

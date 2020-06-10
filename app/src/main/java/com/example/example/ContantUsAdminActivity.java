@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,10 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ContantUsAdminActivity extends AppCompatActivity {
     private static final String TAG = "ContantUsAdminActivity";
-
+    private Button back;
     private String currentShelter;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private TextView headline,typerequest,idshelter,description,back,status;
+    private TextView headline,typerequest,idshelter,description,status;
     private CheckBox checkBox;
     String sessionId,sessionId2;
 
@@ -36,7 +37,7 @@ public class ContantUsAdminActivity extends AppCompatActivity {
         typerequest = (TextView) findViewById(R.id.TypeRequest);
         idshelter = (TextView) findViewById(R.id.idshelter);
         description = (TextView) findViewById(R.id.description);
-        back = (TextView) findViewById(R.id.backinfocontant);
+        back = (Button) findViewById(R.id.backinfocontant);
         checkBox = (CheckBox) findViewById(R.id.checkboox);
         currentShelter = getIntent().getExtras().get("RequestInfo").toString();
         //status=(TextView) findViewById(R.id.Status);
@@ -66,10 +67,10 @@ public class ContantUsAdminActivity extends AppCompatActivity {
                             String Description=documentSnapshot.get("Description").toString();
                             //String Status=documentSnapshot.get("Status").toString();
 
-                            description.setText("Description : \n"+Description);
-                            idshelter.setText("Shelter ID:  \n"+ShelterName);
+                            description.setText(Description);
+                            idshelter.setText(ShelterName);
                             headline.setText(currentShelter);
-                            typerequest.setText("Request's type :\n "+TypeRequest);
+                            typerequest.setText(TypeRequest);
                             //status.setText("Status : "+Status);
 
 

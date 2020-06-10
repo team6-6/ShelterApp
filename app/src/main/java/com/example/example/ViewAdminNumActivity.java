@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,9 +35,9 @@ String sessionId;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_admin_num);
         ListView listView;
-         TextView backText;
+        Button backText;
         listView=(ListView) findViewById(R.id.listEmergency2);
-        backText=(TextView) findViewById(R.id.backEmergency2);
+        backText=(Button) findViewById(R.id.backEmergency2);
         final CollectionReference collectionReference = db.collection("Emergency");
         //Calling the get() method with a callback function
         adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);

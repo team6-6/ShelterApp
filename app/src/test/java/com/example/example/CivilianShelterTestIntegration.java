@@ -17,6 +17,7 @@ import static org.testng.Assert.assertEquals;
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, packageName="com.example.example")
 public class CivilianShelterTestIntegration {
+
     @Test
     public void ViewShelterListTest() {
         MainActivity main = Robolectric.buildActivity(MainActivity.class).create().get();
@@ -28,8 +29,7 @@ public class CivilianShelterTestIntegration {
         main.CheckPermissions(main.user.permission);
         shadowOf(Looper.getMainLooper()).idle();
         assertEquals(main.isFinishing(),true);
-        ReportRequestActivity activity= Robolectric.buildActivity(ReportRequestActivity.class).create().get();
-        ArrayList<Request> meetList = new ArrayList<Request>();
+        CivilianShelterActivity activity= Robolectric.buildActivity(CivilianShelterActivity.class).create().get();
         Shelter shelter1 = new Shelter();
         shelter1.setName("b2");
         shelter1.setLat(0.009);
@@ -48,4 +48,5 @@ public class CivilianShelterTestIntegration {
         activity.fieldsearch.setText("a");
         assertEquals(activity.listView.getAdapter().getCount(),2,0);
     }
+
 }

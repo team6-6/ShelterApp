@@ -42,8 +42,6 @@ public class TreatmentRequestActivity extends AppCompatActivity {
                 Intent first = new Intent(TreatmentRequestActivity.this, ContactUsActivity.class);
                 first.putExtra("EXTRA_SESSION_ID", sessionId);
                 first.putExtra("per", sessionId2);
-                Toast.makeText(TreatmentRequestActivity.this, sessionId, Toast.LENGTH_SHORT).show();
-                Toast.makeText(TreatmentRequestActivity.this,sessionId2, Toast.LENGTH_SHORT).show();
 
                 startActivity(first);
             }

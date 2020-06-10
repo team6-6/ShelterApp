@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,7 +30,8 @@ public class CivilianShelterActivity extends AppCompatActivity {
     ListView listView;
     ArrayAdapter<String> adpter;
     ArrayList<String> arrayList=new ArrayList<String>();
-    TextView backText, fieldsearch;
+    TextView fieldsearch;
+    Button backText;
     private String sessionId, sessionId2;;
 
 
@@ -42,7 +44,7 @@ public class CivilianShelterActivity extends AppCompatActivity {
          sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
         //final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         listView=(ListView) findViewById(R.id.list_sirens);
-        backText=(TextView) findViewById(R.id.listsirenbackmenu);
+        backText=(Button) findViewById(R.id.listsirenbackmenu);
         final CollectionReference collectionReference = db.collection("shelter");
         //Calling the get() method with a callback function
         adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);

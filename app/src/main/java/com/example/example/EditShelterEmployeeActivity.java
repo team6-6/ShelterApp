@@ -25,8 +25,7 @@ public class EditShelterEmployeeActivity extends AppCompatActivity {
     private static final String TAG = "EditShelterEmployeeActivity";
     String currentShelter,sessionId2;
     private TextView Sheltername,lat,lon, information;
-    private Button edit;
-    private TextView btn;
+    private Button edit, btn;
 
 
     @Override
@@ -39,10 +38,10 @@ public class EditShelterEmployeeActivity extends AppCompatActivity {
         lon = (TextView) findViewById(R.id.lonShelterEdit);
         Sheltername = (TextView) findViewById(R.id.nameshelterEdit);
         information=(TextView) findViewById(R.id.TextEditPage);
-        btn=(TextView)findViewById(R.id.BackEdit);
+        btn=(Button) findViewById(R.id.BackEdit);
         edit=(Button) findViewById(R.id.EditButton);
         currentShelter = getIntent().getExtras().get("ShelterInfo").toString();
-        Sheltername.setText("Shelter name : " + currentShelter);
+        Sheltername.setText(currentShelter);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,8 +86,8 @@ public class EditShelterEmployeeActivity extends AppCompatActivity {
                             Double lati = documentSnapshot.getDouble("lat");
                             Double longi = documentSnapshot.getDouble("lon");
                             String text = documentSnapshot.getString("info");
-                            lat.setText("Shelter latitude : "+String.valueOf(lati));
-                            lon.setText("Shelter longitute : "+String.valueOf(longi));
+                            lat.setText(String.valueOf(lati));
+                            lon.setText(String.valueOf(longi));
                             information.setText(text);
 
                         }

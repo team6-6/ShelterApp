@@ -138,6 +138,7 @@ public void func(String val){
         CheckLogin(intent,user1.name);
         intent.putExtra("EXTRA_SESSION_ID", user);
         startActivity(intent);
+        finish();
     }
 
     public void CheckLogin(Intent i,String m){

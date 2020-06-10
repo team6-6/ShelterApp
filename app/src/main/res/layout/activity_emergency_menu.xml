@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/always"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,64 +9,74 @@
 
 
     <Button
-        android:id="@+id/AddEmer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
-
-    <Button
-        android:id="@+id/DeleteEmer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete Number"
+        android:id="@+id/backEmer"
+        android:layout_width="88dp"
+        android:layout_height="38dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Back"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.873" />
 
-    <TextView
-        android:id="@+id/backEmer"
-        android:layout_width="107dp"
-        android:layout_height="27dp"
-        android:clickable="true"
-        android:text="Back"
-        android:textSize="24sp"
+    <Button
+        android:id="@+id/ViewList"
+        android:layout_width="154dp"
+        android:layout_height="43dp"
+        android:background="@drawable/roundedbutton"
+        android:text="List"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/DeleteEmer"
+        android:layout_width="154dp"
+        android:layout_height="43dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Delete Number"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468" />
+
+
+    <Button
+        android:id="@+id/AddEmer"
+        android:layout_width="154dp"
+        android:layout_height="43dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Add Number"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337" />
 
     <TextView
         android:id="@+id/textEmer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Emergency Number"
-        android:textSize="30sp"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.172" />
-
-    <Button
-        android:id="@+id/ViewList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

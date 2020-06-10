@@ -10,16 +10,15 @@ import android.widget.TextView;
 
 
 public class AdminSheltersActivity extends AppCompatActivity {//עבור מנהל-הוספה ועדכון מקלט
-    Button addShelter,deleteShelter;
+    Button addShelter,deleteShelter,back;
     String sessionId;
-    TextView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminshelters);
         addShelter = (Button) findViewById(R.id.AddBtn);
         deleteShelter = (Button) findViewById(R.id.DeleteBotn);
-        back= (TextView) findViewById(R.id.goback);
+        back= (Button) findViewById(R.id.goback);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
 

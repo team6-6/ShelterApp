@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class MainCivilianActivity extends AppCompatActivity {
 
     String sessionId;
+    TextView texthello2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class MainCivilianActivity extends AppCompatActivity {
         ImageView list,map,numbers,rate,signal;
         TextView change,logout ;
 
-
+        texthello2=(TextView)findViewById(R.id.helloText2);
         signal=(ImageView)findViewById(R.id.Reportdanger);
         map= (ImageView)findViewById(R.id.MapOption);
         list= (ImageView)findViewById(R.id.Shelterlist);
@@ -29,7 +30,7 @@ public class MainCivilianActivity extends AppCompatActivity {
         change= (TextView) findViewById(R.id.changePass);
         logout= (TextView) findViewById(R.id.logout);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
-
+        ViewMenuCivilian();
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,5 +125,9 @@ public class MainCivilianActivity extends AppCompatActivity {
         catch (Exception e){
             return false;
         }
+    }
+
+    public void ViewMenuCivilian(){
+        texthello2.setText("Welcome "+sessionId+" to Civilian menu");
     }
 }

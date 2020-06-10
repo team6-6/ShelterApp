@@ -149,6 +149,6 @@ public class MainAdminActivity extends AppCompatActivity {
     }
 
     public void ViewMenuAdmin(){
-        texthello.setText("Hello "+sessionId);
+        texthello.setText("Welcome "+sessionId+" to Admin menu");
     }
 }

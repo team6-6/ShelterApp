@@ -28,7 +28,7 @@ public class AddEmergencyActivity extends AppCompatActivity {
     private Checkfunction checkfunction=new Checkfunction();
     EditText nameOrganization, num;
     Button addNum;
-    TextView back;
+    Button back;
     String sessionId;
 
     @Override
@@ -38,7 +38,7 @@ public class AddEmergencyActivity extends AppCompatActivity {
         nameOrganization = (EditText) findViewById(R.id.AddOrganization);
         num = (EditText) findViewById(R.id.addNumber);
         addNum = (Button) findViewById(R.id.buttonaddEmerg);
-        back= (TextView) findViewById(R.id.backaddemerg);
+        back= (Button) findViewById(R.id.goback);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
 

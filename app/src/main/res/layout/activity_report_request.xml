@@ -2,16 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/always"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ReportRequestActivity">
 
+    <Button
+        android:id="@+id/listrequestbackmenureport"
+        android:layout_width="88dp"
+        android:layout_height="38dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Back"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+
     <TextView
-        android:id="@+id/textView89"
-        android:layout_width="163dp"
-        android:layout_height="53dp"
-        android:text="Request's list"
-        android:textSize="27sp"
+        android:id="@+id/textView16"
+        android:layout_width="197dp"
+        android:layout_height="51dp"
+        android:text="Request's List"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,27 +37,15 @@
 
     <ListView
         android:id="@+id/list_requestreport"
+        android:layout_width="316dp"
+        android:layout_height="386dp"
         android:descendantFocusability="afterDescendants"
-        android:layout_width="383dp"
-        android:layout_height="338dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.788" />
-
-    <TextView
-        android:id="@+id/listrequestbackmenureport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949"
-        />
+        app:layout_constraintVertical_bias="0.686" />
 
     <EditText
         android:id="@+id/requestidreport"
@@ -49,11 +54,14 @@
         android:ems="10"
         android:hint="Request's id"
         android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.188" />
+        app:layout_constraintVertical_bias="0.216" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

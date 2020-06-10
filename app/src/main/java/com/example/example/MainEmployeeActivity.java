@@ -12,14 +12,16 @@ import android.widget.Toast;
 public class MainEmployeeActivity extends AppCompatActivity {
 
     String sessionId;
+    TextView texthello;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_employee);
         ImageView list_shelters,list_sirens,map,requests,requests_admin,numbers,contant;
-        TextView change,logout ;
+        TextView change,logout;
 
+        texthello=(TextView)findViewById(R.id.helloText3);
         list_shelters=(ImageView)findViewById(R.id.Shelterlist) ;
         list_sirens= (ImageView)findViewById(R.id.Sirenlist);
         map= (ImageView)findViewById(R.id.MapOption);
@@ -29,6 +31,7 @@ public class MainEmployeeActivity extends AppCompatActivity {
         change= (TextView) findViewById(R.id.changePass);
         logout= (TextView) findViewById(R.id.logout);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        ViewMenuEmp();
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +132,9 @@ public class MainEmployeeActivity extends AppCompatActivity {
         catch (Exception e){
             return false;
         }
+    }
+    public void ViewMenuEmp(){
+        texthello.setText("Welcome "+sessionId+" to Employee menu");
     }
 
 }

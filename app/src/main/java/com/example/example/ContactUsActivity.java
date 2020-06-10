@@ -34,7 +34,8 @@ public class ContactUsActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> adpter;
     private ArrayList<String> arrayList=new ArrayList<String>();
-    private TextView backText, fieldsearch;
+    private TextView fieldsearch;
+    private Button backText;
     String sessionId,sessionId2;
     String perm;
 
@@ -43,7 +44,7 @@ public class ContactUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
-        backText= (TextView) findViewById(R.id.listrequestbackmenu);
+        backText= (Button) findViewById(R.id.listrequestbackmenu);
         listView=(ListView) findViewById(R.id.list_request);
         final CollectionReference collectionReference = db.collection("Requests");
         //Calling the get() method with a callback function
@@ -96,8 +97,6 @@ public class ContactUsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String currentRequest=adapterView.getItemAtPosition(position).toString();
-                Toast.makeText(ContactUsActivity.this, sessionId, Toast.LENGTH_SHORT).show();
-                Toast.makeText(ContactUsActivity.this,sessionId2, Toast.LENGTH_SHORT).show();
 
                 if (sessionId2.equals("B")){
                     Intent InfoRequestIntent = new Intent(ContactUsActivity.this,ContantUsInfoActivity.class);

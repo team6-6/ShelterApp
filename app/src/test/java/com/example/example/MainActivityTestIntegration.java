@@ -38,17 +38,6 @@ public class MainActivityTestIntegration {
     }
 
 
-@Test
-    public void ShowCorrectPageTest(){
-        MainActivity activity= Robolectric.buildActivity(MainActivity.class).create().get();
-        User use=new User();
-        use.setName("edenda2");
-        use.setPassword("Aa123456");
-        use.setPermission("A");
-        activity.setUserInfo(use.name,use.password);
-        activity.setUserPermission(use.permission);
-        assertEquals(activity.CheckPermissions(activity.user.permission),"Admin User");
-    }
 
 
 }

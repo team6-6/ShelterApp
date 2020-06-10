@@ -41,7 +41,6 @@ public class ResultSearchRequestActivity extends AppCompatActivity {
         btn=(Button)findViewById(R.id.button_back);
         currentRequest = getIntent().getExtras().get("RequestInfo").toString();
         RequestID.setText(currentRequest);
-        RequestID.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +75,10 @@ public class ResultSearchRequestActivity extends AppCompatActivity {
                             String TypeRequest=documentSnapshot.get("Type_Request").toString();
                             String description=documentSnapshot.get("Description").toString();
 
-                            DescriptionReq.setText("Description : "+description);
-                            ShelterID.setText("Shelter Name : "+ShelterName);
-                            Status.setText("Request Status : "+StatusRequest);
-                            Type_Req.setText("Request Type : "+TypeRequest);
+                            DescriptionReq.setText(description);
+                            ShelterID.setText(ShelterName);
+                            Status.setText(StatusRequest);
+                            Type_Req.setText(TypeRequest);
 
                         }
 

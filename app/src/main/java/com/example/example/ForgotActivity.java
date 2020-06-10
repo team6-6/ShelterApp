@@ -4,6 +4,7 @@ package com.example.example;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ForgotActivity extends AppCompatActivity {
 
     EditText username,father,school;
-    Button send;
+    Button send,back;
     TextView showpass ;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Checkfunction checkfunction=new Checkfunction();
@@ -35,6 +36,7 @@ public class ForgotActivity extends AppCompatActivity {
         school=(EditText)findViewById(R.id.school);
         send= (Button)findViewById(R.id.SendForgot);
         showpass= (TextView) findViewById(R.id.Showpass);
+        back= (Button) findViewById(R.id.gobacktomenu);
 
         send.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -75,6 +77,15 @@ public class ForgotActivity extends AppCompatActivity {
                                 }
                             });
                 }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ForgotActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

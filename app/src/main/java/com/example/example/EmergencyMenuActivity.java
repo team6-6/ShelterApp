@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class EmergencyMenuActivity extends AppCompatActivity {
-    Button addNumber,deleteNumber, viewlist;
-    TextView back;
+    Button addNumber,deleteNumber, viewlist,back;
     String sessionId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +17,7 @@ public class EmergencyMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_emergency_menu);
         addNumber = (Button) findViewById(R.id.AddEmer);
         deleteNumber = (Button) findViewById(R.id.DeleteEmer);
-        back= (TextView) findViewById(R.id.backEmer);
+        back= (Button) findViewById(R.id.backEmer);
         viewlist=(Button) findViewById(R.id.ViewList);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 

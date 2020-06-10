@@ -32,7 +32,7 @@ public class CivilianShelterInformationActivity extends AppCompatActivity {
         Sheltername = (TextView) findViewById(R.id.sheltername);
         btn=(Button)findViewById(R.id.infobtn);
         currentShelter = getIntent().getExtras().get("ShelterInfo").toString();
-        Sheltername.setText("Shelter name : " + currentShelter);
+        Sheltername.setText(currentShelter);
         sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
 
@@ -58,9 +58,9 @@ public class CivilianShelterInformationActivity extends AppCompatActivity {
                             Double lati = documentSnapshot.getDouble("lat");
                             Double longi = documentSnapshot.getDouble("lon");
                             String moreInformation = documentSnapshot.get("info").toString();
-                            laat.setText("Shelter latitude : "+String.valueOf(lati));
-                            loon.setText("Shelter longitute : "+String.valueOf(longi));
-                            infoo.setText("More Details : "+ moreInformation);
+                            laat.setText(String.valueOf(lati));
+                            loon.setText(String.valueOf(longi));
+                            infoo.setText( moreInformation);
 
 
                         }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +27,8 @@ public class ReportRatingActivity extends AppCompatActivity {
     public float ans1,ans2,ans3,ans4,ans5,average;
     ArrayList<Rating> ratingArrayList=new ArrayList<>();
 
-    TextView res1,res2,res3,res4,res5,res6,back;
+    TextView res1,res2,res3,res4,res5,res6;
+    Button back;
     String sessionId;
 
     @Override
@@ -41,7 +43,7 @@ public class ReportRatingActivity extends AppCompatActivity {
         res4 = (TextView) findViewById(R.id.res4);
         res5 = (TextView) findViewById(R.id.res5);
         res6 = (TextView) findViewById(R.id.res6);
-        back= (TextView) findViewById(R.id.backac);
+        back= (Button) findViewById(R.id.backac);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         db.collection("Rating").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

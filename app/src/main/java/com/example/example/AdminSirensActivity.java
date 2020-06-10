@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class AdminSirensActivity extends AppCompatActivity {
-    Button addSiren,deleteSiren;
-    TextView back;
+    Button addSiren,deleteSiren,back;
     String sessionId;
 
     @Override
@@ -19,7 +18,7 @@ public class AdminSirensActivity extends AppCompatActivity {
         setContentView(R.layout.activity_adminsirens);
         addSiren = (Button) findViewById(R.id.Addbotn);
         deleteSiren = (Button) findViewById(R.id.DeleteBotn);
-        back= (TextView) findViewById(R.id.goback);
+        back= (Button) findViewById(R.id.goback);
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         addSiren.setOnClickListener(new View.OnClickListener() {

@@ -23,10 +23,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ContantUsInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "ContantUsInfoActivity";
-
+    private Button back;
     private String currentShelter;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private TextView headline,typerequest,idshelter,description,back;
+    private TextView headline,typerequest,idshelter,description;
     private CheckBox checkBox;
     String sessionId,sessionId2;
 
@@ -39,7 +39,7 @@ public class ContantUsInfoActivity extends AppCompatActivity {
         typerequest = (TextView) findViewById(R.id.TypeRequest);
         idshelter = (TextView) findViewById(R.id.idshelter);
         description = (TextView) findViewById(R.id.description);
-        back = (TextView) findViewById(R.id.backinfocontant);
+        back = (Button) findViewById(R.id.backinfocontant);
         checkBox = (CheckBox) findViewById(R.id.check);
         currentShelter = getIntent().getExtras().get("RequestInfo").toString();
         sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
@@ -49,8 +49,6 @@ public class ContantUsInfoActivity extends AppCompatActivity {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ContantUsInfoActivity.this, sessionId, Toast.LENGTH_SHORT).show();
-                Toast.makeText(ContantUsInfoActivity.this,sessionId2, Toast.LENGTH_SHORT).show();
                 buildDialog();
 
             }
@@ -70,10 +68,10 @@ public class ContantUsInfoActivity extends AppCompatActivity {
                             String TypeRequest=documentSnapshot.get("Type_Request").toString();
                             String Description=documentSnapshot.get("Description").toString();
 
-                            description.setText("Description : \n"+Description);
-                            idshelter.setText("Shelter ID:  \n"+ShelterName);
+                            description.setText(Description);
+                            idshelter.setText(ShelterName);
                             headline.setText(currentShelter);
-                            typerequest.setText("Request's type :\n "+TypeRequest);
+                            typerequest.setText(TypeRequest);
 
                         }}
 
@@ -91,8 +89,6 @@ public class ContantUsInfoActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ContantUsInfoActivity.this, sessionId, Toast.LENGTH_SHORT).show();
-                Toast.makeText(ContantUsInfoActivity.this,sessionId2, Toast.LENGTH_SHORT).show();
                 Intent first = new Intent(ContantUsInfoActivity.this, ContactUsActivity.class);
                 first.putExtra("EXTRA_SESSION_ID", sessionId);
                 first.putExtra("per", sessionId2);
