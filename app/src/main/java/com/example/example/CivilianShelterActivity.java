@@ -39,6 +39,7 @@ public class CivilianShelterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_civilian_shelters);
+                FirebaseApp.initializeApp(this);
         db = FirebaseFirestore.getInstance();
         sessionId = getIntent().getStringExtra("KIND_OF_PERMISSION");
          sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
