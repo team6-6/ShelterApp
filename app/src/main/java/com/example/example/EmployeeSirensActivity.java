@@ -73,7 +73,7 @@ public class EmployeeSirensActivity extends AppCompatActivity {
                     }
                 }else{
                     //Task was not successful
-                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
+                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage());
                 }
             }
         });

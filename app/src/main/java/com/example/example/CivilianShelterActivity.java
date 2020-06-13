@@ -16,8 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.firebase.FirebaseApp;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -40,7 +40,8 @@ public class CivilianShelterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_civilian_shelters);
-                FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
+
         db = FirebaseFirestore.getInstance();
         sessionId = getIntent().getStringExtra("KIND_OF_PERMISSION");
          sessionId2 = getIntent().getStringExtra("EXTRA_SESSION_ID");
@@ -71,7 +72,7 @@ public class CivilianShelterActivity extends AppCompatActivity {
                     }
                 }else{
                     //Task was not successful
-                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
+                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage());
                 }
             }
         });

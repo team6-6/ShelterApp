@@ -65,7 +65,7 @@ public class RequestsAdminActivity extends AppCompatActivity {//בקשות של 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requests_admin);
-        //final String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         listView=(ListView) findViewById(R.id.list_sirensinfoEmployee);
         group=findViewById(R.id.group_select);
         //coordinatorLayout= (CoordinatorLayout) findViewById(R.id.Coordlayout);
@@ -119,7 +119,7 @@ public class RequestsAdminActivity extends AppCompatActivity {//בקשות של 
                                 }
                             }else{
                                 //Task was not successful
-                                Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
+                                Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage());
                             }
                         }
                     });
@@ -256,16 +256,8 @@ public class RequestsAdminActivity extends AppCompatActivity {//בקשות של 
                     });
 
             String RequestId = db.collection("Requests").document().getId();
+            buildDialog(RequestId);
 
-
-            //Snackbar snackbar = Snackbar.make(coordinatorLayout,RequestId,Snackbar.LENGTH_INDEFINITE);
-            //snackbar.show();
-
-            Toast.makeText(RequestsAdminActivity.this, "Your request number is : "+RequestId, Toast.LENGTH_SHORT).show();
-            Intent first = new Intent(RequestsAdminActivity.this, MainEmployeeActivity.class);
-            sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
-            first.putExtra("EXTRA_SESSION_ID", sessionId);
-            startActivity(first);
 
         }
 

@@ -44,7 +44,7 @@ public class ForgotActivity extends AppCompatActivity {
                 final String daddy = father.getText().toString().trim();
                 final String school1 = school.getText().toString().trim();
                 String user = username.getText().toString().trim();
-                if((checkfunction.validName(daddy) && checkfunction.validName(school1))==false ){
+                if((checkfunction.validName(daddy) && checkfunction.validName(school1))==false){
                     Toast.makeText(ForgotActivity.this, "", Toast.LENGTH_SHORT).show();
                 }
                 if (user.equals("") || daddy.equals("") || school1.equals("")) {

@@ -150,9 +150,9 @@ public class AddShelterActivity extends AppCompatActivity {
             }
         }
 
-        catch (NumberFormatException e ){
+        catch (NumberFormatException e){
             setFlag(false);
-            Toast.makeText( AddShelterActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddShelterActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
         }
         return flag;
     }

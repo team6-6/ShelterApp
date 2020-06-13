@@ -11,17 +11,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

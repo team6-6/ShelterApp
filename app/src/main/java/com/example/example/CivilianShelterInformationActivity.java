@@ -60,7 +60,7 @@ public class CivilianShelterInformationActivity extends AppCompatActivity {
                             String moreInformation = documentSnapshot.get("info").toString();
                             laat.setText(String.valueOf(lati));
                             loon.setText(String.valueOf(longi));
-                            infoo.setText( moreInformation);
+                            infoo.setText(moreInformation);
 
 
                         }

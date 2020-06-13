@@ -68,7 +68,7 @@ public class SearchRequestActivity extends AppCompatActivity {
                 final String ReqID = fieldRequestID.getText().toString().trim();
 
 
-                if (checkfunction.notEmpty(ReqID)==1 ){
+                if (checkfunction.notEmpty(ReqID)==1){
                     Toast.makeText(SearchRequestActivity.this, "Enter a Request Number !", Toast.LENGTH_SHORT).show();
                     //Toast.makeText(SearchRequestCivilianActivity.this, "ID = "+ReqID, Toast.LENGTH_SHORT).show();
 

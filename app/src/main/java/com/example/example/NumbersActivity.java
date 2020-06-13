@@ -42,6 +42,7 @@ public class NumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         user= getIntent().getStringExtra("EXTRA_SESSION_ID");
         func(user);
         FirebaseApp.initializeApp(this);

@@ -28,13 +28,10 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -121,7 +118,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 }else{
                     //Task was not successful
-                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
+                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage());
                 }
             }
         });
@@ -129,7 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void moveCamera(LatLng latLng, float zoom, String title){
-        Log.d("MapsActivity", "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
+        Log.d("MapsActivity", "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
         if(!title.equals("My Current Location")){
@@ -222,31 +219,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void locationEnabled () {
         LocationManager lm = (LocationManager)
-                getSystemService(Context. LOCATION_SERVICE ) ;
+                getSystemService(Context. LOCATION_SERVICE );
         boolean gps_enabled = false;
         boolean network_enabled = false;
         try {
-            gps_enabled = lm.isProviderEnabled(LocationManager. GPS_PROVIDER ) ;
+            gps_enabled = lm.isProviderEnabled(LocationManager. GPS_PROVIDER);
         } catch (Exception e) {
-            e.printStackTrace() ;
+            e.printStackTrace();
         }
         try {
-            network_enabled = lm.isProviderEnabled(LocationManager. NETWORK_PROVIDER ) ;
+            network_enabled = lm.isProviderEnabled(LocationManager. NETWORK_PROVIDER);
         } catch (Exception e) {
-            e.printStackTrace() ;
+            e.printStackTrace();
         }
         if (!gps_enabled && !network_enabled) {
-            new AlertDialog.Builder(MapsActivity. this )
-                    .setMessage( "GPS Enable" )
-                    .setPositiveButton( "Settings" , new
+            new AlertDialog.Builder(MapsActivity. this)
+                    .setMessage("GPS Enable")
+                    .setPositiveButton("Settings" , new
                             DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick (DialogInterface paramDialogInterface , int paramInt) {
-                                    startActivity( new Intent(Settings. ACTION_LOCATION_SOURCE_SETTINGS )) ;
+                                    startActivity(new Intent(Settings. ACTION_LOCATION_SOURCE_SETTINGS)) ;
                                 }
                             })
-                    .setNegativeButton( "Cancel" , null )
-                    .show() ;
+                    .setNegativeButton("Cancel" , null)
+                    .show();
         }
     }
 

@@ -120,8 +120,8 @@ public class AddSirenActivity extends AppCompatActivity {
             }
         }
 
-        catch (NumberFormatException e ){
-            Toast.makeText( AddSirenActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
+        catch (NumberFormatException e){
+            Toast.makeText(AddSirenActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
         }
     }
 }

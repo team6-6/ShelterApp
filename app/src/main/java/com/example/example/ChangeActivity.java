@@ -46,7 +46,7 @@ public class ChangeActivity extends AppCompatActivity {
                 final String newpwd = newPass.getText().toString().trim();
                 final String confirm = confirmnewPass.getText().toString().trim();
 
-                if ( checkfunction.notEmpty(old)==1|| checkfunction.notEmpty(newpwd)==1|| checkfunction.notEmpty(confirm)==1) {
+                if (checkfunction.notEmpty(old)==1|| checkfunction.notEmpty(newpwd)==1|| checkfunction.notEmpty(confirm)==1) {
                     Toast.makeText(ChangeActivity.this, "One or more field are empty !", Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -58,7 +58,7 @@ public class ChangeActivity extends AppCompatActivity {
                                     if (documentSnapshot.exists()) {
                                         String oldPws = documentSnapshot.getString("password");
                                         final String permission=documentSnapshot.getString("permission");
-                                        if (old.equals(oldPws) ) {
+                                        if (old.equals(oldPws)) {
                                             if(checkfunction.SamePassword(newpwd,confirm)) {
                                                 DocumentReference db1=db.collection("users").document(user);
                                                 db1.update(

@@ -51,7 +51,7 @@ public class EditUserActivity extends AppCompatActivity {
                 password = pass.getText().toString().trim();
                 permission = per.getText().toString().trim();
 
-                if (checkfunction.notEmpty(userEdit)==1  ){
+                if (checkfunction.notEmpty(userEdit)==1){
                     Toast.makeText(EditUserActivity.this, "write user name !", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -61,7 +61,7 @@ public class EditUserActivity extends AppCompatActivity {
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     if (documentSnapshot.exists()) {
 
-                                        if(checkfunction.notEmpty(password)==1  && checkfunction.notEmpty(permission)==1 ) {
+                                        if(checkfunction.notEmpty(password)==1  && checkfunction.notEmpty(permission)==1) {
                                             Toast.makeText(EditUserActivity.this, "write atleast one of the changes  !", Toast.LENGTH_SHORT).show();
                                         }
                                         else if (checkfunction.RangeValues(8,12,password)==true) {
@@ -105,7 +105,7 @@ public class EditUserActivity extends AppCompatActivity {
                                             });
 
                                         }
-                                        else if( checkfunction.notEmpty(password)==0 &&  checkfunction.notEmpty(permission)==1 )
+                                        else if(checkfunction.notEmpty(password)==0 &&  checkfunction.notEmpty(permission)==1)
                                         {
 
                                             DocumentReference db1=db.collection(us).document(userEdit);

@@ -56,7 +56,8 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
     String sessionId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_request_civilian);
         listView=(ListView) findViewById(R.id.list_sirensinfo);
@@ -137,7 +138,7 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
                     }
                 }else{
                     //Task was not successful
-                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
+                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage());
                 }
             }
         });
@@ -160,7 +161,7 @@ public class CreateRequestCivilianActivity extends AppCompatActivity {
                     }
                 }else{
                     //Task was not successful
-                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage() );
+                    Log.e(TAG, "onComplete: ERROR: " + task.getException().getLocalizedMessage());
                 }
             }
         });

@@ -3,6 +3,7 @@ package com.example.example;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -67,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             else if(checkfunction.notEmpty(quetion1)==1||checkfunction.notEmpty(quetion2)==1){
                 Toast.makeText(RegisterActivity.this, "Field are empty !", Toast.LENGTH_SHORT).show();
             }
-            else if (checkfunction.RangeValue(3,user)==true ) {
+            else if (checkfunction.RangeValue(3,user)==true) {
                 Toast.makeText(RegisterActivity.this, "user lenght must be atleast 3 character !!", Toast.LENGTH_SHORT).show();
             }
             else if (checkfunction.RangeValues(8,12,pwd)==true) {
@@ -110,6 +111,8 @@ public class RegisterActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Void documentReference) {
                                                         Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
+                                                        Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
+                                                        startActivity(intent);
                                                         Log.d(TAG, "DocumentSnapshot added with ID: " + user);
                                                     }
                                                 })

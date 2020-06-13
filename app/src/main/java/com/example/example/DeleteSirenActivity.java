@@ -42,7 +42,7 @@ public class DeleteSirenActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( DeleteSirenActivity.this, AdminSirensActivity.class);
+                Intent intent = new Intent(DeleteSirenActivity.this, AdminSirensActivity.class);
                 intent.putExtra("EXTRA_SESSION_ID", sessionId);
                 startActivity(intent);
             }

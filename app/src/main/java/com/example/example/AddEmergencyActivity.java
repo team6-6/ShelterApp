@@ -67,10 +67,11 @@ public class AddEmergencyActivity extends AppCompatActivity {
                 Toast.makeText(AddEmergencyActivity.this, "Field num is empty !", Toast.LENGTH_SHORT).show();
             }
             else if(string.equals("exception")){
-                Toast.makeText( AddEmergencyActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddEmergencyActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
             }
             else {
                 Double Numberadding = Double.parseDouble(num.getText().toString());
+                int numint = Integer.valueOf(Numberadding.intValue());
 
                 if (name.equals("")) {
                     Toast.makeText(AddEmergencyActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
@@ -79,7 +80,7 @@ public class AddEmergencyActivity extends AppCompatActivity {
 
                         // Create a new shelter
                         final Map<String, Object> numbers_details = new HashMap<>();
-                        numbers_details.put("number", Numberadding);
+                        numbers_details.put("number", numint);
 
 
                         db.collection("Emergency").document(name).get()
@@ -121,8 +122,8 @@ public class AddEmergencyActivity extends AppCompatActivity {
             }
         }
 
-        catch (NumberFormatException e ){
-            Toast.makeText( AddEmergencyActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
+        catch (NumberFormatException e){
+            Toast.makeText(AddEmergencyActivity.this, "Waypoint should be number !", Toast.LENGTH_SHORT).show();
         }
 
     }

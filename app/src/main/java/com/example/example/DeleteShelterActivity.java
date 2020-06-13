@@ -51,7 +51,7 @@ public class DeleteShelterActivity extends AppCompatActivity {
 
     private void deleteShelter() {
         final String name = nameShelter.getText().toString().trim();
-        if ( checkfunction.notEmpty(name)==1) {
+        if (checkfunction.notEmpty(name)==1) {
             Toast.makeText(DeleteShelterActivity.this, "Field name is empty !", Toast.LENGTH_SHORT).show();
         }
         else{
