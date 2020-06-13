@@ -39,7 +39,7 @@ public class CivilianShelterTestIntegration {
         shelter2.setLat(1.01);
         shelter2.setLon(2.22);
         Shelter shelter3 = new Shelter();
-        shelter3.setName("a1");
+        shelter3.setName("aa1");
         shelter3.setLat(12.0);
         shelter3.setLon(12.0);
         activity.arrayList.add(shelter1.getName());
