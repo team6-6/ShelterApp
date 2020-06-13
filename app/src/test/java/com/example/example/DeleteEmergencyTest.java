@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class AddSirenTest {
-
+public class DeleteEmergencyTest {
 
     @Test
     public void EmptyString() {
@@ -16,6 +15,6 @@ public class AddSirenTest {
     @Test
     public void NotEmptyString() {
         Checkfunction c=new Checkfunction();
-        assertEquals(0, c.notEmpty("siren1"));
+        assertEquals(0, c.notEmpty("delete"));
     }
 }
