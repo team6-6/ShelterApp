@@ -48,5 +48,4 @@ public class CivilianShelterTestIntegration {
         activity.fieldsearch.setText("a");
         assertEquals(activity.listView.getAdapter().getCount(),2,0);
     }
-
 }
