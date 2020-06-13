@@ -15,7 +15,7 @@ public class ChangeTest {
     @Test
     public void NotSamePasswordTest() {
         Checkfunction c=new Checkfunction();
-        assertEquals(false, c.SamePassword("Ba123456","Aa123456"));
+        assertEquals(true, c.SamePassword("Ba123456","Aa123456"));
     }
 
 
