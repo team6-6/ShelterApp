@@ -30,8 +30,8 @@ pipeline {
     stage('Unit test and integration') { 
       steps {
               sh './gradlew clean'
-
             sh './gradlew test'
+            junit '**/build/test-results/testDebugUnitTest/*.xml'
 
 
       }
