@@ -42,5 +42,4 @@ public class NumbersActivityTestIntegration {
         assertEquals(activity.CheckPermissions(activity.user1.permission),"Civilian");
 
     }
-
 }
