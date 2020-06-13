@@ -27,6 +27,4 @@ public class MainCivilianActivityTestIntegration {
         assertEquals(intent.getExtras().getString("EXTRA_SESSION_ID"),use.getName());
     }
 
-
-
 }
